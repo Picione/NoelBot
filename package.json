@@ -1,0 +1,26 @@
+{
+  "name": "NoelBot",
+  "version": "1.0.0",
+  "description": "A Bot for Brave Frontier Game",
+  "readme": "README.md",
+  "maintainers": [],
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Picione/NoelBot.git"
+  },
+  "license": "GPL-2.0",
+  "dependencies": {
+    "discord.js": "11.0.x",
+    "feedparser": "1.1.x",
+    "html-to-text": "1.5.x",
+    "nock": "1.7.x",
+    "npm": "",
+	"request": "",
+    "querystring": "0.2.x",
+    "sinon": "1.14.x",
+    "tumblr.js": "0.0.x",
+    "underscore": "1.8.x"
+  },
+  "main": "discord_bot.js"
+}
