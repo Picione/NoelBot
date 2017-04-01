@@ -182,7 +182,7 @@ var commands = {
   bot.user.setGame("with documents");
   if ((!suffix) || (suffix.toLowerCase() == "ul")){
   request({
-    			url: fsAPI + queryFX + "SELECT 'ID','SystemID','Name','Rarity','Series', 'Leader Skill', 'BB Skill', 'BB Hits', 'BB Fill', 'BB DC', 'SBB Skill', 'SBB Hits', 'SBB Fill', 'SBB DC', 'UBB Skill', 'UBB Hits', 'UBB Fill', 'UBB DC', 'Passive Skill', 'Passive Condition' FROM " + fsTable + keyFX + fsKey,
+    			url: fsAPI + queryFX + "SELECT 'ID','SystemID','Name','Rarity','Series', 'Leader Skill', 'BB Skill', 'BB Hits', 'BB Fill', 'BB DC', 'SBB Skill', 'SBB Hits', 'SBB Fill', 'SBB DC', 'UBB Skill', 'UBB Hits', 'UBB Fill', 'UBB DC', 'Passive Skill', 'Passive Condition' FROM " + AuthDetails.fsTable + keyFX + AuthDetails.fsKey,
     			json: true
 			}, function (error, response, body) 
 			{
