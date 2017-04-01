@@ -155,7 +155,7 @@ try{
 	Config = require("./config.json");
 } catch(e){ //no config file, use defaults
 	Config.debug = false;
-	Config.commandPrefix = '!';
+	Config.commandPrefix = '.';
 	try{
 		if(fs.lstatSync("./config.json").isFile()){
 			console.log("WARNING: config.json found but we couldn't read it!\n" + e.stack);
@@ -376,7 +376,7 @@ var commands = {
 	  for (var key in deJP) {
 		  var valObj = deJP[key];
 		  for (swapi=0;swapi<valObj["skills"].length;swapi++){
-			  valObj["skills"][swapi]["pre"] = SP.findSP(valObj["skills"][swapi]["skill"],"SP");
+			  valObj["skills"][swapi]["pre"] = enhance.find(valObj["skills"][swapi]["skill"],"SP");
 		  }
 	  }
 	  for (var key in deJP) {
