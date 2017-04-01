@@ -113,6 +113,9 @@ try{
 	Permissions.global = {};
 	Permissions.users = {
 		"161845421545750529": {
+			"pullanddeploy": true,
+			"setUsername": true,
+			"refresh": true
 		}
 	};
 }
@@ -122,7 +125,7 @@ for( var i=0; i<dangerousCommands.length;i++ ){
 	if(!Permissions.global.hasOwnProperty(cmd)){
 		Permissions.global[cmd] = false;
 	}
-	if(!Permissions.users["161845421545750529"].hasOwnProperty(cmd)){
+	if(!Permissions.users.["161845421545750529"].hasOwnProperty(cmd)){
 		Permissions.global[cmd] = true;
 	}
 }

@@ -324,6 +324,7 @@ exports.find = function (objectAS, valObj) {
                     /*resets var for each effect*/
                     var groupSTR="";
                     var effectFound=false;
+					if (objectAS[j]["proc id"])
 						var skillID=objectAS[j]["proc id"]
 					else if (objectAS[j]["unknown proc id"])
 						var skillID=objectAS[j]["unknown proc id"];                    
