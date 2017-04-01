@@ -27,10 +27,10 @@ build/Release
 node_modules
 
 #config files
-token.json
 auth.json
 rss.json
 alias.json
 permissions.json
 messagebox.json
 config.json
+token.json
