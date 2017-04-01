@@ -125,9 +125,9 @@ for( var i=0; i<dangerousCommands.length;i++ ){
 	if(!Permissions.global.hasOwnProperty(cmd)){
 		Permissions.global[cmd] = false;
 	}
-	if(!Permissions.users.["161845421545750529"].hasOwnProperty(cmd)){
+	/*if(!Permissions.users.["161845421545750529"].hasOwnProperty(cmd)){
 		Permissions.global[cmd] = true;
-	}
+	}*/
 }
 
 Permissions.checkPermission = function (user,permission){
