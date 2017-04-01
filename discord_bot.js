@@ -126,7 +126,7 @@ for( var i=0; i<dangerousCommands.length;i++ ){
 		Permissions.global[cmd] = true;
 	}
 }
-}
+
 Permissions.checkPermission = function (user,permission){
 	try {
 		var allowed = true;
