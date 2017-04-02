@@ -93,6 +93,8 @@ var de = [];
 
 var unitListAll;
 
+var unitTemp = [];
+
 var uLJPCount = 0;
 
 var fsAPI = "https://www.googleapis.com/fusiontables/v2/";
@@ -102,6 +104,15 @@ var queryFX = "query?sql=";
 var keyFX = "&key=";
 
 var indexTXT="Undefined effect(s)[";
+
+var bbArray=["bb","sbb","ubb"];
+
+try {
+	var JP = require("./jp.js");
+} catch (e)
+{
+	console.log("catchError");
+};
 
 // Load custom permissions
 var dangerousCommands = ["pullanddeploy","setUsername","refresh"];
@@ -182,9 +193,9 @@ var commands = {
         usage: "<database>:ul|infojp|dejp|esjp|esgl|itjp|itgl",
         description: "Bot Refresh Source Data. Without suffix Noel will reload all data.",
         process: function(bot,msg,suffix){
-  bot.user.setGame("with documents");
-  if ((!suffix) || (suffix.toLowerCase() == "ul")){
-  request({
+        bot.user.setGame("with documents");
+  		if ((!suffix) || (suffix.toLowerCase() == "ul")){
+  		request({
     			url: fsAPI + queryFX + "SELECT 'ID','SystemID','Name','Rarity','Series', 'Leader Skill', 'BB Skill', 'BB Hits', 'BB Fill', 'BB DC', 'SBB Skill', 'SBB Hits', 'SBB Fill', 'SBB DC', 'UBB Skill', 'UBB Hits', 'UBB Fill', 'UBB DC', 'Passive Skill', 'Passive Condition' FROM " + AuthDetails.fsTable + keyFX + AuthDetails.fsKey,
     			json: true
 			}, function (error, response, body) 
@@ -194,14 +205,18 @@ var commands = {
   }
   if (!error && response.statusCode == 200) {
       unitListAll = body;
-	  for (i=0;i<unitListAll["rows"].length;i++){
-		  if(unitListAll["rows"][i])
-		  if(unitListAll["rows"][i][0]===(i+1)) {
-			  console.log(unitListAll["rows"][i][0]);
-			  uLJPCount = i+1;  
+	  if (JP)
+		  for (var key in JP.miss) {
+			  var tempFound = false;
+			  for (i=0;i<unitListAll["rows"].length;i++){
+				  if (key == unitListAll["rows"][i][0])
+					  tempFound = true;
+			  }
+			  if (!tempFound) {
+				  unitListAll["rows"][unitListAll["rows"].length] = JP.miss[key];
+			  }
 		  }
-	  };
-	  console.log(uLJPCount);
+	  bot.user.setGame("with Summoners' mind");
 	  console.log("Success at Getting All Unit List");
   }
   });
@@ -301,7 +316,7 @@ var commands = {
   }
   });
   }
-  if ((!suffix) || (suffix.toLowerCase() == "infojp")){
+  /*if ((!suffix) || (suffix.toLowerCase() == "infojp")){
   request({
     			url: infoJPurl,
     			json: true
@@ -313,10 +328,41 @@ var commands = {
   if (!error && response.statusCode == 200) {
       infoJP = body;
 	  console.log("Success at Getting infoJP");
+	  //unitListAll["rows"][i][2]
+	  //"SELECT 'ID','SystemID','Name','Rarity','Series', 'Leader Skill', 'BB Skill', 'BB Hits', 'BB Fill', 'BB DC', 'SBB Skill', 'SBB Hits', 'SBB Fill', 'SBB DC', 'UBB Skill', 'UBB Hits', 'UBB Fill', 'UBB DC', 'Passive Skill', 'Passive Condition'
+	  for (var key in body) {
+		  var valObj = body[key];
+		  var ulFound = false;
+		  if (valObj.rarity == 8)
+		  for (var i in unitListAll) {
+			  if (key == unitListAll["rows"][i][2])
+				  ulFound = true;
+		          break;
+		  }
+		  if (!ulFound){
+			  var tempSkill = [];
+			  unitTemp.push({"systemid": key, "name": valObj["name"]});
+			  if ((valObj["leader skill"]) && (!valObj["leader skill"]["error"]))
+				var tempLS=passive.find(valObj["leader skill"], "LS");
+			  if ((valObj["extra skill"]) && (!valObj["extra skill"]["error"]))
+				var tempES=passive.find(valObj["extra skill"], "ES");
+			  for (ibb=0;ibb<bbArray.length;ibb++){
+				if ((valObj[bbArray[ibb]]) && (!valObj[bbArray[ibb]]["error"])){
+					var effectlength = valObj[bbArray[ibb]]["levels"].length - 1;
+            		if (valObj[bbArray[ibb]].levels[effectlength]["effects"]) {	
+					   	tempSkill[ibb] = active.find(valObj[bbArray[ibb]].levels[effectlength]["effects"], valObj)
+					}
+				} else tempSkill[ibb] = "";
+				 
+			  }			  
+			  unitListAll.push([valObj["guide_id"], key, valObj.name, valObj.rarity, '0', tempLS, tempSkill[0], '0', '0', '0', tempSkill[1], '0', '0', '0', tempSkill[2], '0', '0', '0', tempES, '0']);
+		  }
+		  
+	  }
 	  bot.user.setGame("with Summoners' mind");// Show the HTML for the Google homepage.
   }
   });
-  }
+  }*/
   if ((!suffix) || (suffix.toLowerCase() == "degl")){
   request({
     			url: deGLurl,
@@ -1010,6 +1056,125 @@ var commands = {
 			}
 			if (!sRef)
 					msg.channel.sendMessage(suffix + ' not found');	
+			} else 
+				msg.channel.sendMessage("Please enter longer search query");
+			}
+	},
+	"skill": {
+		usage: "<name>",
+		description: "return Skill of identified unit",
+		process: function(bot,msg,suffix){
+			var sName = "";
+			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
+			if (isNaN(sRarity) == false) {
+				for (i=0;i<suffix.split(" ").length-1;i++){
+					sName+=suffix.split(" ")[i];
+					if (i<suffix.split(" ").length-2)
+						sName+=" ";
+				}
+			} else {
+				sRarity = 0;
+				for (i=0;i<suffix.split(" ").length;i++){
+					sName+=suffix.split(" ")[i];
+					if (i<suffix.split(" ").length-1)
+						sName+=" ";
+				}
+			}
+			var sValid = true;
+			if (sRarity == 0) {
+				sValid = false;
+			}	
+			if ((sName != "") && (sName.length >= 3)) {
+			if (sValid) {
+			for (i=0;i<unitListAll["rows"].length;i++) {
+				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
+					var sRef = unitListAll["rows"][i][1];
+					break;
+				}
+				
+			}
+			} else {
+			for (i=unitListAll["rows"].length-1;i>=0;i--) {
+				if (unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) {
+					var sRef = unitListAll["rows"][i][1];
+					break;
+				}
+			}
+			}
+			if (!sRef)
+					msg.channel.sendMessage(suffix + ' not found');
+				else {
+					var tempmsg = "";
+					tempmsg+='**'+unitListAll["rows"][i][2]+'**\nLS: '+unitListAll["rows"][i][5];
+					if (unitListAll["rows"][sRef][18] != "")
+						tempmsg+= '\nES: '+unitListAll["rows"][i][18];
+					if (unitListAll["rows"][sRef][19] != "")
+						tempmsg+=' (Condition: '+unitListAll["rows"][sRef][19]+')';
+					if (unitListAll["rows"][sRef][6] != "")
+					{
+						tempmsg+= '\nBB: ';
+						tempmsg+='(';
+					if ((unitListAll["rows"][sRef][7] != "") && (unitListAll["rows"][sRef][7] != "NaN"))
+						tempmsg+=unitListAll["rows"][sRef][7];
+						else
+						tempmsg+='0';
+					tempmsg+='Hits/';
+					if (unitListAll["rows"][sRef][8] != "")
+						tempmsg+=unitListAll["rows"][sRef][8];
+						else
+						tempmsg+='0';
+					tempmsg+='BC Fill/';
+					if (unitListAll["rows"][sRef][9] != "")
+						tempmsg+=unitListAll["rows"][sRef][9];
+						else
+						tempmsg+='0';
+					tempmsg+='DC) ';
+					tempmsg+=unitListAll["rows"][i][6];
+					}
+					if (unitListAll["rows"][sRef][10] != "")
+					{
+						tempmsg+= '\nSBB: ';
+						tempmsg+='(';
+					if ((unitListAll["rows"][sRef][11] != "") && (unitListAll["rows"][sRef][11] != "NaN"))
+						tempmsg+=unitListAll["rows"][sRef][11];
+						else
+						tempmsg+='0';
+					tempmsg+='Hits/';
+					if (unitListAll["rows"][sRef][12] != "")
+						tempmsg+=unitListAll["rows"][sRef][12];
+						else
+						tempmsg+='0';
+					tempmsg+='BC Fill/';
+					if (unitListAll["rows"][sRef][13] != "")
+						tempmsg+=unitListAll["rows"][sRef][13];
+						else
+						tempmsg+='0';
+					tempmsg+='DC) ';
+					tempmsg+=unitListAll["rows"][i][10];
+					}
+					if (unitListAll["rows"][sRef][14] != "")
+					{
+						tempmsg+= '\nUBB: ';
+						tempmsg+='(';
+					if ((unitListAll["rows"][sRef][15] != "") && (unitListAll["rows"][sRef][15] != "NaN"))
+						tempmsg+=unitListAll["rows"][sRef][15];
+						else
+						tempmsg+='0';
+					tempmsg+='Hits/';
+					if (unitListAll["rows"][sRef][16] != "")
+						tempmsg+=unitListAll["rows"][sRef][16];
+						else
+						tempmsg+='0';
+					tempmsg+='BC Fill/';
+					if (unitListAll["rows"][sRef][17] != "")
+						tempmsg+=unitListAll["rows"][sRef][17];
+						else
+						tempmsg+='0';
+					tempmsg+='DC) ';
+					tempmsg+=unitListAll["rows"][i][14];
+					}
+					msg.channel.sendMessage(tempmsg);
+				} 
 			} else 
 				msg.channel.sendMessage("Please enter longer search query");
 			}
