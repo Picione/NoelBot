@@ -116,7 +116,7 @@ try{
 			"pullanddeploy": true,
 			"setUsername": true,
 			"refresh": true
-		}
+		},
 	};
 }
 
@@ -535,7 +535,7 @@ var commands = {
 				msg.channel.sendMessage("Please enter longer search query");
 		}
 	},
-	"sgj": {
+	"sphere": {
 		usage: "<name>",
 		description: "return effects of identified sphere",
 		process: function(bot,msg,suffix){
@@ -613,7 +613,7 @@ var commands = {
 				msg.channel.sendMessage("Please enter longer search query");
 			}
 	},
-		"de": {
+	/*	"de": {
 		usage: "<System ID>",
 		description: "return Dream Maker effects of identified unit",
 		process: function(bot,msg,suffix){
@@ -623,7 +623,7 @@ var commands = {
 						var exportSTR = "";
 						var categoryArray = [];
 						var catArrayCnt = 0;
-		 	 /*Category Loop*/
+		 	 //Category Loop
 			 		if (key == suffix) {
 				  	for (spi=0;spi<=100;spi++) {
 				if (valObj["category"][spi]) {
@@ -631,7 +631,7 @@ var commands = {
 				catArrayCnt+=1;
 				}
 			}
-			/**/	for (spk=0;spk<categoryArray.length;spk++) {
+				for (spk=0;spk<categoryArray.length;spk++) {
 				exportSTR+='**Category**: '+valObj["category"][categoryArray[spk]]["name"]+'\n';
 				for (spj=0;spj<valObj["skills"].length;spj++) {
 					if (valObj["skills"][spj]["category"] == categoryArray[spk]) {
@@ -656,8 +656,8 @@ var commands = {
 			} else 
 				msg.channel.sendMessage("Please enter longer search query");
 		}
-	},
-	"den": {
+	},*/
+	/*"den": {
 		usage: "<name>",
 		description: "return Dream Maker effects of identified unit",
 		process: function(bot,msg,suffix){
@@ -698,7 +698,7 @@ var commands = {
 						var exportSTR = "";
 						var categoryArray = [];
 						var catArrayCnt = 0;
-		 	 /*Category Loop*/
+		 	 //Category Loop
 			 		if (key == sRef) {
 				for (spi=0;spi<=100;spi++) {
 				if (valObj["category"][spi]) {
@@ -706,7 +706,7 @@ var commands = {
 				catArrayCnt+=1;
 				}
 				}
-			/**/	for (spk=0;spk<categoryArray.length;spk++) {
+				for (spk=0;spk<categoryArray.length;spk++) {
 				exportSTR+='**Category**: '+valObj["category"][categoryArray[spk]]["name"]+'\n';
 				for (spj=0;spj<valObj["skills"].length;spj++) {
 					if (valObj["skills"][spj]["category"] == categoryArray[spk]) {
@@ -731,8 +731,8 @@ var commands = {
 			} else 
 				msg.channel.sendMessage("Please enter longer search query");
 			}
-	},
-	"degl": {
+	},*/
+	/*"degl": {
 		usage: "<System ID>",
 		description: "return Dream Maker effects of identified unit",
 		process: function(bot,msg,suffix){
@@ -742,7 +742,7 @@ var commands = {
 						var exportSTR = "";
 						var categoryArray = [];
 						var catArrayCnt = 0;
-		 	 /*Category Loop*/
+		 	 //Category Loop
 			 		if (key == suffix) {
 				  	for (spi=0;spi<=100;spi++) {
 				if (valObj["category"][spi]) {
@@ -750,7 +750,7 @@ var commands = {
 				catArrayCnt+=1;
 				}
 			}
-			/**/	for (spk=0;spk<categoryArray.length;spk++) {
+				for (spk=0;spk<categoryArray.length;spk++) {
 				exportSTR+='**Category**: '+valObj["category"][categoryArray[spk]]["name"]+'\n';
 				for (spj=0;spj<valObj["skills"].length;spj++) {
 					if (valObj["skills"][spj]["category"] == categoryArray[spk]) {
@@ -775,8 +775,8 @@ var commands = {
 			} else 
 				msg.channel.sendMessage("Please enter longer search query");
 		}
-	},
-	"degln": {
+	},*/
+	/*"degln": {
 		usage: "<name>",
 		description: "return Dream Maker effects of identified unit",
 		process: function(bot,msg,suffix){
@@ -817,7 +817,7 @@ var commands = {
 						var exportSTR = "";
 						var categoryArray = [];
 						var catArrayCnt = 0;
-		 	 /*Category Loop*/
+		 	 //Category Loop
 			 		if (key == sRef) {
 				for (spi=0;spi<=100;spi++) {
 				if (valObj["category"][spi]) {
@@ -825,7 +825,7 @@ var commands = {
 				catArrayCnt+=1;
 				}
 				}
-			/**/	for (spk=0;spk<categoryArray.length;spk++) {
+				for (spk=0;spk<categoryArray.length;spk++) {
 				exportSTR+='**Category**: '+valObj["category"][categoryArray[spk]]["name"]+'\n';
 				for (spj=0;spj<valObj["skills"].length;spj++) {
 					if (valObj["skills"][spj]["category"] == categoryArray[spk]) {
@@ -850,8 +850,8 @@ var commands = {
 			} else 
 				msg.channel.sendMessage("Please enter longer search query");
 			}
-	},
-	"del": {
+	},*/
+	"sp": {
 		usage: "<name>",
 		description: "return Dream Maker effects of identified unit",
 		process: function(bot,msg,suffix){
@@ -1282,25 +1282,6 @@ var commands = {
 			} else 
 				msg.channel.sendMessage("Please enter longer search query");
 			}
-	},
-	"deis": {
-		usage: "<name>",
-		description: "Identify whether the unit with the name has OE form.",
-		process: function(bot,msg,suffix) {
-			if(suffix){
-			var foundCheck = false;
-			for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(suffix.toLowerCase()) != -1)&&(unitListAll["rows"][i][3] == 8)){
-					var sRef = unitListAll["rows"][i][1];
-					msg.channel.sendMessage(unitListAll["rows"][i][2] + ' has DE form.');
-					foundCheck=true;
-					break;
-				}
-			};
-			if(foundCheck=false)
-					msg.channel.sendMessage(suffix + ' is a wrong name or does not have a DE form.');	
-			}
-		}
 	},
 };
 
