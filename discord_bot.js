@@ -1088,31 +1088,29 @@ var commands = {
 			if (sValid) {
 			for (i=0;i<unitListAll["rows"].length;i++) {
 				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
-					var sRef = unitListAll["rows"][i][1];
+					var sRef = i;
 					break;
 				}
-				
 			}
 			} else {
 			for (i=unitListAll["rows"].length-1;i>=0;i--) {
 				if (unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) {
-					var sRef = unitListAll["rows"][i][1];
+					var sRef = i;					
 					break;
 				}
 			}
 			}
 			if (!sRef)
-					msg.channel.sendMessage(suffix + ' not found');
-				else {
+					msg.channel.sendMessage(suffix + ' not found');	
+			if (sRef) {
 					var tempmsg = "";
-					tempmsg+='**'+unitListAll["rows"][i][2]+'**\nLS: '+unitListAll["rows"][i][5];
+					tempmsg+='**'+unitListAll["rows"][i][2]+'**\n\n**LS:** '+unitListAll["rows"][i][5];
 					if (unitListAll["rows"][sRef][18] != "")
-						tempmsg+= '\nES: '+unitListAll["rows"][i][18];
+						tempmsg+= '\n\n**ES:** '+unitListAll["rows"][i][18];
 					if (unitListAll["rows"][sRef][19] != "")
 						tempmsg+=' (Condition: '+unitListAll["rows"][sRef][19]+')';
-					if (unitListAll["rows"][sRef][6] != "")
-					{
-						tempmsg+= '\nBB: ';
+					if (unitListAll["rows"][sRef][6] != "")	{
+						tempmsg+= '\n\n**BB:** ';
 						tempmsg+='(';
 					if ((unitListAll["rows"][sRef][7] != "") && (unitListAll["rows"][sRef][7] != "NaN"))
 						tempmsg+=unitListAll["rows"][sRef][7];
@@ -1131,9 +1129,8 @@ var commands = {
 					tempmsg+='DC) ';
 					tempmsg+=unitListAll["rows"][i][6];
 					}
-					if (unitListAll["rows"][sRef][10] != "")
-					{
-						tempmsg+= '\nSBB: ';
+					if (unitListAll["rows"][sRef][10] != ""){
+						tempmsg+= '\n\n**SBB:** ';
 						tempmsg+='(';
 					if ((unitListAll["rows"][sRef][11] != "") && (unitListAll["rows"][sRef][11] != "NaN"))
 						tempmsg+=unitListAll["rows"][sRef][11];
@@ -1152,9 +1149,8 @@ var commands = {
 					tempmsg+='DC) ';
 					tempmsg+=unitListAll["rows"][i][10];
 					}
-					if (unitListAll["rows"][sRef][14] != "")
-					{
-						tempmsg+= '\nUBB: ';
+					if (unitListAll["rows"][sRef][14] != ""){
+						tempmsg+= '\n\n**UBB:** ';
 						tempmsg+='(';
 					if ((unitListAll["rows"][sRef][15] != "") && (unitListAll["rows"][sRef][15] != "NaN"))
 						tempmsg+=unitListAll["rows"][sRef][15];
@@ -1174,7 +1170,7 @@ var commands = {
 					tempmsg+=unitListAll["rows"][i][14];
 					}
 					msg.channel.sendMessage(tempmsg);
-				} 
+			}
 			} else 
 				msg.channel.sendMessage("Please enter longer search query");
 			}
