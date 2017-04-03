@@ -69,6 +69,8 @@ var infoJPurl = "http://picione.github.io/bravefrontier_data/jp/info.json";
 
 var deJPurl = "http://picione.github.io/bravefrontier_data/jp/feskills.json";
 
+var deEUurl = "http://picione.github.io/bravefrontier_data/eu/feskills.json";
+
 var deGLurl = "http://picione.github.io/bravefrontier_data/feskills.json";
 
 var aiJPurl = "http://picione.github.io/bravefrontier_data/jp/ai.json";
@@ -86,6 +88,8 @@ var esJP;
 var infoJP;
 
 var deJP;
+
+var deEU;
 
 var deGL;
 
@@ -109,6 +113,20 @@ var bbArray=["bb","sbb","ubb"];
 
 try {
 	var JP = require("./jp.js");
+} catch (e)
+{
+	console.log("catchError");
+};
+
+try {
+	var EU = require("./eu.js");
+} catch (e)
+{
+	console.log("catchError");
+};
+
+try {
+	var GL = require("./gl.js");
 } catch (e)
 {
 	console.log("catchError");
@@ -190,7 +208,7 @@ try{
 
 var commands = {
 	"refresh": {
-        usage: "<database>:ul|infojp|dejp|esjp|esgl|itjp|itgl",
+        usage: "<database>:ul|infojp|dejp|degl|deeu|esjp|esgl|itjp|itgl",
         description: "Bot Refresh Source Data. Without suffix Noel will reload all data.",
         process: function(bot,msg,suffix){
         bot.user.setGame("with documents");
@@ -214,6 +232,28 @@ var commands = {
 			  }
 			  if (!tempFound) {
 				  unitListAll["rows"][unitListAll["rows"].length] = JP.miss[key];
+			  }
+		  }
+	  if (GL)
+		  for (var key in GL.miss) {
+			  var tempFound = false;
+			  for (i=0;i<unitListAll["rows"].length;i++){
+				  if (key == unitListAll["rows"][i][0])
+					  tempFound = true;
+			  }
+			  if (!tempFound) {
+				  unitListAll["rows"][unitListAll["rows"].length] = GL.miss[key];
+			  }
+		  }
+	  if (EU)
+		  for (var key in EU.miss) {
+			  var tempFound = false;
+			  for (i=0;i<unitListAll["rows"].length;i++){
+				  if (key == unitListAll["rows"][i][0])
+					  tempFound = true;
+			  }
+			  if (!tempFound) {
+				  unitListAll["rows"][unitListAll["rows"].length] = EU.miss[key];
 			  }
 		  }
 	  bot.user.setGame("with Summoners' mind");
@@ -408,6 +448,51 @@ var commands = {
     
   });
   }
+if ((!suffix) || (suffix.toLowerCase() == "deeu")){
+  request({
+    			url: deEUurl,
+    			json: true
+			}, function (error, response, body) 
+			{
+  if (error) {
+	  console.log("Error at Getting deEU");
+  }
+  if (!error && response.statusCode == 200) {
+      deEU = body;
+	  for (var key in deEU) {
+		  var valObj = deEU[key];
+		  for (swapi=0;swapi<valObj["skills"].length;swapi++){
+			  valObj["skills"][swapi]["pre"] = enhance.find(valObj["skills"][swapi]["skill"],"SP");
+		  }
+	  }
+	  for (var key in deEU) {
+		  var valObj = deEU[key];
+		  var alcount = 0;
+		  var exportSTR = "";
+		  for (spj=0;spj<valObj["skills"].length;spj++) {
+			  		exportSTR+=alphabet[alcount]+' ';
+					alcount+=1;
+					exportSTR+=valObj["skills"][spj]["skill"]["bp"]+'SP-'+valObj["skills"][spj]["pre"];		
+					if (valObj["skills"][spj]["dependency"] != "") {
+						var reqBP = valObj["skills"][spj]["dependency"].substr(2);			
+						for (spm=0;spm<valObj["skills"].length;spm++) {
+							if (valObj["skills"][spm]["id"] == reqBP) {
+								exportSTR+=' [*Need ['+valObj["skills"][spm]["skill"]["bp"]+'SP-'+valObj["skills"][spm]["pre"]+'] to be unlocked*]\n';
+							}
+						}
+					} else exportSTR+='\n';
+					if (enhance.find(valObj["skills"][spj]["skill"],"SP").indexOf(indexTXT) != -1)
+					exportSTR+=valObj["skills"][spj]["skill"]["desc"]+'\n';
+					}
+		  exportSTR+="http://static.bravefrontier.gumi-europe.net/content/unit/img/unit_ills_thum_"+key+".png";
+		  de[key] = [];
+		  de[key]["pre"] = exportSTR;		  
+	  }
+	  console.log("Success at Getting deEU"); // Show the HTML for the Google homepage.
+  }
+    
+  });
+  }			
   if ((!suffix) || (suffix.toLowerCase() == "dejp")){
   request({
     			url: deJPurl,
