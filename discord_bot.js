@@ -206,6 +206,14 @@ try{
 	aliases = {};
 }
 
+var playerids;
+try{
+	playerids = require("./saveid.json");
+} catch(e) {
+	//No aliases defined
+	playerids = {};
+}
+
 var commands = {
 	"refresh": {
         usage: "<database>:ul|infojp|dejp|degl|deeu|esjp|esgl|itjp|itgl",
@@ -557,6 +565,23 @@ var commands = {
 				//now save the new alias
 				require("fs").writeFile("./alias.json",JSON.stringify(aliases,null,2), null);
 				msg.channel.sendMessage("created alias " + name);
+			}
+		}
+	},
+	"bfid": {
+		usage: "<gl|jp> <player id>",
+		description: "Save Players ID on Noel Register Book",
+		process: function(bot,msg,suffix) {
+			var args = suffix.split(" ");
+			var server = args.shift();
+			if((!server) || ((server != 'jp') && (server != 'gl'))){
+				msg.channel.sendMessage("Please indicate the BF's Server of the ID: Use 'gl' or 'jp'.");
+			} else {
+				var playerid = args;
+				playerids[msg.author.id][server] = playerid;
+				//now save the new alias
+				require("fs").writeFile("./saveid.json",JSON.stringify(playerids,null,2), null);
+				msg.channel.sendMessage("Saved Player ID of " + msg.author);
 			}
 		}
 	},
@@ -1572,6 +1597,7 @@ bot.on("ready", function () {
 bot.on("disconnected", function () {
 
 	console.log("Disconnected!");
+	
 	process.exit(1); //exit node.js with an error
 
 });
