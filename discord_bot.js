@@ -568,42 +568,68 @@ var commands = {
 			}
 		}
 	},
-	"saveid": {
-		usage: "<gl|jp> <player id>",
-		description: "Save Players ID on Noel Register Book. Uses <player id> as '0000' to delete record",
+	"id": {
+		usage: "<save|del> <gl|jp> <player id>",
+		description: "Record Players ID on Noel Register Book.",
 		process: function(bot,msg,suffix) {
 			var args = suffix.split(" ");
+			var cmd = args.shift();
+			if ((!cmd) || ((cmd != 'save') && (server != 'delete'))) {
+				msg.channel.sendMessage("Please indicate the action: save or delete.");
+			} else {
 			var server = args.shift();
 			if((!server) || ((server != 'jp') && (server != 'gl'))){
 				msg.channel.sendMessage("Please indicate the BF's Server of the ID: Use 'gl' or 'jp'.");
 			} else {
-				var playerid = args.toString();
-				if (playerid="0000") {playerid="";}
+				if (cmd = 'delete'){
+				if (!playerids[msg.author.id])
+					playerids[msg.author.id] = {};
+				playerids[msg.author.id][server] = "";
+				//now save the new alias
+				require("fs").writeFile("./saveid.json",JSON.stringify(playerids,null,2), null);
+				msg.channel.sendMessage("Record Deleted");
+				} else {
+				var playerid = args.shift();
+				if (!playerid) {
+				msg.channel.sendMessage("No Player ID is recorded.");
+				} else {
 				if (!playerids[msg.author.id])
 					playerids[msg.author.id] = {};
 				playerids[msg.author.id][server] = playerid;
 				//now save the new alias
 				require("fs").writeFile("./saveid.json",JSON.stringify(playerids,null,2), null);
 				msg.channel.sendMessage("Saved Player ID of " + msg.author);
+				}
+				}
+				}
 			}
 		}
 	},
-	"bfid": {
+	"recall": {
 		usage: "",
 		description: "Recall Players ID on Noel Register Book",
 		process: function(bot,msg,suffix) {
 			var piTest = false;
 			for (var i in playerids) {
 				if (i == msg.author.id) {
-					var exportSTR = '';
-					if (playerids[msg.author.id]['gl'])
-						if (playerids[msg.author.id]['gl']!="")
-						exportSTR+=" in **GL: " + playerids[msg.author.id]['gl']+"**";
-					if (playerids[msg.author.id]['jp'])
-						if (playerids[msg.author.id]['jp']!="")
-						exportSTR+=" in **JP: " + playerids[msg.author.id]['jp']+"**";
-					msg.channel.sendMessage(msg.author+"'s Player ID"+exportSTR);
 					piTest = true;
+					var exportSTR = '';
+					var exTest = false;
+					if (playerids[msg.author.id]['gl'])
+						if (playerids[msg.author.id]['gl']!="") {
+						exportSTR+=" in **GL: " + playerids[msg.author.id]['gl']+"**";
+						exTest = true;
+						}
+					if (playerids[msg.author.id]['jp'])
+						if (playerids[msg.author.id]['jp']!="") {
+						exportSTR+=" in **JP: " + playerids[msg.author.id]['jp']+"**";
+						exTest = true;
+						}
+					if (exTest) {
+						msg.channel.sendMessage(msg.author+"'s Player ID"+exportSTR);
+					} else {
+						piTest = false;
+					} 
 					break;
 				} 
 			}
