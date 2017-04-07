@@ -574,7 +574,7 @@ var commands = {
 		process: function(bot,msg,suffix) {
 			var args = suffix.split(" ");
 			var cmd = args.shift();
-			if ((!cmd) || ((cmd != 'save') && (server != 'delete'))) {
+			if ((!cmd) || ((cmd != 'save') && (cmd != 'delete'))) {
 				msg.channel.sendMessage("Please indicate the action: save or delete.");
 			} else {
 			var server = args.shift();
