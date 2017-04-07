@@ -595,9 +595,9 @@ var commands = {
 				if (i == msg.author.id) {
 					var exportSTR = '';
 					if (playerids[msg.author.id]['gl'])
-						exportSTR+ = " in GL: " + playerids[msg.author.id]['gl'];
+						exportSTR+=" in GL: " + playerids[msg.author.id]['gl'];
 					if (playerids[msg.author.id]['jp'])
-						exportSTR+ = " in JP: " + playerids[msg.author.id]['jp'];
+						exportSTR+=" in JP: " + playerids[msg.author.id]['jp'];
 					msg.channel.sendMessage(msg.author+"'s Player ID"+exportSTR);
 				} else {
 					msg.channel.sendMessage("Please register your BF Player ID using !saveid.");
