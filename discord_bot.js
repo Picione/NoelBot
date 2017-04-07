@@ -574,14 +574,14 @@ var commands = {
 		process: function(bot,msg,suffix) {
 			var args = suffix.split(" ");
 			var cmd = args.shift();
-			if ((!cmd) || ((cmd != 'save') && (cmd != 'delete'))) {
-				msg.channel.sendMessage("Please indicate the action: save or delete.");
+			if ((!cmd) || ((cmd != 'save') && (cmd != 'del'))) {
+				msg.channel.sendMessage("Please indicate the action: save or del.");
 			} else {
 			var server = args.shift();
 			if((!server) || ((server != 'jp') && (server != 'gl'))){
 				msg.channel.sendMessage("Please indicate the BF's Server of the ID: Use 'gl' or 'jp'.");
 			} else {
-				if (cmd = 'delete'){
+				if (cmd === 'del'){
 				if (!playerids[msg.author.id])
 					playerids[msg.author.id] = {};
 				playerids[msg.author.id][server] = "";
@@ -633,8 +633,8 @@ var commands = {
 					break;
 				} 
 			}
-			if (piTest = false)
-				msg.channel.sendMessage("Please register your BF Player ID using !saveid.");
+			if (!piTest)
+				msg.channel.sendMessage("Please register your BF Player ID using !id.");
 		}
 	},
 	"aliases": {
