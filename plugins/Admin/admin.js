@@ -1,10 +1,18 @@
 exports.commands = [
+	"setGame",
 	"setUsername",
 	"log",
 	"uptime"
 ]
 
 var startTime = Date.now();
+
+exports.setGame = {
+	description: "sets the game of the bot.",
+	process: function(bot,msg,suffix) {
+		bot.user.setGame(suffix);
+	}
+}
 
 exports.setUsername = {
 	description: "sets the username of the bot. Note this can only be done twice an hour!",

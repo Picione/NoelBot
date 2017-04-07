@@ -133,7 +133,7 @@ try {
 };
 
 // Load custom permissions
-var dangerousCommands = ["pullanddeploy","setUsername","refresh","say"];
+var dangerousCommands = ["pullanddeploy","setUsername","refresh","say","setGame"];
 var Permissions = {};
 try{
 	Permissions = require("./permissions.json");
@@ -144,7 +144,9 @@ try{
 		"161845421545750529": {
 			"pullanddeploy": true,
 			"setUsername": true,
-			"refresh": true
+			"refresh": true,
+			"say":true,
+			"setGame":true
 		},
 	};
 }

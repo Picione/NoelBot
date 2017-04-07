@@ -1,9 +1,9 @@
-exports.commands = [
+/*exports.commands = [
     "date_fact",
     "year_fact",
     "joke",
     "math_fact"
-]
+]*/
 
 exports.math_fact = {
         usage: "<random math>",
