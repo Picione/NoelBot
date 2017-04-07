@@ -133,7 +133,7 @@ try {
 };
 
 // Load custom permissions
-var dangerousCommands = ["pullanddeploy","setUsername","refresh"];
+var dangerousCommands = ["pullanddeploy","setUsername","refresh","say"];
 var Permissions = {};
 try{
 	Permissions = require("./permissions.json");
@@ -448,7 +448,7 @@ var commands = {
     
   });
   }
-if ((!suffix) || (suffix.toLowerCase() == "deeu")){
+  if ((!suffix) || (suffix.toLowerCase() == "deeu")){
   request({
     			url: deEUurl,
     			json: true
