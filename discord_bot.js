@@ -568,7 +568,7 @@ var commands = {
 			}
 		}
 	},
-	"bfid": {
+	"saveid": {
 		usage: "<gl|jp> <player id>",
 		description: "Save Players ID on Noel Register Book",
 		process: function(bot,msg,suffix) {
@@ -577,11 +577,31 @@ var commands = {
 			if((!server) || ((server != 'jp') && (server != 'gl'))){
 				msg.channel.sendMessage("Please indicate the BF's Server of the ID: Use 'gl' or 'jp'.");
 			} else {
-				var playerid = args;
+				var playerid = args.shift();
+				if (!playerids[msg.author.id])
+					playerids[msg.author.id] = {};
 				playerids[msg.author.id][server] = playerid;
 				//now save the new alias
 				require("fs").writeFile("./saveid.json",JSON.stringify(playerids,null,2), null);
 				msg.channel.sendMessage("Saved Player ID of " + msg.author);
+			}
+		}
+	},
+	"bfid": {
+		usage: "",
+		description: "Recall Players ID on Noel Register Book",
+		process: function(bot,msg,suffix) {
+			for (var i in playerids) {
+				if (i == msg.author.id) {
+					var exportSTR = '';
+					if (playerids[msg.author.id]['gl'])
+						exportSTR+ = " in GL: " + playerids[msg.author.id]['gl'];
+					if (playerids[msg.author.id]['jp'])
+						exportSTR+ = " in JP: " + playerids[msg.author.id]['jp'];
+					msg.channel.sendMessage(msg.author+"'s Player ID"+exportSTR);
+				} else {
+					msg.channel.sendMessage("Please register your BF Player ID using !saveid.");
+				}
 			}
 		}
 	},
