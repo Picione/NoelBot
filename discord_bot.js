@@ -570,15 +570,15 @@ var commands = {
 	},
 	"saveid": {
 		usage: "<gl|jp> <player id>",
-		description: "Save Players ID on Noel Register Book",
+		description: "Save Players ID on Noel Register Book. Uses <player id> as '0000' to delete record",
 		process: function(bot,msg,suffix) {
 			var args = suffix.split(" ");
 			var server = args.shift();
 			if((!server) || ((server != 'jp') && (server != 'gl'))){
 				msg.channel.sendMessage("Please indicate the BF's Server of the ID: Use 'gl' or 'jp'.");
 			} else {
-				var playerid = args.shift();
-				if (playerid="null") playerid="";
+				var playerid = args.toString();
+				if (playerid="0000") {playerid="";}
 				if (!playerids[msg.author.id])
 					playerids[msg.author.id] = {};
 				playerids[msg.author.id][server] = playerid;
@@ -592,6 +592,7 @@ var commands = {
 		usage: "",
 		description: "Recall Players ID on Noel Register Book",
 		process: function(bot,msg,suffix) {
+			var piTest = false;
 			for (var i in playerids) {
 				if (i == msg.author.id) {
 					var exportSTR = '';
@@ -602,10 +603,12 @@ var commands = {
 						if (playerids[msg.author.id]['jp']!="")
 						exportSTR+=" in **JP: " + playerids[msg.author.id]['jp']+"**";
 					msg.channel.sendMessage(msg.author+"'s Player ID"+exportSTR);
-				} else {
-					msg.channel.sendMessage("Please register your BF Player ID using !saveid.");
-				}
+					piTest = true;
+					break;
+				} 
 			}
+			if (piTest = false)
+				msg.channel.sendMessage("Please register your BF Player ID using !saveid.");
 		}
 	},
 	"aliases": {
