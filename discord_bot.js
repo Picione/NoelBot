@@ -578,6 +578,7 @@ var commands = {
 				msg.channel.sendMessage("Please indicate the BF's Server of the ID: Use 'gl' or 'jp'.");
 			} else {
 				var playerid = args.shift();
+				if (playerid="null") playerid="";
 				if (!playerids[msg.author.id])
 					playerids[msg.author.id] = {};
 				playerids[msg.author.id][server] = playerid;
@@ -595,8 +596,10 @@ var commands = {
 				if (i == msg.author.id) {
 					var exportSTR = '';
 					if (playerids[msg.author.id]['gl'])
+						if (playerids[msg.author.id]['gl']!="")
 						exportSTR+=" in **GL: " + playerids[msg.author.id]['gl']+"**";
 					if (playerids[msg.author.id]['jp'])
+						if (playerids[msg.author.id]['jp']!="")
 						exportSTR+=" in **JP: " + playerids[msg.author.id]['jp']+"**";
 					msg.channel.sendMessage(msg.author+"'s Player ID"+exportSTR);
 				} else {
