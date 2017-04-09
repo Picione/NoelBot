@@ -1741,10 +1741,10 @@ function checkMessageForCommand(msg, isEdit) {
 					if(Config.debug){
 						 msgTxt += "\n" + e.stack;
 					}
-					msg.channel.sendMessage(msgTxt);
+					msg.channel.sendMessage(msgTxt).then((message => message.delete(10000)));
 				}
 			} else {
-				msg.channel.sendMessage("You are not allowed to run " + cmdTxt + "!");
+				msg.channel.sendMessage("You are not allowed to run " + cmdTxt + "!").then((message => message.delete(5000)));
 			}
 		} else {
 			msg.channel.sendMessage(cmdTxt + " not recognized as a command!").then((message => message.delete(5000)))
@@ -1757,7 +1757,7 @@ function checkMessageForCommand(msg, isEdit) {
         }
 
         if (msg.author != bot.user && msg.isMentioned(bot.user)) {
-                msg.channel.sendMessage(msg.author + ", you called?");
+                msg.channel.sendMessage(msg.author + ", you called?").then((message => message.delete(10000)));
         } else {
 
 				}
