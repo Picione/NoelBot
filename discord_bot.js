@@ -133,7 +133,8 @@ try {
 };
 
 // Load custom permissions
-var dangerousCommands = ["pullanddeploy","setUsername","refresh","say","setGame"];
+var master = "161845421545750529";
+var dangerousCommands = ["pullanddeploy","setUsername","refresh","say","setGame","give","take"];
 var Permissions = {};
 try{
 	Permissions = require("./permissions.json");
@@ -141,13 +142,7 @@ try{
 	console.log("catchError");
 	Permissions.global = {};
 	Permissions.users = {
-		"161845421545750529": {
-			"pullanddeploy": true,
-			"setUsername": true,
-			"refresh": true,
-			"say":true,
-			"setGame":true
-		},
+		
 	};
 }
 
@@ -156,9 +151,6 @@ for( var i=0; i<dangerousCommands.length;i++ ){
 	if(!Permissions.global.hasOwnProperty(cmd)){
 		Permissions.global[cmd] = false;
 	}
-	/*if(!Permissions.users.["161845421545750529"].hasOwnProperty(cmd)){
-		Permissions.global[cmd] = true;
-	}*/
 }
 
 Permissions.checkPermission = function (user,permission){
@@ -1733,7 +1725,7 @@ function checkMessageForCommand(msg, isEdit) {
 					}
         }
 		else if(cmd) {
-			if(Permissions.checkPermission(msg.author,cmdTxt)){
+			if((Permissions.checkPermission(msg.author,cmdTxt)) || (msg.author.id == master)){
 				try{
 					cmd.process(bot,msg,suffix,isEdit);
 				} catch(e){

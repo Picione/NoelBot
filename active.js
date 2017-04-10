@@ -368,6 +368,8 @@ exports.find = function (objectAS, valObj) {
                             }
                           }
                       }
+					  if (objectAS[j]['buff turns'])
+							  groupSTR+="Debuff " + objectAS[j]['buff turns'] + "Turns";
                     } /*End Grouping check*/
                     
                     /*Check BB Self buff*/
@@ -737,6 +739,8 @@ exports.trig = function (objectAS, valObj) {
                             }
                           }
                       }
+					  if (objectAS['buff turns'])
+							  groupSTR+="Debuff " + objectAS['buff turns'] + "Turns";
                     } /*End Grouping check*/
                     
                     /*Check BB Self buff*/

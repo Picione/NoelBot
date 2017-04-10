@@ -128,8 +128,8 @@
 		{"skillid":"127", "cmt":"","skillref":["@"]},
 		{"skillid":"128", "cmt":"","skillref":["@"]},
 		{"skillid":"129", "cmt":"","skillref":["@"]},
-		{"skillid":"130", "cmt":"","skillref":["@"]},
-		{"skillid":"131", "cmt":"","skillref":["@"]},*/
+		{"skillid":"130", "cmt":"","skillref":["@"]},*/
+		{	"skillid":"131", "cmt":"SpaCri Buff","skillref":["@"]},
 		{	"skillid":"132", "cmt":"OD Fill Rates","skillref":["@"]},
 		/*{"skillid":"133", "cmt":"","skillref":["@"]},
 		{"skillid":"134", "cmt":"","skillref":["@"]},
@@ -242,6 +242,11 @@ exports.find = function (objectPS) {
 						eTurn = parseInt(objectPS["buff turns (75)"]);
 						groupSTR+=uparams[1]+'% Chance '+uparams[0]+'% Enemies DEF for '+uparams[2]+'Turns (SELF)';
 						}					  
+				  } else if(buffID=="131") {
+						uparams = [];
+						uparams = objectPS["unknown buff params"].split("&");
+						eTurn = parseInt(objectPS["buff turns (131)"]);
+						groupSTR+=uparams[0]+'% Chance for Critial Spark ('+uparams[1]+'% DMG+) for '+eTurn+'Turns';
 				  } else if(buffID=="132") {
 						uparams = [];
 						uparams = objectPS["unknown buff params"].split("&");
