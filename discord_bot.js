@@ -1156,11 +1156,11 @@ var commands = {
 					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
 			if (sRef) {
 				if (sID >= 8000)
-					msg.channel.sendMessage("http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_"+sRef+".png")
+					msg.channel.sendMessage("http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_full_"+sRef+".png")
 				else if (sID >= 7000)
-					msg.channel.sendMessage("http://static.bravefrontier.gumi-europe.net/content/unit/img/unit_ills_thum_"+sRef+".png")
+					msg.channel.sendMessage("http://static.bravefrontier.gumi-europe.net/content/unit/img/unit_ills_full_"+sRef+".png")
 				else 
-					msg.channel.sendMessage("http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_"+sRef+".png");
+					msg.channel.sendMessage("http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_full_"+sRef+".png");
 			}
 			} else 
 				msg.channel.sendMessage("Please enter longer search query");
