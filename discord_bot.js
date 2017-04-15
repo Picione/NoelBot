@@ -685,7 +685,7 @@ var commands = {
 			msg.channel.sendMessage("message saved.")
 		}
 	},
-	"sgl": {
+	"spheregl": {
 		usage: "<name>",
 		description: "return effects of identified sphere",
 		process: function(bot,msg,suffix){
@@ -711,7 +711,7 @@ var commands = {
 				msg.channel.sendMessage("Please enter longer search query");
 			}
 	},
-	"sjp": {
+	"spherejp": {
 		usage: "<name>",
 		description: "return effects of identified sphere",
 		process: function(bot,msg,suffix){
@@ -1104,6 +1104,63 @@ var commands = {
 					msg.channel.sendMessage(valObj["pre"]);
 					};
 					}
+			}
+			} else 
+				msg.channel.sendMessage("Please enter longer search query");
+			}
+	},
+	"unitart": {
+		usage: "<name>",
+		description: "return unit art of specified unit",
+		process: function(bot,msg,suffix){
+			var sName = "";
+			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
+			if (isNaN(sRarity) == false) {
+				for (i=0;i<suffix.split(" ").length-1;i++){
+					sName+=suffix.split(" ")[i];
+					if (i<suffix.split(" ").length-2)
+						sName+=" ";
+				}
+			} else {
+				sRarity = 0;
+				for (i=0;i<suffix.split(" ").length;i++){
+					sName+=suffix.split(" ")[i];
+					if (i<suffix.split(" ").length-1)
+						sName+=" ";
+				}
+			}
+			var sValid = true;
+			if (sRarity == 0) {
+				sValid = false;
+			}	
+			if ((sName != "") && (sName.length >= 3)) {
+			if (sValid) {
+			for (i=0;i<unitListAll["rows"].length;i++) {
+				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
+					var sRef = unitListAll["rows"][i][1];
+					var sID = unitListAll["rows"][i][0];
+					break;
+				}
+			}
+			} else {
+			for (i=unitListAll["rows"].length-1;i>=0;i--) {
+				if (unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) {
+					var sRef = unitListAll["rows"][i][1];
+					var sID = unitListAll["rows"][i][0];
+					break;
+				}
+			}
+			}
+			console.log(sRef);
+			if (!sRef)
+					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
+			if (sRef) {
+				if (sID >= 8000)
+					msg.channel.sendMessage("http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_thum_"+sRef+".png")
+				else if (sID >= 7000)
+					msg.channel.sendMessage("http://static.bravefrontier.gumi-europe.net/content/unit/img/unit_ills_thum_"+sRef+".png")
+				else 
+					msg.channel.sendMessage("http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_"+sRef+".png");
 			}
 			} else 
 				msg.channel.sendMessage("Please enter longer search query");
