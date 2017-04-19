@@ -140,6 +140,7 @@ var cooldown = 10000;
 
 // Load custom permissions
 var master = "161845421545750529";
+var dangerousCommands = ["pullanddeploy","setUsername","refresh","say","setGame","give","take","workhard","relax","time"];
 var Permissions = {};
 try{
 	Permissions = require("./permissions.json");
@@ -1481,7 +1482,6 @@ bot.on("ready", function () {
 	console.log("Logged in! Serving in " + bot.guilds.array().length + " servers");
 	require("./plugins.js").init();
 	console.log("type "+Config.commandPrefix+"help in Discord for a commands list.");
-	var timetemp = Date.now();
 	//bot.user.setGame(Config.commandPrefix+"help | " + bot.guilds.array().length +" Servers"); 
 	bot.user.setGame("with the door key");
 	var cmd = commands["refresh"];
@@ -1504,6 +1504,8 @@ bot.on("disconnected", function () {
 
 function checkMessageForCommand(msg, isEdit) {
 	//check if message is a command
+	if (!timetemp)
+		var timetemp = 0;
 	var timespan = Date.now() - timetemp;
 	timetemp = Date.now();
 	if (spambypass) 
