@@ -752,15 +752,23 @@ var commands = {
 					var sList = "";
 					for (var key in itemUni) {
 						var valObj = itemUni[key];
-						if ((valObj.type == "sphere") && (valObj.nameGL.toLowerCase().indexOf(suffix.toLowerCase()) != -1)) {
+						if (valObj.nameGL)
+							var nameGL = valObj.nameGL
+						else
+							var nameGL = "N/A GL";
+						if (valObj.nameJP)
+							var nameJP = valObj.nameJP
+						else
+							var nameJP = "N/A JP";
+						if ((valObj.type == "sphere") && (nameGL.toLowerCase().indexOf(suffix.toLowerCase()) != -1)) {
         					var idFound=true;
 							sCount+=1;
-							sList+=" "+valObj.nameGL+" ["+valObj.nameJP+"] /";
+							sList+=" "+nameGL+" ["+nameJP+"] /";
 						} else {
             				var idFound=false;
-						};
+						}
 						if ((idFound) && (sCount<3)){
-							msg.channel.sendMessage("**"+valObj.nameGL+" ["+valObj.nameJP+"]** ("+valObj["sphere type text"]+", "+valObj.rarity+":star:)\n"+passive.find(valObj, "IT")+"\n");
+							msg.channel.sendMessage("**"+nameGL+" ("+nameJP+")** ("+valObj["sphere type text"]+", "+valObj.rarity+":star:)\n"+passive.find(valObj, "IT")+"\n");
 						};
 					}
 					if (sCount>=3)
