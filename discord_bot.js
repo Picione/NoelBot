@@ -1504,25 +1504,21 @@ bot.on("disconnected", function () {
 var timetemp = Date.now() - cooldown;
 function checkMessageForCommand(msg, isEdit) {
 	//check if message is a command
-
 	var timespan = Date.now() - timetemp;
-	if (spambypass) 
-		var timecheck = true
-	else 
-		{
+	if (spambypass)	{
+		var timecheck = true;
+	} else if (msg.author.id === master) {
+		var timecheck = true;
+	} else 	{
 			if (timespan >= cooldown){
 				var timecheck = true;
 				timetemp = Date.now();
 			}
 			else {
-				var timecheck = false
+				var timecheck = false;
 				}
-		}
-	if (msg.author.id == master) {
-		var timecheck = true;
 	}
-		
-	if(msg.author.id != bot.user.id && (msg.content.startsWith(Config.commandPrefix))){
+	if((msg.author.id != bot.user.id) && (msg.content.startsWith(Config.commandPrefix))){
         console.log("treating " + msg.content + " from " + msg.author + " as command");
 		var cmdTxt = msg.content.split(" ")[0].substring(Config.commandPrefix.length);
         var suffix = msg.content.substring(cmdTxt.length+Config.commandPrefix.length+1);//add one for the ! and one for the space
@@ -1596,7 +1592,7 @@ function checkMessageForCommand(msg, isEdit) {
 						});
 					}
         }
-		else if(cmd && timecheck) {
+		else if ((cmd) && (timecheck)) {
 			if((Permissions.checkPermission(msg.author,cmdTxt)) || (msg.author.id == master)){
 				try{
 					cmd.process(bot,msg,suffix,isEdit);
