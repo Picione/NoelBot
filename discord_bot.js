@@ -1501,24 +1501,27 @@ bot.on("disconnected", function () {
 	process.exit(1); //exit node.js with an error
 
 });
-
+var timetemp = Date.now() - cooldown;
 function checkMessageForCommand(msg, isEdit) {
 	//check if message is a command
-	if (!timetemp)
-		var timetemp = 0;
+
 	var timespan = Date.now() - timetemp;
-	timetemp = Date.now();
 	if (spambypass) 
 		var timecheck = true
 	else 
 		{
-			if (timespan >= cooldown)
-				var timecheck = true
-			else
+			if (timespan >= cooldown){
+				var timecheck = true;
+				timetemp = Date.now();
+			}
+			else {
 				var timecheck = false
+				}
 		}
-	if (msg.author.id == master)
-		timecheck = true;
+	if (msg.author.id == master) {
+		var timecheck = true;
+	}
+		
 	if(msg.author.id != bot.user.id && (msg.content.startsWith(Config.commandPrefix))){
         console.log("treating " + msg.content + " from " + msg.author + " as command");
 		var cmdTxt = msg.content.split(" ")[0].substring(Config.commandPrefix.length);
@@ -1608,7 +1611,7 @@ function checkMessageForCommand(msg, isEdit) {
 				msg.channel.sendMessage("You are not allowed to run " + cmdTxt + "!").then((message => message.delete(5000)));
 			}
 		} else if (!timecheck) {
-			msg.channel.sendMessage(shrug).then((message => message.delete(5000)))
+			msg.channel.sendMessage(shrug).then((message => message.delete(cooldown)))
 		} else {
 			msg.channel.sendMessage(cmdTxt + " not recognized as a command!").then((message => message.delete(5000)))
 		}
