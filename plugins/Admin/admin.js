@@ -2,7 +2,7 @@ exports.commands = [
 	"setGame",
 	"setUsername",
 	"log",
-	"uptime"
+	"uptime",
 ]
 
 var startTime = Date.now();

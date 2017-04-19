@@ -132,9 +132,14 @@ try {
 	console.log("catchError");
 };
 
+var spambypass = false;
+var shrug = "¯\_(ツ)_/¯";
+var hug = "༼ つ ͡ ͡° ͜ ʖ ͡ ͡° ༽つ";
+var hurt = "(っ- ‸ – ς)";
+var cooldown = 10000;
+
 // Load custom permissions
 var master = "161845421545750529";
-var dangerousCommands = ["pullanddeploy","setUsername","refresh","say","setGame","give","take"];
 var Permissions = {};
 try{
 	Permissions = require("./permissions.json");
@@ -628,7 +633,7 @@ var commands = {
 				} 
 			}
 			if (!piTest)
-				msg.channel.sendMessage("Please register your BF Player ID using !id.");
+				msg.channel.sendMessage("Please register your BF Player ID using !id.").then((message => message.delete(5000)));
 		}
 	},
 	"aliases": {
@@ -708,7 +713,7 @@ var commands = {
 					if (sCount>=3)
 						msg.channel.sendMessage("Not all results shown. List of possible results:"+sList+"//"); 
 		} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
 	},
 	"spherejp": {
@@ -734,7 +739,7 @@ var commands = {
 					if (sCount>=3)
 						msg.channel.sendMessage("Not all results shown. List of possible results:"+sList+"//"); 
 			} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 		}
 	},
 	"sphere": {
@@ -760,7 +765,7 @@ var commands = {
 					if (sCount>=3)
 						msg.channel.sendMessage("Not all results shown. List of possible results:"+sList+"//"); 
 			} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 		}
 	},
 	"esgl": {
@@ -786,7 +791,7 @@ var commands = {
 					if (sCount>=3)
 						msg.channel.sendMessage("Not all results shown. List of possible results:"+sList+"//"); 
 		} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
 	},
 	"es": {
@@ -812,247 +817,9 @@ var commands = {
 					if (sCount>=3)
 						msg.channel.sendMessage("Not all results shown. List of possible results:"+sList+"//"); 
 		} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
 	},
-	/*	"de": {
-		usage: "<System ID>",
-		description: "return Dream Maker effects of identified unit",
-		process: function(bot,msg,suffix){
-			if ((suffix != "") && (suffix.length >= 3)) {
-					for (var key in deJP) {
-						var valObj = deJP[key];
-						var exportSTR = "";
-						var categoryArray = [];
-						var catArrayCnt = 0;
-		 	 //Category Loop
-			 		if (key == suffix) {
-				  	for (spi=0;spi<=100;spi++) {
-				if (valObj["category"][spi]) {
-				categoryArray[catArrayCnt]=spi;
-				catArrayCnt+=1;
-				}
-			}
-				for (spk=0;spk<categoryArray.length;spk++) {
-				exportSTR+='**Category**: '+valObj["category"][categoryArray[spk]]["name"]+'\n';
-				for (spj=0;spj<valObj["skills"].length;spj++) {
-					if (valObj["skills"][spj]["category"] == categoryArray[spk]) {
-					exportSTR+=valObj["skills"][spj]["skill"]["bp"]+'SP-'+enhance.find(valObj["skills"][spj]["skill"],"SP");		
-					if (valObj["skills"][spj]["dependency"] != "") {
-						var reqBP = valObj["skills"][spj]["dependency"].substr(2);			
-						for (spm=0;spm<valObj["skills"].length;spm++) {
-							if (valObj["skills"][spm]["id"] == reqBP) {
-								exportSTR+=' [*Need ['+valObj["skills"][spm]["skill"]["bp"]+'SP-'+enhance.find(valObj["skills"][spm]["skill"],"SP")+'] to be unlocked*]\n';
-							}
-						}
-					} else exportSTR+='\n';
-					if (enhance.find(valObj["skills"][spj]["skill"],"SP").indexOf(indexTXT) != -1)
-					exportSTR+=valObj["skills"][spj]["skill"]["desc"]+'\n';
-					}
-				}
-			}
-					exportSTR+="http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_"+key+".png";}
-					
-					msg.channel.sendMessage(exportSTR);
-					}
-			} else 
-				msg.channel.sendMessage("Please enter longer search query");
-		}
-	},*/
-	/*"den": {
-		usage: "<name>",
-		description: "return Dream Maker effects of identified unit",
-		process: function(bot,msg,suffix){
-			var sName = "";
-			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
-			if (isNaN(sRarity) == false) {
-				for (i=0;i<suffix.split(" ").length-1;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-2)
-						sName+=" ";
-				}
-			} else {
-				sRarity = 8;
-				for (i=0;i<suffix.split(" ").length;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-1)
-						sName+=" ";
-				}
-			}	
-			var sValid = true;
-			if (sRarity < 8) {
-				msg.channel.sendMessage("The listed unit is not Dream Evolution unit");
-				sValid = false;
-			}
-			
-			if ((sValid) && (sName != "") && (sName.length >= 3)) {
-			for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1)&&(unitListAll["rows"][i][3] == 8)){
-					var sRef = unitListAll["rows"][i][1];
-					break;
-				}
-			}
-			if (!sRef)
-					msg.channel.sendMessage(suffix + ' is not a valid DE query');	
-			if (sRef) {
-					for (var key in deJP) {
-						var valObj = deJP[key];
-						var exportSTR = "";
-						var categoryArray = [];
-						var catArrayCnt = 0;
-		 	 //Category Loop
-			 		if (key == sRef) {
-				for (spi=0;spi<=100;spi++) {
-				if (valObj["category"][spi]) {
-				categoryArray[catArrayCnt]=spi;
-				catArrayCnt+=1;
-				}
-				}
-				for (spk=0;spk<categoryArray.length;spk++) {
-				exportSTR+='**Category**: '+valObj["category"][categoryArray[spk]]["name"]+'\n';
-				for (spj=0;spj<valObj["skills"].length;spj++) {
-					if (valObj["skills"][spj]["category"] == categoryArray[spk]) {
-					exportSTR+=valObj["skills"][spj]["skill"]["bp"]+'SP-'+valObj["skills"][spj]["pre"];		
-					if (valObj["skills"][spj]["dependency"] != "") {
-						var reqBP = valObj["skills"][spj]["dependency"].substr(2);			
-						for (spm=0;spm<valObj["skills"].length;spm++) {
-							if (valObj["skills"][spm]["id"] == reqBP) {
-								exportSTR+=' [*Need ['+valObj["skills"][spm]["skill"]["bp"]+'SP-'+valObj["skills"][spm]["pre"]+'] to be unlocked*]\n';
-							}
-						}
-					} else exportSTR+='\n';
-					if (enhance.find(valObj["skills"][spj]["skill"],"SP").indexOf(indexTXT) != -1)
-					exportSTR+=valObj["skills"][spj]["skill"]["desc"]+'\n';
-					}
-				}
-			}
-					exportSTR+="http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_"+key+".png";}
-					msg.channel.sendMessage(exportSTR);
-					};
-			}
-			} else 
-				msg.channel.sendMessage("Please enter longer search query");
-			}
-	},*/
-	/*"degl": {
-		usage: "<System ID>",
-		description: "return Dream Maker effects of identified unit",
-		process: function(bot,msg,suffix){
-			if ((suffix != "") && (suffix.length >= 3)) {
-					for (var key in deGL) {
-						var valObj = deGL[key];
-						var exportSTR = "";
-						var categoryArray = [];
-						var catArrayCnt = 0;
-		 	 //Category Loop
-			 		if (key == suffix) {
-				  	for (spi=0;spi<=100;spi++) {
-				if (valObj["category"][spi]) {
-				categoryArray[catArrayCnt]=spi;
-				catArrayCnt+=1;
-				}
-			}
-				for (spk=0;spk<categoryArray.length;spk++) {
-				exportSTR+='**Category**: '+valObj["category"][categoryArray[spk]]["name"]+'\n';
-				for (spj=0;spj<valObj["skills"].length;spj++) {
-					if (valObj["skills"][spj]["category"] == categoryArray[spk]) {
-					exportSTR+=valObj["skills"][spj]["skill"]["bp"]+'SP-'+enhance.find(valObj["skills"][spj]["skill"],"SP");		
-					if (valObj["skills"][spj]["dependency"] != "") {
-						var reqBP = valObj["skills"][spj]["dependency"].substr(2);			
-						for (spm=0;spm<valObj["skills"].length;spm++) {
-							if (valObj["skills"][spm]["id"] == reqBP) {
-								exportSTR+=' [*Need ['+valObj["skills"][spm]["skill"]["bp"]+'SP-'+enhance.find(valObj["skills"][spm]["skill"],"SP")+'] to be unlocked*]\n';
-							}
-						}
-					} else exportSTR+='\n';
-					if (enhance.find(valObj["skills"][spj]["skill"],"SP").indexOf(indexTXT) != -1)
-					exportSTR+=valObj["skills"][spj]["skill"]["desc"]+'\n';
-					}
-				}
-			}
-					exportSTR+="http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_"+key+".png";}
-					
-					msg.channel.sendMessage(exportSTR);
-					}
-			} else 
-				msg.channel.sendMessage("Please enter longer search query");
-		}
-	},*/
-	/*"degln": {
-		usage: "<name>",
-		description: "return Dream Maker effects of identified unit",
-		process: function(bot,msg,suffix){
-			var sName = "";
-			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
-			if (isNaN(sRarity) == false) {
-				for (i=0;i<suffix.split(" ").length-1;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-2)
-						sName+=" ";
-				}
-			} else {
-				sRarity = 8;
-				for (i=0;i<suffix.split(" ").length;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-1)
-						sName+=" ";
-				}
-			}	
-			var sValid = true;
-			if (sRarity < 8) {
-				msg.channel.sendMessage("The listed unit is not Dream Evolution unit");
-				sValid = false;
-			}
-			
-			if ((sValid) && (sName != "") && (sName.length >= 3)) {
-			for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1)&&(unitListAll["rows"][i][3] == 8)){
-					var sRef = unitListAll["rows"][i][1];
-					break;
-				}
-			}
-			if (!sRef)
-					msg.channel.sendMessage(suffix + ' is not a valid DE query');	
-			if (sRef) {
-					for (var key in deGL) {
-						var valObj = deGL[key];
-						var exportSTR = "";
-						var categoryArray = [];
-						var catArrayCnt = 0;
-		 	 //Category Loop
-			 		if (key == sRef) {
-				for (spi=0;spi<=100;spi++) {
-				if (valObj["category"][spi]) {
-				categoryArray[catArrayCnt]=spi;
-				catArrayCnt+=1;
-				}
-				}
-				for (spk=0;spk<categoryArray.length;spk++) {
-				exportSTR+='**Category**: '+valObj["category"][categoryArray[spk]]["name"]+'\n';
-				for (spj=0;spj<valObj["skills"].length;spj++) {
-					if (valObj["skills"][spj]["category"] == categoryArray[spk]) {
-					exportSTR+=valObj["skills"][spj]["skill"]["bp"]+'SP-'+valObj["skills"][spj]["pre"];		
-					if (valObj["skills"][spj]["dependency"] != "") {
-						var reqBP = valObj["skills"][spj]["dependency"].substr(2);			
-						for (spm=0;spm<valObj["skills"].length;spm++) {
-							if (valObj["skills"][spm]["id"] == reqBP) {
-								exportSTR+=' [*Need ['+valObj["skills"][spm]["skill"]["bp"]+'SP-'+valObj["skills"][spm]["pre"]+'] to be unlocked*]\n';
-							}
-						}
-					} else exportSTR+='\n';
-					if (enhance.find(valObj["skills"][spj]["skill"],"SP").indexOf(indexTXT) != -1)
-					exportSTR+=valObj["skills"][spj]["skill"]["desc"]+'\n';
-					}
-				}
-			}
-					exportSTR+="http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_"+key+".png";}
-					msg.channel.sendMessage(exportSTR);
-					};
-			}
-			} else 
-				msg.channel.sendMessage("Please enter longer search query");
-			}
-	},*/
 	"sp": {
 		usage: "<name>",
 		description: "return Dream Maker effects of identified unit",
@@ -1095,7 +862,7 @@ var commands = {
 			}
 			console.log(sRef);
 			if (!sRef)
-					msg.channel.sendMessage(suffix + ' is not a valid DE query');	
+					msg.channel.sendMessage(suffix + ' is not a valid DE query').then((message => message.delete(5000)));	
 			if (sRef) {
 					for (var key in de) {
 						var valObj = de[key];
@@ -1106,7 +873,7 @@ var commands = {
 					}
 			}
 			} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
 	},
 	"unitart": {
@@ -1156,14 +923,14 @@ var commands = {
 					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
 			if (sRef) {
 				if (sID >= 8000)
-					msg.channel.sendMessage("http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_full_"+sRef+".png")
+					msg.channel.sendMessage("http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_full_"+sRef+".png").then((message => message.delete(20000)))
 				else if (sID >= 7000)
-					msg.channel.sendMessage("http://static.bravefrontier.gumi-europe.net/content/unit/img/unit_ills_full_"+sRef+".png")
+					msg.channel.sendMessage("http://static.bravefrontier.gumi-europe.net/content/unit/img/unit_ills_full_"+sRef+".png").then((message => message.delete(20000)))
 				else 
-					msg.channel.sendMessage("http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_full_"+sRef+".png");
+					msg.channel.sendMessage("http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_full_"+sRef+".png").then((message => message.delete(20000)))
 			}
 			} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
 	},
 	"ain": {
@@ -1208,7 +975,7 @@ var commands = {
 			}
 			}
 			if (!sRef)
-					msg.channel.sendMessage(suffix + ' not found');	
+					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
 			if (sRef) {
 					for (var key in infoJP) {
 					var valObj = infoJP[key];
@@ -1222,7 +989,7 @@ var commands = {
 					};
 			}
 			} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
 	},
 	"lsn": {
@@ -1268,9 +1035,9 @@ var commands = {
 			}
 			}
 			if (!sRef)
-					msg.channel.sendMessage(suffix + ' not found');	
+					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
 			} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
 	},
 	"skill": {
@@ -1314,7 +1081,7 @@ var commands = {
 			}
 			}
 			if (!sRef)
-					msg.channel.sendMessage(suffix + ' not found');	
+					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
 			if (sRef) {
 					var tempmsg = "";
 					tempmsg+='**'+unitListAll["rows"][i][2]+'**\n\n**LS:** '+unitListAll["rows"][i][5];
@@ -1385,7 +1152,7 @@ var commands = {
 					msg.channel.sendMessage(tempmsg);
 			}
 			} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
 	},
 	"esn": {
@@ -1429,7 +1196,7 @@ var commands = {
 			}
 			}
 			if (!sRef)
-					msg.channel.sendMessage(suffix + ' not found');	
+					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
 			if (sRef) {
 				if (unitListAll["rows"][sRef][18] != "")
 				{
@@ -1438,10 +1205,10 @@ var commands = {
 						exportSTR+=' (Condition: '+unitListAll["rows"][sRef][19]+')';
 					msg.channel.sendMessage(exportSTR);
 				} else
-					msg.channel.sendMessage(unitListAll["rows"][i][2]+' does not have an ES');
+					msg.channel.sendMessage(unitListAll["rows"][i][2]+' does not have an ES').then((message => message.delete(5000)));
 			}
 			} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
 	},
 	"bbn": {
@@ -1485,7 +1252,7 @@ var commands = {
 			}
 			}
 			if (!sRef)
-					msg.channel.sendMessage(suffix + ' not found');	
+					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
 			if (sRef) {
 				if (unitListAll["rows"][sRef][6] != "")
 				{
@@ -1509,10 +1276,10 @@ var commands = {
 					exportSTR+=unitListAll["rows"][i][6];
 					msg.channel.sendMessage(exportSTR);
 				} else
-					msg.channel.sendMessage(unitListAll["rows"][i][2]+' does not have a BB Skill');
+					msg.channel.sendMessage(unitListAll["rows"][i][2]+' does not have a BB Skill').then((message => message.delete(5000)));
 			}
 			} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
 	},
 	"sbbn": {
@@ -1556,7 +1323,7 @@ var commands = {
 			}
 			}
 			if (!sRef)
-					msg.channel.sendMessage(suffix + ' not found');	
+					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));
 			if (sRef) {
 				if (unitListAll["rows"][sRef][10] != "")
 				{
@@ -1580,10 +1347,10 @@ var commands = {
 					exportSTR+=unitListAll["rows"][i][10];
 					msg.channel.sendMessage(exportSTR);
 				} else
-					msg.channel.sendMessage(unitListAll["rows"][i][2]+' does not have a SBB Skill');
+					msg.channel.sendMessage(unitListAll["rows"][i][2]+' does not have a SBB Skill').then((message => message.delete(5000)));
 			}
 			} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
 	},
 	"ubbn": {
@@ -1627,7 +1394,7 @@ var commands = {
 			}
 			}
 			if (!sRef)
-					msg.channel.sendMessage(suffix + ' not found');	
+					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
 			if (sRef) {
 				if (unitListAll["rows"][sRef][14] != "")
 				{
@@ -1651,12 +1418,41 @@ var commands = {
 					exportSTR+=unitListAll["rows"][i][14];
 					msg.channel.sendMessage(exportSTR);
 				} else
-					msg.channel.sendMessage(unitListAll["rows"][i][2]+' does not have a UBB Skill');
+					msg.channel.sendMessage(unitListAll["rows"][i][2]+' does not have a UBB Skill').then((message => message.delete(5000)));
 			}
 			} else 
-				msg.channel.sendMessage("Please enter longer search query");
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
 	},
+	"workhard": {
+		usage: "Spam Bypass on",
+        description: "Turnoff bot cooldown",
+        process: function(bot,msg,suffix){ 
+	    spambypass = true;
+	    msg.channel.sendMessage(hurt+" don't abuse me").then((message => message.delete(5000)));
+	}
+    },
+	"relax": {
+		usage: "Spam Bypass off",
+        description: "Turn on bot cooldown",
+        process: function(bot,msg,suffix){ 
+	    spambypass = false;
+	    msg.channel.sendMessage(hug+" thank you master").then((message => message.delete(5000)));
+	}
+    },
+	"time": {
+		usage: "<time in seconds>",
+        description: "Turn on bot cooldown",
+        process: function(bot,msg,suffix){ 
+	    if (isNaN(suffix)) {
+			msg.channel.sendMessage(shrug).then((message => message.delete(5000)));
+		} else {
+			cooldown = suffix * 1000;
+			msg.channel.sendMessage(hug+" Cooldown changed to "+suffix+" seconds").then((message => message.delete(5000)));
+		}
+	    
+	}
+    },
 };
 
 if(AuthDetails.hasOwnProperty("client_id")){
@@ -1685,6 +1481,7 @@ bot.on("ready", function () {
 	console.log("Logged in! Serving in " + bot.guilds.array().length + " servers");
 	require("./plugins.js").init();
 	console.log("type "+Config.commandPrefix+"help in Discord for a commands list.");
+	var timetemp = Date.now();
 	//bot.user.setGame(Config.commandPrefix+"help | " + bot.guilds.array().length +" Servers"); 
 	bot.user.setGame("with the door key");
 	var cmd = commands["refresh"];
@@ -1707,6 +1504,19 @@ bot.on("disconnected", function () {
 
 function checkMessageForCommand(msg, isEdit) {
 	//check if message is a command
+	var timespan = Date.now() - timetemp;
+	timetemp = Date.now();
+	if (spambypass) 
+		var timecheck = true
+	else 
+		{
+			if (timespan >= cooldown)
+				var timecheck = true
+			else
+				var timecheck = false
+		}
+	if (msg.author.id == master)
+		timecheck = true;
 	if(msg.author.id != bot.user.id && (msg.content.startsWith(Config.commandPrefix))){
         console.log("treating " + msg.content + " from " + msg.author + " as command");
 		var cmdTxt = msg.content.split(" ")[0].substring(Config.commandPrefix.length);
@@ -1716,7 +1526,7 @@ function checkMessageForCommand(msg, isEdit) {
 				cmdTxt = msg.content.split(" ")[1];
 				suffix = msg.content.substring(bot.user.mention().length+cmdTxt.length+Config.commandPrefix.length+1);
 			} catch(e){ //no command
-				msg.channel.sendMessage("Yes?");
+				msg.channel.sendMessage("Yes?").then((message => message.delete(10000)));
 				return;
 			}
         }
@@ -1748,7 +1558,7 @@ function checkMessageForCommand(msg, isEdit) {
 								}
 								info += "\n"
 							}
-							msg.channel.sendMessage(info);
+							msg.channel.sendMessage(info).then((message => message.delete(20000)));
 						} else {
 							msg.author.sendMessage("**Available Commands:**").then(function(){
 								var batch = "";
@@ -1781,7 +1591,7 @@ function checkMessageForCommand(msg, isEdit) {
 						});
 					}
         }
-		else if(cmd) {
+		else if(cmd && timecheck) {
 			if((Permissions.checkPermission(msg.author,cmdTxt)) || (msg.author.id == master)){
 				try{
 					cmd.process(bot,msg,suffix,isEdit);
@@ -1795,13 +1605,17 @@ function checkMessageForCommand(msg, isEdit) {
 			} else {
 				msg.channel.sendMessage("You are not allowed to run " + cmdTxt + "!").then((message => message.delete(5000)));
 			}
+		} else if (!timecheck) {
+			msg.channel.sendMessage(shrug).then((message => message.delete(5000)))
 		} else {
 			msg.channel.sendMessage(cmdTxt + " not recognized as a command!").then((message => message.delete(5000)))
 		}
 	} else {
 		//message isn't a command or is from us
         //drop our own messages to prevent feedback loops
-        if(msg.author == bot.user){
+
+		
+		if(msg.author == bot.user){
             return;
         }
 
