@@ -140,7 +140,7 @@ var cooldown = 10000;
 
 // Load custom permissions
 var master = "161845421545750529";
-var dangerousCommands = ["pullanddeploy","setUsername","refresh","say","setGame","give","take","workhard","relax","time"];
+var dangerousCommands = ["pullanddeploy","setUsername","refresh","say","setGame","give","take","workhard","relax","time","spammer"];
 var Permissions = {};
 try{
 	Permissions = require("./permissions.json");
@@ -568,6 +568,69 @@ var commands = {
 			}
 		}
 	},
+	"spammer": {
+		usage: "[status]",
+		description: "Spammer Status",
+		process: function(bot,msg,suffix) {
+			msg.channel.sendMessage(hurt+" please donot abuse me.").then((message => message.delete(2000)));		
+		}
+	},
+	"give": {
+		usage: "<user> <command>",
+		description: "Give User permission to use command.",
+		process: function(bot,msg,suffix) {
+			var args = suffix.split(" ");
+			var user = args.shift();
+			if ((!user) || (!user.startsWith("<@"))) {
+				msg.channel.sendMessage("Please tag the user.").then((message => message.delete(5000)));
+			} else {
+			user = user.substr(2,user.length-3);	
+			var cmd = args.shift();
+			if((!cmd) || (!commands[cmd])){
+				msg.channel.sendMessage("Command not found.").then((message => message.delete(5000)));
+			} else {
+				if (cmd != 'give'){
+				if (!Permissions.users[user])
+					Permissions.users[user] = {};
+				Permissions.users[user][cmd] = true;
+				//now save the new alias
+				fs.writeFile("./permissions.json",JSON.stringify(Permissions,null,2));
+				msg.channel.sendMessage("Permission "+cmd+" grant.").then((message => message.delete(5000)));
+				} else {
+					msg.channel.sendMessage("Cannot grant permission for 'give' command.").then((message => message.delete(5000)));
+					}
+				}
+			}
+		}
+	},
+	"take": {
+		usage: "<user> <command>",
+		description: "Give User permission to use command.",
+		process: function(bot,msg,suffix) {
+			var args = suffix.split(" ");
+			var user = args.shift();
+			if ((!user) || (!user.startsWith("<@"))) {
+				msg.channel.sendMessage("Please tag the user.").then((message => message.delete(5000)));
+			} else {
+			user = user.substr(2,user.length-3);	
+			var cmd = args.shift();
+			if((!cmd) || (!commands[cmd])){
+				msg.channel.sendMessage("Command not found.").then((message => message.delete(5000)));
+			} else {
+				if (cmd != 'give'){
+				if (!Permissions.users[user])
+					Permissions.users[user] = {};
+				Permissions.users[user][cmd] = false;
+				//now save the new alias
+				fs.writeFile("./permissions.json",JSON.stringify(Permissions,null,2));
+				msg.channel.sendMessage("Permission "+cmd+" grant.").then((message => message.delete(5000)));
+				} else {
+					msg.channel.sendMessage("Cannot grant permission for 'give' command.").then((message => message.delete(5000)));
+					}
+				}
+			}
+		}
+	},
 	"id": {
 		usage: "<save|del> <gl|jp> <player id>",
 		description: "Record Players ID on Noel Register Book.",
@@ -575,11 +638,11 @@ var commands = {
 			var args = suffix.split(" ");
 			var cmd = args.shift();
 			if ((!cmd) || ((cmd != 'save') && (cmd != 'del'))) {
-				msg.channel.sendMessage("Please indicate the action: save or del.");
+				msg.channel.sendMessage("Please indicate the action: save or del.").then((message => message.delete(5000)));
 			} else {
 			var server = args.shift();
 			if((!server) || ((server != 'jp') && (server != 'gl'))){
-				msg.channel.sendMessage("Please indicate the BF's Server of the ID: Use 'gl' or 'jp'.");
+				msg.channel.sendMessage("Please indicate the BF's Server of the ID: Use 'gl' or 'jp'.").then((message => message.delete(5000)));
 			} else {
 				if (cmd === 'del'){
 				if (!playerids[msg.author.id])
@@ -587,18 +650,18 @@ var commands = {
 				playerids[msg.author.id][server] = "";
 				//now save the new alias
 				require("fs").writeFile("./saveid.json",JSON.stringify(playerids,null,2), null);
-				msg.channel.sendMessage("Record Deleted");
+				msg.channel.sendMessage("Record Deleted").then((message => message.delete(5000)));
 				} else {
 				var playerid = args.shift();
 				if (!playerid) {
-				msg.channel.sendMessage("No Player ID is recorded.");
+				msg.channel.sendMessage("No Player ID is recorded.").then((message => message.delete(5000)));
 				} else {
 				if (!playerids[msg.author.id])
 					playerids[msg.author.id] = {};
 				playerids[msg.author.id][server] = playerid;
 				//now save the new alias
 				require("fs").writeFile("./saveid.json",JSON.stringify(playerids,null,2), null);
-				msg.channel.sendMessage("Saved Player ID of " + msg.author);
+				msg.channel.sendMessage("Saved Player ID of " + msg.author).then((message => message.delete(5000)));
 				}
 				}
 				}
@@ -669,7 +732,7 @@ var commands = {
         description: "bot says message",
         process: function(bot,msg,suffix){ msg.channel.sendMessage(suffix);}
     },
-	"msg": {
+	/*"msg": {
 		usage: "<user> <message to leave user>",
 		description: "leaves a message for a user the next time they come online",
 		process: function(bot,msg,suffix) {
@@ -690,7 +753,7 @@ var commands = {
 			updateMessagebox();
 			msg.channel.sendMessage("message saved.")
 		}
-	},
+	},*/
 	"spheregl": {
 		usage: "<name>",
 		description: "return effects of identified sphere",
@@ -1517,7 +1580,9 @@ function checkMessageForCommand(msg, isEdit) {
 		var timecheck = true;
 	} else if (msg.author.id === master) {
 		var timecheck = true;
-	} else 	{
+	} else if (Permissions.checkPermission(msg.author,"spammer")) {
+		var timecheck = true;
+	}else 	{
 			if (timespan >= cooldown){
 				var timecheck = true;
 				timetemp = Date.now();
