@@ -587,7 +587,10 @@ var commands = {
 			user = user.substr(2,user.length-3);	
 			var cmd = args.shift();
 			if((!cmd) || (!commands[cmd])){
-				msg.channel.sendMessage("Command not found.").then((message => message.delete(5000)));
+				if (cmd)
+					msg.channel.sendMessage("Command not found.").then((message => message.delete(5000)));
+				else 
+					msg.channel.sendMessage("*throw "+cmd+" at "+msg.author+"* Command not found "+shrug).then((message => message.delete(5000)));
 			} else {
 				if (cmd != 'give'){
 				if (!Permissions.users[user])
