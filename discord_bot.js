@@ -595,7 +595,7 @@ var commands = {
 				Permissions.users[user][cmd] = true;
 				//now save the new alias
 				fs.writeFile("./permissions.json",JSON.stringify(Permissions,null,2));
-				msg.channel.sendMessage("Permission "+cmd+" grant.").then((message => message.delete(5000)));
+				msg.channel.sendMessage(hurt+"Permission "+cmd+" grant.").then((message => message.delete(5000)));
 				} else {
 					msg.channel.sendMessage("Cannot grant permission for 'give' command.").then((message => message.delete(5000)));
 					}
@@ -623,7 +623,7 @@ var commands = {
 				Permissions.users[user][cmd] = false;
 				//now save the new alias
 				fs.writeFile("./permissions.json",JSON.stringify(Permissions,null,2));
-				msg.channel.sendMessage("Permission "+cmd+" grant.").then((message => message.delete(5000)));
+				msg.channel.sendMessage(hug+"Permission "+cmd+" taken back.").then((message => message.delete(5000)));
 				} else {
 					msg.channel.sendMessage("Cannot grant permission for 'give' command.").then((message => message.delete(5000)));
 					}
