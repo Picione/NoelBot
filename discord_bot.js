@@ -590,7 +590,7 @@ var commands = {
 				if (!cmd)
 					msg.channel.sendMessage("Command not found.").then((message => message.delete(5000)))
 				else 
-					msg.channel.sendMessage("*throw "+cmd+" at "+msg.author+"* Command not found "+shrug).then((message => message.delete(5000)));
+					msg.channel.sendMessage("*throw "+cmd+" at "+msg.author+"*  Command not found "+shrug).then((message => message.delete(5000)));
 			} else {
 				if (cmd != 'give'){
 				if (!Permissions.users[user])
@@ -1585,10 +1585,9 @@ function checkMessageForCommand(msg, isEdit) {
 		var timecheck = true;
 	} else if (Permissions.checkPermission(msg.author,"spammer")) {
 		var timecheck = true;
-	}else 	{
+	} else 	{
 			if (timespan >= cooldown){
 				var timecheck = true;
-				timetemp = Date.now();
 			}
 			else {
 				var timecheck = false;
@@ -1672,6 +1671,7 @@ function checkMessageForCommand(msg, isEdit) {
 			if((Permissions.checkPermission(msg.author,cmdTxt)) || (msg.author.id == master)){
 				try{
 					cmd.process(bot,msg,suffix,isEdit);
+					timetemp = Date.now();
 				} catch(e){
 					var msgTxt = "command " + cmdTxt + " failed :(";
 					if(Config.debug){
