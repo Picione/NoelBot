@@ -959,8 +959,12 @@ var commands = {
 							msg.channel.sendMessage("**"+nameGL+"** ["+nameJP+"] \n"+passive.find(valObj, "ES")+"\n");
 						};
 					}
-					if (sCount>=3)
-						msg.channel.sendMessage("Not all results shown. List of possible results:"+sList+"//"); 
+					if (sCount>=3) {
+						if (sList.length > 200)
+							msg.channel.sendMessage("Not all results shown.")
+						else
+							msg.channel.sendMessage("Not all results shown. List of possible results:"+sList+"//")
+					}
 		} else 
 				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			}
