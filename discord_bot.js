@@ -85,6 +85,8 @@ var esGL;
 
 var esJP;
 
+var esUni = [];
+
 var infoJP;
 
 var deJP;
@@ -345,6 +347,23 @@ var commands = {
   }
   if (!error && response.statusCode == 200) {
       esGL = body;
+	  if (esUni != [])
+	 { 	  
+	 	  for (var key in esGL) {
+			if (esUni[key]) {
+				esUni[key]["nameGL"] = esGL[key]["name"];
+			} else { 
+				esUni[key] = esGL[key];
+				esUni[key]["nameGL"] = esGL[key]["name"];
+			}
+		  }
+	 } else {
+	 	esUni = body;
+	 	  for (var key in esGL) {
+				esUni[key]["nameGL"] = esGL[key]["name"];
+		  }
+		
+	 }
 	  console.log("Success at Getting esGL"); // Show the HTML for the Google homepage.
   }
   });
@@ -360,6 +379,23 @@ var commands = {
   }
   if (!error && response.statusCode == 200) {
       esJP = body;
+	  if (esUni != [])
+	 { 	  
+	 	  for (var key in esJP) {
+			if (esUni[key]) {
+				esUni[key]["nameJP"] = esJP[key]["name"];
+			} else { 
+				esUni[key] = esJP[key];
+				esUni[key]["nameJP"] = esJP[key]["name"];
+			}
+		  }
+	 } else {
+	 	esUni = body;
+	 	  for (var key in esJP) {
+				esUni[key]["nameJP"] = esJP[key]["name"];
+		  }
+		
+	 }
 	  console.log("Success at Getting esJP"); // Show the HTML for the Google homepage.
   }
   });
@@ -834,7 +870,7 @@ var commands = {
             				var idFound=false;
 						}
 						if ((idFound) && (sCount<3)){
-							msg.channel.sendMessage("**"+nameGL+" ("+nameJP+")** ("+valObj["sphere type text"]+", "+valObj.rarity+":star:)\n"+passive.find(valObj, "IT")+"\n");
+							msg.channel.sendMessage("**"+nameGL+" ["+nameJP+"]** ("+valObj["sphere type text"]+", "+valObj.rarity+":star:)\n"+passive.find(valObj, "IT")+"\n");
 						};
 					}
 					if (sCount>=3)
@@ -845,13 +881,39 @@ var commands = {
 	},
 	"esgl": {
 		usage: "<name>",
-		description: "return effects of identified Elgif",
+		description: "return effects of identified Elgif (Global)",
 		process: function(bot,msg,suffix){
 			if ((suffix != "") && (suffix.length >= 3)) {
 					var sCount = 0;
 					var sList = "";
 					for (var key in esGL) {
 						var valObj = esGL[key];
+						if ((key >= 1000000) && (valObj.name.toLowerCase().indexOf(suffix.toLowerCase()) != -1)) {
+        					var idFound=true;
+							sCount+=1;
+							sList+=" "+valObj.name+" /";
+						} else {
+            				var idFound=false;
+						};
+						if ((idFound) && (sCount<3)){
+							msg.channel.sendMessage("**"+valObj.name+"** \n"+passive.find(valObj, "ES")+"\n");
+						};
+					}
+					if (sCount>=3)
+						msg.channel.sendMessage("Not all results shown. List of possible results:"+sList+"//"); 
+		} else 
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+			}
+	},
+	"esjp": {
+		usage: "<name>",
+		description: "return effects of identified Elgif (Japan)",
+		process: function(bot,msg,suffix){
+			if ((suffix != "") && (suffix.length >= 3)) {
+					var sCount = 0;
+					var sList = "";
+					for (var key in esJP) {
+						var valObj = esJP[key];
 						if ((key >= 1000000) && (valObj.name.toLowerCase().indexOf(suffix.toLowerCase()) != -1)) {
         					var idFound=true;
 							sCount+=1;
@@ -876,17 +938,25 @@ var commands = {
 			if ((suffix != "") && (suffix.length >= 3)) {
 					var sCount = 0;
 					var sList = "";
-					for (var key in esJP) {
-						var valObj = esJP[key];
-						if ((key >= 1000000) && (valObj.name.toLowerCase().indexOf(suffix.toLowerCase()) != -1)) {
+					for (var key in esUni) {
+						var valObj = esUni[key];
+						if (valObj.nameGL)
+							var nameGL = valObj.nameGL
+						else
+							var nameGL = "N/A GL";
+						if (valObj.nameJP)
+							var nameJP = valObj.nameJP
+						else
+							var nameJP = "N/A JP";
+						if ((key >= 1000000) && (nameGL.toLowerCase().indexOf(suffix.toLowerCase()) != -1)) {
         					var idFound=true;
 							sCount+=1;
-							sList+=" "+valObj.name+" /";
+							sList+=" "+nameGL+" ["+nameJP+"] /";
 						} else {
             				var idFound=false;
 						};
 						if ((idFound) && (sCount<3)){
-							msg.channel.sendMessage("**"+valObj.name+"** \n"+passive.find(valObj, "ES")+"\n");
+							msg.channel.sendMessage("**"+nameGL+"** ["+nameJP+"] \n"+passive.find(valObj, "ES")+"\n");
 						};
 					}
 					if (sCount>=3)
@@ -1683,7 +1753,8 @@ function checkMessageForCommand(msg, isEdit) {
 				msg.channel.sendMessage("You are not allowed to run " + cmdTxt + "!").then((message => message.delete(5000)));
 			}
 		} else if (!timecheck) {
-			msg.channel.sendMessage(shrug).then((message => message.delete(cooldown)))
+			timespan = cooldown - timespan;
+			msg.channel.sendMessage(shrug).then((message => message.delete(timespan)))
 		} else {
 			msg.channel.sendMessage(cmdTxt + " not recognized as a command!").then((message => message.delete(5000)))
 		}
