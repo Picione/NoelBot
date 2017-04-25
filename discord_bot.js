@@ -241,7 +241,9 @@ var commands = {
 					  tempFound = true;
 			  }
 			  if (!tempFound) {
-				  unitListAll["rows"][unitListAll["rows"].length] = JP.miss[key];
+				  var j = unitListAll["rows"].length;
+				  unitListAll["rows"][j] = JP.miss[key];
+				  unitListAll["rows"][j][2]+= JP.missname[key][2];
 			  }
 		  }
 	  if (GL)
