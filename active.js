@@ -206,9 +206,9 @@ var skillParseObj=[
 		{	"skillid":"126", "cmt":"Negate DOT","skillref":["@"]}, /*"2,1,120"*/
 		/*{"skillid":"127", "cmt":"","skillref":["@"]},
 		{"skillid":"128", "cmt":"","skillref":["@"]},
-		{"skillid":"129", "cmt":"","skillref":["@"]},
-		{"skillid":"130", "cmt":"","skillref":["@"]},
-		{"skillid":"131", "cmt":"","skillref":["@"]},*/
+		{"skillid":"129", "cmt":"","skillref":["@"]},*/
+		{	"skillid":"130", "cmt":"Debuff c:ATKed","skillref":["@"]}, //(procid:130;param:-20,-20,0,10,10,0,2,3,130)
+		/*{"skillid":"131", "cmt":"","skillref":["@"]},*/
 		{	"skillid":"132", "cmt":"DMG Factors Debuff","skillref":["@"]}, /*"15,0,15,0,1,130"*/ /*"15,15,20,20,1,160"*/
 		/*{"skillid":"133", "cmt":"","skillref":["@"]},
 		{"skillid":"134", "cmt":"","skillref":["@"]},
@@ -369,7 +369,7 @@ exports.find = function (objectAS, valObj) {
                           }
                       }
 					  if (objectAS[j]['buff turns'])
-							  groupSTR+="Debuff " + objectAS[j]['buff turns'] + "Turns";
+							  groupSTR+=" Debuff " + objectAS[j]['buff turns'] + "Turns";
                     } /*End Grouping check*/
                     
                     /*Check BB Self buff*/
@@ -571,7 +571,15 @@ exports.find = function (objectAS, valObj) {
 					  else
 						  groupSTR+="0";
                     }
-                  /*looping non grouping buff*/
+					else if (skillSeek=="130") {
+						if (objectAS[j]["unknown proc param"]) {
+						uparams = [];
+						uparams = objectAS[j]["unknown proc param"].split(",");
+						groupSTR+="["+uparams[3]+"% Chance "+uparams[0]+" Enemy ATK /"+uparams[4]+"% Chance "+uparams[1]+" Enemy DEF for "+uparams[6]+"Turn(s)] when ATKed for "+uparams[7]+"Turn(s)";
+						}
+					}
+                    //(procid:130;param:-20,-20,0,10,10,0,2,3,130)
+					/*looping non grouping buff*/
                     if (skillID==skillSeek) {
                       effectFound=true;
                     } /*End non-grouping*/
@@ -942,6 +950,13 @@ exports.trig = function (objectAS, valObj) {
 					  else
 						  groupSTR+="0";
                     }
+				  	else if (skillSeek=="130") {
+						if (objectAS["unknown proc param"]) {
+						uparams = [];
+						uparams = objectAS["unknown proc param"].split(",");
+						groupSTR+="["+uparams[3]+"% Chance "+uparams[0]+" Enemy ATK /"+uparams[4]+"% Chance "+uparams[1]+" Enemy DEF for "+uparams[6]+"Turn(s)] when ATKed for "+uparams[7]+"Turn(s)";
+						}
+					}
                   /*looping non grouping buff*/
                     if (skillID==skillSeek) {
                       effectFound=true;
