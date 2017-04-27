@@ -216,6 +216,71 @@ try{
 	playerids = {};
 }
 
+function findUnit(suffix) { 
+	if (!suffix) {
+		return "notfound";
+	}
+	var sTxt = "";
+	var sNum = suffix.split(" ")[suffix.split(" ").length-1];
+	if (isNaN(sNum) == false) {
+		for (i=0;i<suffix.split(" ").length-1;i++){
+			sTxt+=suffix.split(" ")[i];
+			if (i<suffix.split(" ").length-2)
+				sTxt+=" ";
+		}
+	} else {
+		sNum = 0;
+		for (i=0;i<suffix.split(" ").length;i++){
+			sTxt+=suffix.split(" ")[i];
+			if (i<suffix.split(" ").length-1)
+				sTxt+=" ";
+			}
+		}
+	var sBoth = true;
+	if (sNum == 0) {
+		sBoth = false;
+	}
+	if ((sTxt.length <= 2) && (sTxt != "id")){
+		return "short";
+	}
+	if (sBoth){
+		if (sTxt == "id"){
+			for (i=0;i<unitListAll["rows"].length;i++) {
+				if (unitListAll["rows"][i][0] == sNum) {
+					var sRe = i;
+					var sRef = unitListAll["rows"][i][1];
+					var sID = unitListAll["rows"][i][0];
+					break;
+				}
+			}
+		} else 	{
+			for (i=0;i<unitListAll["rows"].length;i++) {
+				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sTxt.toLowerCase()) != -1) && (sNum == unitListAll["rows"][i][3])) {
+					var sRe = i;
+					var sRef = unitListAll["rows"][i][1];
+					var sID = unitListAll["rows"][i][0];
+					break;
+				}
+			}
+		}
+	} else {
+		for (i=unitListAll["rows"].length-1;i>=0;i--) {
+			if (unitListAll["rows"][i][2].toLowerCase().indexOf(sTxt.toLowerCase()) != -1) {
+					var sRe = i;
+					var sRef = unitListAll["rows"][i][1];
+					var sID = unitListAll["rows"][i][0];
+				break;
+			}
+		}
+	}
+	if (sRe && sRef && sID)
+		return [sRe,sRef,sID]
+	else
+		return "notfound";
+}	
+
+
+
 var commands = {
 	"refresh": {
         usage: "<database>:ul|infojp|dejp|degl|deeu|esjp|esgl|itjp|itgl",
@@ -226,8 +291,7 @@ var commands = {
   		request({
     			url: fsAPI + queryFX + "SELECT 'ID','SystemID','Name','Rarity','Series', 'Leader Skill', 'BB Skill', 'BB Hits', 'BB Fill', 'BB DC', 'SBB Skill', 'SBB Hits', 'SBB Fill', 'SBB DC', 'UBB Skill', 'UBB Hits', 'UBB Fill', 'UBB DC', 'Passive Skill', 'Passive Condition' FROM " + AuthDetails.fsTable + keyFX + AuthDetails.fsKey,
     			json: true
-			}, function (error, response, body) 
-			{
+			}, function (error, response, body) 		{
   if (error) {
 	  console.log("Error at Getting All Unit List");
   }
@@ -976,188 +1040,66 @@ var commands = {
 		usage: "<name>",
 		description: "return Dream Maker effects of identified unit",
 		process: function(bot,msg,suffix){
-			var sName = "";
-			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
-			if (isNaN(sRarity) == false) {
-				for (i=0;i<suffix.split(" ").length-1;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-2)
-						sName+=" ";
-				}
+			if (findUnit(suffix) == "notfound") {
+				if (!suffix)
+					msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+				else 	
+					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
+			} else if (findUnit(suffix) == "short") {
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			} else {
-				sRarity = 0;
-				for (i=0;i<suffix.split(" ").length;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-1)
-						sName+=" ";
-				}
-			}
-			var sValid = true;
-			if (sRarity == 0) {
-				sValid = false;
-			}	
-			if ((sName != "") && (sName.length >= 2)) {
-			if (sValid) {
-				if (sName === "id") {
-					for (i=0;i<unitListAll["rows"].length;i++) {
-				if (unitListAll["rows"][i][0] == sRarity) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = sRarity;
-					break;
-				}}
-				} else {					
-				for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-				}
-			}
-			} else {
-			for (i=unitListAll["rows"].length-1;i>=0;i--) {
-				if (unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-			}
-			}
-			if (!sRef)
-					msg.channel.sendMessage(suffix + ' is not a valid DE query').then((message => message.delete(5000)));	
-			if (sRef) {
+					var sRe = findUnit(suffix)[0];
+					var sRef = findUnit(suffix)[1];
+					var sID = findUnit(suffix)[2];
 					for (var key in de) {
 						var valObj = de[key];
-		 	 /*Category Loop*/
-			 		if (key == sRef) {
-					msg.channel.sendMessage(valObj["pre"]);
-					};
+		 	 			if (key == sRef) {
+							msg.channel.sendMessage(valObj["pre"]);
+						};
 					}
+
 			}
-			} else 
-				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
-			}
+		}
 	},
 	"unitart": {
 		usage: "<name>",
 		description: "return unit art of specified unit",
 		process: function(bot,msg,suffix){
-			var sName = "";
-			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
-			if (isNaN(sRarity) == false) {
-				for (i=0;i<suffix.split(" ").length-1;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-2)
-						sName+=" ";
-				}
-			} else {
-				sRarity = 0;
-				for (i=0;i<suffix.split(" ").length;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-1)
-						sName+=" ";
-				}
-			}
-			var sValid = true;
-			if (sRarity == 0) {
-				sValid = false;
-			}	
-			if ((sName != "") && (sName.length >= 2)) {
-			if (sValid) {
-				if (sName === "id") {
-					for (i=0;i<unitListAll["rows"].length;i++) {
-				if (unitListAll["rows"][i][0] == sRarity) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = sRarity;
-					break;
-				}}
-				} else {					
-				for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-				}
-			}
-			} else {
-			for (i=unitListAll["rows"].length-1;i>=0;i--) {
-				if (unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-			}
-			}
-			if (!sRef)
+			if (findUnit(suffix) == "notfound") {
+				if (!suffix)
+					msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+				else 	
 					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
-			if (sRef) {
-				if (sID >= 8000)
-					msg.channel.sendMessage("http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_full_"+sRef+".png").then((message => message.delete(20000)))
-				else if (sID >= 7000)
-					msg.channel.sendMessage("http://static.bravefrontier.gumi-europe.net/content/unit/img/unit_ills_full_"+sRef+".png").then((message => message.delete(20000)))
-				else 
-					msg.channel.sendMessage("http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_full_"+sRef+".png").then((message => message.delete(20000)))
-			}
-			} else 
+			} else if (findUnit(suffix) == "short") {
 				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+			} else {
+					var sRe = findUnit(suffix)[0];
+					var sRef = findUnit(suffix)[1];
+					var sID = findUnit(suffix)[2];
+					if (sID >= 8000)
+						msg.channel.sendMessage("http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_full_"+sRef+".png").then((message => message.delete(20000)))
+					else if (sID >= 7000)
+						msg.channel.sendMessage("http://static.bravefrontier.gumi-europe.net/content/unit/img/unit_ills_full_"+sRef+".png").then((message => message.delete(20000)))
+					else 
+						msg.channel.sendMessage("http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_full_"+sRef+".png").then((message => message.delete(20000)))
 			}
+		}
 	},
 	"ain": {
 		usage: "<name>",
 		description: "return Arena AI of identified unit",
 		process: function(bot,msg,suffix){
-			var sName = "";
-			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
-			if (isNaN(sRarity) == false) {
-				for (i=0;i<suffix.split(" ").length-1;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-2)
-						sName+=" ";
-				}
-			} else {
-				sRarity = 0;
-				for (i=0;i<suffix.split(" ").length;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-1)
-						sName+=" ";
-				}
-			}
-
-			var sValid = true;
-			if (sRarity == 0) {
-				sValid = false;
-			}	
-			if ((sName != "") && (sName.length >= 2)) {
-			if (sValid) {
-				if (sName === "id") {
-					for (i=0;i<unitListAll["rows"].length;i++) {
-				if (unitListAll["rows"][i][0] == sRarity) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = sRarity;
-					break;
-				}}
-				} else {					
-				for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-				}
-			}
-			} else {
-			for (i=unitListAll["rows"].length-1;i>=0;i--) {
-				if (unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-			}
-			}
-			if (!sRef)
+			if (findUnit(suffix) == "notfound") {
+				if (!suffix)
+					msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+				else 	
 					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
-			if (sRef) {
+			} else if (findUnit(suffix) == "short") {
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+			} else {
+					var sRe = findUnit(suffix)[0];
+					var sRef = findUnit(suffix)[1];
+					var sID = findUnit(suffix)[2];
 					for (var key in infoJP) {
 					var valObj = infoJP[key];
 					var exportSTR = "";
@@ -1169,505 +1111,264 @@ var commands = {
 					}					
 					};
 			}
-			} else 
-				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
-			}
+		}
 	},
 	"lsn": {
 		usage: "<name>",
 		description: "return Arena AI of identified unit",
 		process: function(bot,msg,suffix){
-			var sName = "";
-			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
-			if (isNaN(sRarity) == false) {
-				for (i=0;i<suffix.split(" ").length-1;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-2)
-						sName+=" ";
-				}
-			} else {
-				sRarity = 0;
-				for (i=0;i<suffix.split(" ").length;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-1)
-						sName+=" ";
-				}
-			}
-			var sValid = true;
-			if (sRarity == 0) {
-				sValid = false;
-			}	
-			if ((sName != "") && (sName.length >= 2)) {
-			if (sValid) {
-				if (sName === "id") {
-					for (i=0;i<unitListAll["rows"].length;i++) {
-				if (unitListAll["rows"][i][0] == sRarity) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = sRarity;
-					break;
-				}}
-				} else {					
-				for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-				}
-			}
-			} else {
-			for (i=unitListAll["rows"].length-1;i>=0;i--) {
-				if (unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-			}
-			}
-			if (!sRef)
+			if (findUnit(suffix) == "notfound") {
+				if (!suffix)
+					msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+				else 	
 					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
-			} else 
+			} else if (findUnit(suffix) == "short") {
 				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+			} else {
+					var sRe = findUnit(suffix)[0];
+					var sRef = findUnit(suffix)[1];
+					var sID = findUnit(suffix)[2];
+					msg.channel.sendMessage(findUnit(suffix));
+					var tempmsg = "";
+					tempmsg+='**'+unitListAll["rows"][sRe][2]+'** ES\n'+unitListAll["rows"][sRe][5];
+					msg.channel.sendMessage(tempmsg);
 			}
+		}
 	},
 	"skill": {
 		usage: "<name>",
 		description: "return Skill of identified unit",
 		process: function(bot,msg,suffix){
-			var sName = "";
-			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
-			if (isNaN(sRarity) == false) {
-				for (i=0;i<suffix.split(" ").length-1;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-2)
-						sName+=" ";
-				}
-			} else {
-				sRarity = 0;
-				for (i=0;i<suffix.split(" ").length;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-1)
-						sName+=" ";
-				}
-			}
-			var sValid = true;
-			if (sRarity == 0) {
-				sValid = false;
-			}	
-			if ((sName != "") && (sName.length >= 2)) {
-			if (sValid) {
-				if (sName === "id") {
-					for (i=0;i<unitListAll["rows"].length;i++) {
-				if (unitListAll["rows"][i][0] == sRarity) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = sRarity;
-					break;
-				}}
-				} else {					
-				for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-				}
-			}
-			} else {
-			for (i=unitListAll["rows"].length-1;i>=0;i--) {
-				if (unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-			}
-			}
-			if (!sRef)
+			if (findUnit(suffix) == "notfound") {
+				if (!suffix)
+					msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+				else 	
 					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
-			if (sRef) {
+			} else if (findUnit(suffix) == "short") {
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+			} else {
+					var sRe = findUnit(suffix)[0];
+					var sRef = findUnit(suffix)[1];
+					var sID = findUnit(suffix)[2];
+					msg.channel.sendMessage(findUnit(suffix));
 					var tempmsg = "";
-					tempmsg+='**'+unitListAll["rows"][i][2]+'**\n\n**LS:** '+unitListAll["rows"][i][5];
-					if (unitListAll["rows"][sRef][18] != "")
-						tempmsg+= '\n\n**ES:** '+unitListAll["rows"][i][18];
-					if (unitListAll["rows"][sRef][19] != "")
-						tempmsg+=' (Condition: '+unitListAll["rows"][sRef][19]+')';
-					if (unitListAll["rows"][sRef][6] != "")	{
+					tempmsg+='**'+unitListAll["rows"][sRe][2]+'**\n\n**LS:** '+unitListAll["rows"][sRe][5];
+					if (unitListAll["rows"][sRe][18] != "")
+						tempmsg+= '\n\n**ES:** '+unitListAll["rows"][sRe][18];
+					if (unitListAll["rows"][sRe][19] != "")
+						tempmsg+=' (Condition: '+unitListAll["rows"][sRe][19]+')';
+					if (unitListAll["rows"][sRe][6] != "")	{
 						tempmsg+= '\n\n**BB:** ';
 						tempmsg+='(';
-					if ((unitListAll["rows"][sRef][7] != "") && (unitListAll["rows"][sRef][7] != "NaN"))
-						tempmsg+=unitListAll["rows"][sRef][7];
+					if ((unitListAll["rows"][sRe][7] != "") && (unitListAll["rows"][sRe][7] != "NaN"))
+						tempmsg+=unitListAll["rows"][sRe][7];
 						else
 						tempmsg+='0';
 					tempmsg+='Hits/';
-					if (unitListAll["rows"][sRef][8] != "")
-						tempmsg+=unitListAll["rows"][sRef][8];
+					if (unitListAll["rows"][sRe][8] != "")
+						tempmsg+=unitListAll["rows"][sRe][8];
 						else
 						tempmsg+='0';
 					tempmsg+='BC Fill/';
-					if (unitListAll["rows"][sRef][9] != "")
-						tempmsg+=unitListAll["rows"][sRef][9];
+					if (unitListAll["rows"][sRe][9] != "")
+						tempmsg+=unitListAll["rows"][sRe][9];
 						else
 						tempmsg+='0';
 					tempmsg+='DC) ';
-					tempmsg+=unitListAll["rows"][i][6];
+					tempmsg+=unitListAll["rows"][sRe][6];
 					}
-					if (unitListAll["rows"][sRef][10] != ""){
+					if (unitListAll["rows"][sRe][10] != ""){
 						tempmsg+= '\n\n**SBB:** ';
 						tempmsg+='(';
-					if ((unitListAll["rows"][sRef][11] != "") && (unitListAll["rows"][sRef][11] != "NaN"))
-						tempmsg+=unitListAll["rows"][sRef][11];
+					if ((unitListAll["rows"][sRe][11] != "") && (unitListAll["rows"][sRe][11] != "NaN"))
+						tempmsg+=unitListAll["rows"][sRe][11];
 						else
 						tempmsg+='0';
 					tempmsg+='Hits/';
-					if (unitListAll["rows"][sRef][12] != "")
-						tempmsg+=unitListAll["rows"][sRef][12];
+					if (unitListAll["rows"][sRe][12] != "")
+						tempmsg+=unitListAll["rows"][sRe][12];
 						else
 						tempmsg+='0';
 					tempmsg+='BC Fill/';
-					if (unitListAll["rows"][sRef][13] != "")
-						tempmsg+=unitListAll["rows"][sRef][13];
+					if (unitListAll["rows"][sRe][13] != "")
+						tempmsg+=unitListAll["rows"][sRe][13];
 						else
 						tempmsg+='0';
 					tempmsg+='DC) ';
-					tempmsg+=unitListAll["rows"][i][10];
+					tempmsg+=unitListAll["rows"][sRe][10];
 					}
-					if (unitListAll["rows"][sRef][14] != ""){
+					if (unitListAll["rows"][sRe][14] != ""){
 						tempmsg+= '\n\n**UBB:** ';
 						tempmsg+='(';
-					if ((unitListAll["rows"][sRef][15] != "") && (unitListAll["rows"][sRef][15] != "NaN"))
-						tempmsg+=unitListAll["rows"][sRef][15];
+					if ((unitListAll["rows"][sRe][15] != "") && (unitListAll["rows"][sRe][15] != "NaN"))
+						tempmsg+=unitListAll["rows"][sRe][15];
 						else
 						tempmsg+='0';
 					tempmsg+='Hits/';
-					if (unitListAll["rows"][sRef][16] != "")
-						tempmsg+=unitListAll["rows"][sRef][16];
+					if (unitListAll["rows"][sRe][16] != "")
+						tempmsg+=unitListAll["rows"][sRe][16];
 						else
 						tempmsg+='0';
 					tempmsg+='BC Fill/';
-					if (unitListAll["rows"][sRef][17] != "")
-						tempmsg+=unitListAll["rows"][sRef][17];
+					if (unitListAll["rows"][sRe][17] != "")
+						tempmsg+=unitListAll["rows"][sRe][17];
 						else
 						tempmsg+='0';
 					tempmsg+='DC) ';
-					tempmsg+=unitListAll["rows"][i][14];
+					tempmsg+=unitListAll["rows"][sRe][14];
 					}
 					msg.channel.sendMessage(tempmsg);
 			}
-			} else 
-				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
-			}
+		}
 	},
 	"esn": {
 		usage: "<name>",
 		description: "return Arena AI of identified unit",
 		process: function(bot,msg,suffix){
-			var sName = "";
-			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
-			if (isNaN(sRarity) == false) {
-				for (i=0;i<suffix.split(" ").length-1;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-2)
-						sName+=" ";
-				}
-			} else {
-				sRarity = 0;
-				for (i=0;i<suffix.split(" ").length;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-1)
-						sName+=" ";
-				}
-			}
-			var sValid = true;
-			if (sRarity == 0) {
-				sValid = false;
-			}	
-			if ((sName != "") && (sName.length >= 2)) {
-			if (sValid) {
-				if (sName === "id") {
-					for (i=0;i<unitListAll["rows"].length;i++) {
-				if (unitListAll["rows"][i][0] == sRarity) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = sRarity;
-					break;
-				}}
-				} else {					
-				for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-				}
-			}
-			} else {
-			for (i=unitListAll["rows"].length-1;i>=0;i--) {
-				if (unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-			}
-			}
-			if (!sRef)
+			if (findUnit(suffix) == "notfound") {
+				if (!suffix)
+					msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+				else 	
 					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
-			if (sRef) {
-				if (unitListAll["rows"][sRef][18] != "")
+			} else if (findUnit(suffix) == "short") {
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+			} else {
+					var sRe = findUnit(suffix)[0];
+					var sRef = findUnit(suffix)[1];
+					var sID = findUnit(suffix)[2];
+				if (unitListAll["rows"][sRe][18] != "")
 				{
-					var exportSTR = '**'+unitListAll["rows"][i][2]+'** ES\n'+unitListAll["rows"][i][18];
-					if (unitListAll["rows"][sRef][19] != "")
-						exportSTR+=' (Condition: '+unitListAll["rows"][sRef][19]+')';
+					var exportSTR = '**'+unitListAll["rows"][sRe][2]+'** ES\n'+unitListAll["rows"][sRe][18];
+					if (unitListAll["rows"][sRe][19] != "")
+						exportSTR+=' (Condition: '+unitListAll["rows"][sRe][19]+')';
 					msg.channel.sendMessage(exportSTR);
 				} else
-					msg.channel.sendMessage(unitListAll["rows"][i][2]+' does not have an ES').then((message => message.delete(5000)));
+					msg.channel.sendMessage(unitListAll["rows"][sRe][2]+' does not have an ES').then((message => message.delete(5000)));
 			}
-			} else 
-				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
-			}
+		}
 	},
 	"bbn": {
 		usage: "<name>",
 		description: "return Arena AI of identified unit",
 		process: function(bot,msg,suffix){
-			var sName = "";
-			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
-			if (isNaN(sRarity) == false) {
-				for (i=0;i<suffix.split(" ").length-1;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-2)
-						sName+=" ";
-				}
-			} else {
-				sRarity = 0;
-				for (i=0;i<suffix.split(" ").length;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-1)
-						sName+=" ";
-				}
-			}
-			var sValid = true;
-			if (sRarity == 0) {
-				sValid = false;
-			}	
-			if ((sName != "") && (sName.length >= 2)) {
-			if (sValid) {
-				if (sName === "id") {
-					for (i=0;i<unitListAll["rows"].length;i++) {
-				if (unitListAll["rows"][i][0] == sRarity) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = sRarity;
-					break;
-				}}
-				} else {					
-				for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-				}
-			}
-			} else {
-			for (i=unitListAll["rows"].length-1;i>=0;i--) {
-				if (unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-			}
-			}
-			if (!sRef)
+			if (findUnit(suffix) == "notfound") {
+				if (!suffix)
+					msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+				else 	
 					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
-			if (sRef) {
-				if (unitListAll["rows"][sRef][6] != "")
+			} else if (findUnit(suffix) == "short") {
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+			} else {
+					var sRe = findUnit(suffix)[0];
+					var sRef = findUnit(suffix)[1];
+					var sID = findUnit(suffix)[2];
+					if (unitListAll["rows"][sRe][6] != "")
 				{
-					var exportSTR = '**'+unitListAll["rows"][i][2]+'** BB\n'
+					var exportSTR = '**'+unitListAll["rows"][sRe][2]+'** BB\n'
 					exportSTR+='(';
-					if ((unitListAll["rows"][sRef][7] != "") && (unitListAll["rows"][sRef][7] != "NaN"))
-						exportSTR+=unitListAll["rows"][sRef][7];
+					if ((unitListAll["rows"][sRe][7] != "") && (unitListAll["rows"][sRe][7] != "NaN"))
+						exportSTR+=unitListAll["rows"][sRe][7];
 						else
 						exportSTR+='0';
 					exportSTR+='Hits/';
-					if (unitListAll["rows"][sRef][8] != "")
-						exportSTR+=unitListAll["rows"][sRef][8];
+					if (unitListAll["rows"][sRe][8] != "")
+						exportSTR+=unitListAll["rows"][sRe][8];
 						else
 						exportSTR+='0';
 					exportSTR+='BC Fill/';
-					if (unitListAll["rows"][sRef][9] != "")
-						exportSTR+=unitListAll["rows"][sRef][9];
+					if (unitListAll["rows"][sRe][9] != "")
+						exportSTR+=unitListAll["rows"][sRe][9];
 						else
 						exportSTR+='0';
 					exportSTR+='DC) ';
-					exportSTR+=unitListAll["rows"][i][6];
+					exportSTR+=unitListAll["rows"][sRe][6];
 					msg.channel.sendMessage(exportSTR);
 				} else
-					msg.channel.sendMessage(unitListAll["rows"][i][2]+' does not have a BB Skill').then((message => message.delete(5000)));
+					msg.channel.sendMessage(unitListAll["rows"][sRe][2]+' does not have a BB Skill').then((message => message.delete(5000)));
 			}
-			} else 
-				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
-			}
+		}
 	},
 	"sbbn": {
 		usage: "<name>",
 		description: "return Arena AI of identified unit",
 		process: function(bot,msg,suffix){
-			var sName = "";
-			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
-			if (isNaN(sRarity) == false) {
-				for (i=0;i<suffix.split(" ").length-1;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-2)
-						sName+=" ";
-				}
+			if (findUnit(suffix) == "notfound") {
+				if (!suffix)
+					msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+				else 	
+					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
+			} else if (findUnit(suffix) == "short") {
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
 			} else {
-				sRarity = 0;
-				for (i=0;i<suffix.split(" ").length;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-1)
-						sName+=" ";
-				}
-			}
-			var sValid = true;
-			if (sRarity == 0) {
-				sValid = false;
-			}	
-			if ((sName != "") && (sName.length >= 2)) {
-			if (sValid) {
-				if (sName === "id") {
-					for (i=0;i<unitListAll["rows"].length;i++) {
-				if (unitListAll["rows"][i][0] == sRarity) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = sRarity;
-					break;
-				}}
-				} else {					
-				for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-				}
-			}
-			} else {
-			for (i=unitListAll["rows"].length-1;i>=0;i--) {
-				if (unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-			}
-			}
-			if (!sRef)
-					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));
-			if (sRef) {
-				if (unitListAll["rows"][sRef][10] != "")
+					var sRe = findUnit(suffix)[0];
+					var sRef = findUnit(suffix)[1];
+					var sID = findUnit(suffix)[2];
+				if (unitListAll["rows"][sRe][10] != "")
 				{
-					var exportSTR = '**'+unitListAll["rows"][i][2]+'** SBB\n'
+					var exportSTR = '**'+unitListAll["rows"][sRe][2]+'** SBB\n'
 					exportSTR+='(';
-					if ((unitListAll["rows"][sRef][11] != "") && (unitListAll["rows"][sRef][11] != "NaN"))
-						exportSTR+=unitListAll["rows"][sRef][11];
+					if ((unitListAll["rows"][sRe][11] != "") && (unitListAll["rows"][sRe][11] != "NaN"))
+						exportSTR+=unitListAll["rows"][sRe][11];
 						else
 						exportSTR+='0';
 					exportSTR+='Hits/';
-					if (unitListAll["rows"][sRef][12] != "")
-						exportSTR+=unitListAll["rows"][sRef][12];
+					if (unitListAll["rows"][sRe][12] != "")
+						exportSTR+=unitListAll["rows"][sRe][12];
 						else
 						exportSTR+='0';
 					exportSTR+='BC Fill/';
-					if (unitListAll["rows"][sRef][13] != "")
-						exportSTR+=unitListAll["rows"][sRef][13];
+					if (unitListAll["rows"][sRe][13] != "")
+						exportSTR+=unitListAll["rows"][sRe][13];
 						else
 						exportSTR+='0';
 					exportSTR+='DC) ';
-					exportSTR+=unitListAll["rows"][i][10];
+					exportSTR+=unitListAll["rows"][sRe][10];
 					msg.channel.sendMessage(exportSTR);
 				} else
-					msg.channel.sendMessage(unitListAll["rows"][i][2]+' does not have a SBB Skill').then((message => message.delete(5000)));
+					msg.channel.sendMessage(unitListAll["rows"][sRe][2]+' does not have a SBB Skill').then((message => message.delete(5000)));
 			}
-			} else 
-				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
-			}
+		}
 	},
 	"ubbn": {
 		usage: "<name>",
 		description: "return Arena AI of identified unit",
 		process: function(bot,msg,suffix){
-			var sName = "";
-			var sRarity = suffix.split(" ")[suffix.split(" ").length-1];
-			if (isNaN(sRarity) == false) {
-				for (i=0;i<suffix.split(" ").length-1;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-2)
-						sName+=" ";
-				}
-			} else {
-				sRarity = 0;
-				for (i=0;i<suffix.split(" ").length;i++){
-					sName+=suffix.split(" ")[i];
-					if (i<suffix.split(" ").length-1)
-						sName+=" ";
-				}
-			}
-			var sValid = true;
-			if (sRarity == 0) {
-				sValid = false;
-			}	
-						if ((sName != "") && (sName.length >= 2)) {
-			if (sValid) {
-				if (sName === "id") {
-					for (i=0;i<unitListAll["rows"].length;i++) {
-				if (unitListAll["rows"][i][0] == sRarity) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = sRarity;
-					break;
-				}}
-				} else {					
-				for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-				}
-			}
-			} else {
-			for (i=unitListAll["rows"].length-1;i>=0;i--) {
-				if (unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) {
-					var sRef = unitListAll["rows"][i][1];
-					var sID = unitListAll["rows"][i][0];
-					break;
-				}
-			}
-			}
-			if (!sRef)
+			if (findUnit(suffix) == "notfound") {
+				if (!suffix)
+					msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+				else 	
 					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
-			if (sRef) {
-				if (unitListAll["rows"][sRef][14] != "")
+			} else if (findUnit(suffix) == "short") {
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+			} else {
+					var sRe = findUnit(suffix)[0];
+					var sRef = findUnit(suffix)[1];
+					var sID = findUnit(suffix)[2];
+				if (unitListAll["rows"][sRe][14] != "")
 				{
-					var exportSTR = '**'+unitListAll["rows"][i][2]+'** UBB\n'
+					var exportSTR = '**'+unitListAll["rows"][sRe][2]+'** UBB\n'
 					exportSTR+='(';
-					if ((unitListAll["rows"][sRef][15] != "") && (unitListAll["rows"][sRef][15] != "NaN"))
-						exportSTR+=unitListAll["rows"][sRef][15];
+					if ((unitListAll["rows"][sRe][15] != "") && (unitListAll["rows"][sRe][15] != "NaN"))
+						exportSTR+=unitListAll["rows"][sRe][15];
 						else
 						exportSTR+='0';
 					exportSTR+='Hits/';
 					if (unitListAll["rows"][sRef][16] != "")
-						exportSTR+=unitListAll["rows"][sRef][16];
+						exportSTR+=unitListAll["rows"][sRe][16];
 						else
 						exportSTR+='0';
 					exportSTR+='BC Fill/';
 					if (unitListAll["rows"][sRef][17] != "")
-						exportSTR+=unitListAll["rows"][sRef][17];
+						exportSTR+=unitListAll["rows"][sRe][17];
 						else
 						exportSTR+='0';
 					exportSTR+='DC) ';
-					exportSTR+=unitListAll["rows"][i][14];
+					exportSTR+=unitListAll["rows"][sRe][14];
 					msg.channel.sendMessage(exportSTR);
 				} else
-					msg.channel.sendMessage(unitListAll["rows"][i][2]+' does not have a UBB Skill').then((message => message.delete(5000)));
+					msg.channel.sendMessage(unitListAll["rows"][sRe][2]+' does not have a UBB Skill').then((message => message.delete(5000)));
 			}
-			} else 
-				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
-			}
+		}
 	},
 	"workhard": {
 		usage: "Spam Bypass on",
