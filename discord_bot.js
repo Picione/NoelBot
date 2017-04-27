@@ -307,7 +307,7 @@ var commands = {
 			  if (!tempFound) {
 				  var j = unitListAll["rows"].length;
 				  unitListAll["rows"][j] = JP.miss[key];
-				  if (unitListAll["rows"][j][2].indexOf(JP.missname[key][2]) != -1)
+				  if (unitListAll["rows"][j][2].indexOf(JP.missname[key][2]) == -1)
 				  	unitListAll["rows"][j][2]+=" "+JP.missname[key][2];
 			  }
 		  }
@@ -1150,7 +1150,6 @@ var commands = {
 					var sRe = findUnit(suffix)[0];
 					var sRef = findUnit(suffix)[1];
 					var sID = findUnit(suffix)[2];
-					msg.channel.sendMessage(findUnit(suffix));
 					var tempmsg = "";
 					tempmsg+='**'+unitListAll["rows"][sRe][2]+'**\n\n**LS:** '+unitListAll["rows"][sRe][5];
 					if (unitListAll["rows"][sRe][18] != "")
