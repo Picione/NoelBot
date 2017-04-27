@@ -243,7 +243,7 @@ var commands = {
 			  if (!tempFound) {
 				  var j = unitListAll["rows"].length;
 				  unitListAll["rows"][j] = JP.miss[key];
-				  if (unitListAll["rows"][j][2].indexOF(JP.missname[key][2]) != -1)
+				  if (unitListAll["rows"][j][2].indexOf(JP.missname[key][2]) != -1)
 				  	unitListAll["rows"][j][2]+=" "+JP.missname[key][2];
 			  }
 		  }
@@ -996,7 +996,7 @@ var commands = {
 			if (sRarity == 0) {
 				sValid = false;
 			}	
-						if ((sName != "") && (sName.length >= 2)) {
+			if ((sName != "") && (sName.length >= 2)) {
 			if (sValid) {
 				if (sName === "id") {
 					for (i=0;i<unitListAll["rows"].length;i++) {
@@ -1004,7 +1004,7 @@ var commands = {
 					var sRef = unitListAll["rows"][i][1];
 					var sID = sRarity;
 					break;
-				}
+				}}
 				} else {					
 				for (i=0;i<unitListAll["rows"].length;i++) {
 				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
@@ -1070,7 +1070,7 @@ var commands = {
 					var sRef = unitListAll["rows"][i][1];
 					var sID = sRarity;
 					break;
-				}
+				}}
 				} else {					
 				for (i=0;i<unitListAll["rows"].length;i++) {
 				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
@@ -1136,7 +1136,7 @@ var commands = {
 					var sRef = unitListAll["rows"][i][1];
 					var sID = sRarity;
 					break;
-				}
+				}}
 				} else {					
 				for (i=0;i<unitListAll["rows"].length;i++) {
 				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
@@ -1205,7 +1205,7 @@ var commands = {
 					var sRef = unitListAll["rows"][i][1];
 					var sID = sRarity;
 					break;
-				}
+				}}
 				} else {					
 				for (i=0;i<unitListAll["rows"].length;i++) {
 				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
@@ -1262,7 +1262,7 @@ var commands = {
 					var sRef = unitListAll["rows"][i][1];
 					var sID = sRarity;
 					break;
-				}
+				}}
 				} else {					
 				for (i=0;i<unitListAll["rows"].length;i++) {
 				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
@@ -1388,7 +1388,7 @@ var commands = {
 					var sRef = unitListAll["rows"][i][1];
 					var sID = sRarity;
 					break;
-				}
+				}}
 				} else {					
 				for (i=0;i<unitListAll["rows"].length;i++) {
 				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
@@ -1455,7 +1455,7 @@ var commands = {
 					var sRef = unitListAll["rows"][i][1];
 					var sID = sRarity;
 					break;
-				}
+				}}
 				} else {					
 				for (i=0;i<unitListAll["rows"].length;i++) {
 				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
@@ -1537,7 +1537,7 @@ var commands = {
 					var sRef = unitListAll["rows"][i][1];
 					var sID = sRarity;
 					break;
-				}
+				}}
 				} else {					
 				for (i=0;i<unitListAll["rows"].length;i++) {
 				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
@@ -1619,7 +1619,7 @@ var commands = {
 					var sRef = unitListAll["rows"][i][1];
 					var sID = sRarity;
 					break;
-				}
+				}}
 				} else {					
 				for (i=0;i<unitListAll["rows"].length;i++) {
 				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sName.toLowerCase()) != -1) && (sRarity == unitListAll["rows"][i][3])) {
