@@ -1128,9 +1128,8 @@ var commands = {
 					var sRe = findUnit(suffix)[0];
 					var sRef = findUnit(suffix)[1];
 					var sID = findUnit(suffix)[2];
-					msg.channel.sendMessage(findUnit(suffix));
 					var tempmsg = "";
-					tempmsg+='**'+unitListAll["rows"][sRe][2]+'** ES\n'+unitListAll["rows"][sRe][5];
+					tempmsg+='**'+unitListAll["rows"][sRe][2]+'** Leader Skill\n'+unitListAll["rows"][sRe][5];
 					msg.channel.sendMessage(tempmsg);
 			}
 		}
@@ -1237,7 +1236,7 @@ var commands = {
 					var sID = findUnit(suffix)[2];
 				if (unitListAll["rows"][sRe][18] != "")
 				{
-					var exportSTR = '**'+unitListAll["rows"][sRe][2]+'** ES\n'+unitListAll["rows"][sRe][18];
+					var exportSTR = '**'+unitListAll["rows"][sRe][2]+'** Extra Skill\n'+unitListAll["rows"][sRe][18];
 					if (unitListAll["rows"][sRe][19] != "")
 						exportSTR+=' (Condition: '+unitListAll["rows"][sRe][19]+')';
 					msg.channel.sendMessage(exportSTR);
@@ -1352,12 +1351,12 @@ var commands = {
 						else
 						exportSTR+='0';
 					exportSTR+='Hits/';
-					if (unitListAll["rows"][sRef][16] != "")
+					if (unitListAll["rows"][sRe][16] != "")
 						exportSTR+=unitListAll["rows"][sRe][16];
 						else
 						exportSTR+='0';
 					exportSTR+='BC Fill/';
-					if (unitListAll["rows"][sRef][17] != "")
+					if (unitListAll["rows"][sRe][17] != "")
 						exportSTR+=unitListAll["rows"][sRe][17];
 						else
 						exportSTR+='0';
