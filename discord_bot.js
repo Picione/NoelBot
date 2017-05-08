@@ -735,7 +735,7 @@ var commands = {
 				msg.channel.sendMessage("Please indicate the unit id.").then((message => message.delete(5000)));
 			} else {
 				var unitidCheck = false;
-				for (var i in unitListAll) {
+				for (i=0;i<unitListAll["rows"].length;i++) {
 					if (unitListAll["rows"][i][0] == unitid){
 						unitidCheck = true;
 						break;
