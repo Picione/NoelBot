@@ -142,7 +142,7 @@ var cooldown = 10000;
 
 // Load custom permissions
 var master = "161845421545750529";
-var dangerousCommands = ["pullanddeploy","setUsername","refresh","say","setGame","give","take","workhard","relax","time","spammer"];
+var dangerousCommands = ["pullanddeploy","setUsername","refresh","say","setGame","give","take","workhard","relax","time","spammer","nameid"];
 var Permissions = {};
 try{
 	Permissions = require("./permissions.json");
@@ -216,6 +216,14 @@ try{
 	playerids = {};
 }
 
+var unitalias;
+try{
+	unitalias = require("./nickname.json");
+} catch(e) {
+	//No aliases defined
+	playerids = {};
+}
+
 function findUnit(suffix) { 
 	if (!suffix) {
 		return "notfound";
@@ -255,7 +263,11 @@ function findUnit(suffix) {
 			}
 		} else 	{
 			for (i=0;i<unitListAll["rows"].length;i++) {
-				if ((unitListAll["rows"][i][2].toLowerCase().indexOf(sTxt.toLowerCase()) != -1) && (sNum == unitListAll["rows"][i][3])) {
+				var addSTR = "";
+				if (unitalias[unitListAll["rows"][i][0]])
+					addSTR = unitalias[unitListAll["rows"][i][0]];
+				var searchSTR = unitListAll["rows"][i][2] + addSTR;
+				if ((searchSTR.toLowerCase().indexOf(sTxt.toLowerCase()) != -1) && (sNum == unitListAll["rows"][i][3])) {
 					var sRe = i;
 					var sRef = unitListAll["rows"][i][1];
 					var sID = unitListAll["rows"][i][0];
@@ -265,7 +277,11 @@ function findUnit(suffix) {
 		}
 	} else {
 		for (i=unitListAll["rows"].length-1;i>=0;i--) {
-			if (unitListAll["rows"][i][2].toLowerCase().indexOf(sTxt.toLowerCase()) != -1) {
+			var addSTR = "";
+			if (unitalias[unitListAll["rows"][i][0]])
+				addSTR = unitalias[unitListAll["rows"][i][0]];
+			var searchSTR = unitListAll["rows"][i][2] + addSTR;
+			if (searchSTR.toLowerCase().indexOf(sTxt.toLowerCase()) != -1) {
 					var sRe = i;
 					var sRef = unitListAll["rows"][i][1];
 					var sID = unitListAll["rows"][i][0];
@@ -706,6 +722,39 @@ var commands = {
 					msg.channel.sendMessage("Cannot grant permission for 'give' command.").then((message => message.delete(5000)));
 					}
 				}
+			}
+		}
+	},
+	"nameid": {
+		usage: "<unitid> <nickname>",
+		description: "Give User permission to use command.",
+		process: function(bot,msg,suffix) {
+			var args = suffix.split(" ");
+			var unitid = args.shift();
+			if ((!unitid) || (isNaN(unitid))) {
+				msg.channel.sendMessage("Please indicate the unit id.").then((message => message.delete(5000)));
+			} else {
+				var unitidCheck = false;
+				for (var i in unitListAll) {
+					if (unitListAll["rows"][i][0] == unitid){
+						unitidCheck = true;
+						break;
+					}				
+				}
+				if (unitidCheck) {
+					var nickname = args.shift();
+					if(!nickname){
+					msg.channel.sendMessage("Please think of a cute nickname.").then((message => message.delete(5000)));
+					} else {
+						if (!unitalias[unitid])
+							unitalias[unitid] = "";
+						unitalias[unitid] = "nickname";
+					//now save the new alias
+					fs.writeFile("./nickname.json",JSON.stringify(unitalias,null,2));
+					msg.channel.sendMessage(hug+" Unit ID "+unitid+" nicknamed as "+nickname).then((message => message.delete(5000)));
+					}
+				} else 
+					msg.channel.sendMessage(hurt+" Unit not found").then((message => message.delete(5000)));
 			}
 		}
 	},
