@@ -746,7 +746,8 @@ var commands = {
 					if(!nickname){
 					msg.channel.sendMessage("Please think of a cute nickname.").then((message => message.delete(5000)));
 					} else {
-						unitalias[unitid.toString] = nickname;
+						unitid = unitid.toString();
+						unitalias[unitid] = nickname;
 					//now save the new alias
 					fs.writeFile("./nickname.json",JSON.stringify(unitalias,null,2));
 					msg.channel.sendMessage(hug+" Unit ID "+unitid+" nicknamed as "+nickname).then((message => message.delete(5000)));
