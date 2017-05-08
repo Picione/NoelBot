@@ -221,7 +221,7 @@ try{
 	unitalias = require("./nickname.json");
 } catch(e) {
 	//No aliases defined
-	playerids = {};
+	unitalias = {};
 }
 
 function findUnit(suffix) { 
