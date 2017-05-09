@@ -703,7 +703,7 @@ var commands = {
 			if ((!user) || (!user.startsWith("<@"))) {
 				msg.channel.sendMessage("Please tag the user.").then((message => message.delete(5000)));
 			} else {
-			user = user.substr(2,user.length-3);	
+			user = user.substr(3,user.length-4);	
 			var cmd = args.shift();
 			if((!cmd) || (!commands[cmd])){
 				if (!cmd)
@@ -766,7 +766,7 @@ var commands = {
 			if ((!user) || (!user.startsWith("<@"))) {
 				msg.channel.sendMessage("Please tag the user.").then((message => message.delete(5000)));
 			} else {
-			user = user.substr(2,user.length-3);	
+			user = user.substr(3,user.length-4);	
 			var cmd = args.shift();
 			if((!cmd) || (!commands[cmd])){
 				msg.channel.sendMessage("Command not found.").then((message => message.delete(5000)));
