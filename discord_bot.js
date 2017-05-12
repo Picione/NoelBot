@@ -57,6 +57,8 @@ try {
 // Load Variables
 var alphabet = ["**A** ", "**B** ", "**C** ", "**D** ", "**E** ", "**F** ", "**G** ", "**H** ", "**I** ", "**J** ", "**K** ", "**L** ", "**M** ", "**N** ", "**O** ", "**P** ", "**Q** "];
 
+var dictUrl = "https://picione.github.io/bravefrontier_data/dictionary.json";
+
 var itemGLurl = "http://picione.github.io/bravefrontier_data/items.json";
 
 var itemJPurl = "http://picione.github.io/bravefrontier_data/jp/items_light.json";
@@ -94,6 +96,8 @@ var deJP;
 var deEU;
 
 var deGL;
+
+var dictGL;
 
 var de = [];
 
@@ -383,6 +387,21 @@ var commands = {
 		
 	 }
 	  console.log("Success at Getting itemGL"); // Show the HTML for the Google homepage.
+  }
+  });
+  }
+  if ((!suffix) || (suffix.toLowerCase() == "dictionary")){
+  request({
+    			url: dictUrl,
+    			json: true
+			}, function (error, response, body) 
+			{
+  if (error) {
+	  console.log("Error at Getting Global Dictionary");
+  }
+  if (!error && response.statusCode == 200) {
+      dictGL = body;
+	  console.log("Success at Getting Global Dictionary"); // Show the HTML for the Google homepage.
   }
   });
   }
@@ -1414,6 +1433,77 @@ var commands = {
 				} else
 					msg.channel.sendMessage(unitListAll["rows"][sRe][2]+' does not have a UBB Skill').then((message => message.delete(5000)));
 			}
+		}
+	},
+	"lore": {
+		usage: "<name> <rarity> or 'id' <unit id> ",
+		description: "return Lore of identified unit",
+		process: function(bot,msg,suffix){
+			if (findUnit(suffix) == "notfound") {
+				if (!suffix)
+					msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+				else 	
+					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
+			} else if (findUnit(suffix) == "short") {
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+			} else {
+					var sRe = findUnit(suffix)[0];
+					var sRef = findUnit(suffix)[1];
+					var sID = findUnit(suffix)[2];
+					var sField = "MST_UNITCOMMENT_"+sRef+"_DESCRIPTION";
+				if (dictGL[sField])	{
+					if (dictGL[sField]["en"] != "") {
+						var exportSTR = dictGL[sField]["en"].replace(/<br>/g, "\n");
+						msg.channel.sendMessage("**"+unitListAll["rows"][sRe][2]+":**\n"+exportSTR);
+					} else
+						msg.channel.sendMessage(hurt+' Translation is not available.').then((message => message.delete(5000)));
+				} else
+					msg.channel.sendMessage(hurt+' No record found.').then((message => message.delete(5000)));
+			}
+		}
+	},
+	"unitcmt": {
+		usage: "<f|e|s> <name> <rarity> or <f|e|s> 'id' <unit id> ",
+		description: "return Fusion(f)/Evolution(e)/Summon(s) comment of identified unit",
+		process: function(bot,msg,suffix){
+			var args = suffix.split(" ");
+			var cmd = args.shift();
+			var sName = suffix.substring(2);
+			if (!cmd || (cmd != "f" && cmd != "e" && cmd != "s")){
+				msg.channel.sendMessage("Please use correct command").then((message => message.delete(5000)));
+			} else {
+			if (findUnit(sName) == "notfound") {
+				if (!sName)
+					msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+				else 	
+					msg.channel.sendMessage(sName + ' not found').then((message => message.delete(5000)));	
+			} else if (findUnit(sName) == "short") {
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+			} else {
+					var sRe = findUnit(sName)[0];
+					var sRef = findUnit(sName)[1];
+					var sID = findUnit(sName)[2];
+					var sField = "MST_UNITCOMMENT_"+sRef+"_";
+					switch (cmd) {
+						case "f":
+							sField+="FUSION";
+							break;
+						case "e":
+							sField+="EVOLUTION";
+							break;
+						case "s":
+							sField+="SUMMON";
+							break;							
+					}
+				if (dictGL[sField])	{
+					if (dictGL[sField]["en"] != "") {
+						var exportSTR = dictGL[sField]["en"].replace(/<br>/g, "\n");
+						msg.channel.sendMessage("**"+unitListAll["rows"][sRe][2]+":**\n"+exportSTR);
+					} else
+						msg.channel.sendMessage(hurt+' Translation is not available.').then((message => message.delete(5000)));
+				} else
+					msg.channel.sendMessage(hurt+' No record found.').then((message => message.delete(5000)));
+			}}
 		}
 	},
 	"workhard": {
