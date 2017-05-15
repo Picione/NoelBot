@@ -548,7 +548,7 @@ var commands = {
   }
   });
   }
-  if ((!suffix) || (suffix.toLowerCase() == "infojp")){
+  /*if ((!suffix) || (suffix.toLowerCase() == "infojp")){
   request({
     			url: infoJPurl,
     			json: true
@@ -562,7 +562,7 @@ var commands = {
 	  bot.user.setGame("with Summoners' mind");// Show the HTML for the Google homepage.
   }
   });
-  }
+  }*/
   if ((!suffix) || (suffix.toLowerCase() == "degl")){
   request({
     			url: deGLurl,
@@ -1185,7 +1185,7 @@ var commands = {
 			}
 		}
 	},
-	"ain": {
+	/*"ain": {
 		usage: "<name>",
 		description: "return Arena AI of identified unit",
 		process: function(bot,msg,suffix){
@@ -1212,7 +1212,7 @@ var commands = {
 					};
 			}
 		}
-	},
+	},*/
 	"lsn": {
 		usage: "<name>",
 		description: "return Arena AI of identified unit",
