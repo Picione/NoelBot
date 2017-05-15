@@ -252,9 +252,28 @@ function findUnit(suffix) {
 	if (sNum == 0) {
 		sBoth = false;
 	}
+	var sGL = 0;
+	var sEU = 0;
+	var sJP = 0;
+	if (sTxt.indexOf(".gl") != -1) {
+		sGL = 1;
+		sTxt = sTxt.replace(/.gl/g,"");
+	}
+	if (sTxt.indexOf(".eu") != -1) {
+		sEU = 1;		
+		sTxt = sTxt.replace(/.eu/g,"");
+	}
+	if (sTxt.indexOf(".jp") != -1) {
+		sJP = 1;
+		sTxt = sTxt.replace(/.jp/g,"");
+	}
+	var sServer = sGL + sEU + sJP;
 	if ((sTxt.length <= 2) && (sTxt != "id")){
 		return "short";
 	}
+	if (sServer>1) {
+		return "notfound";
+	} else {
 	if (sBoth){
 		if (sTxt == "id"){
 			for (i=0;i<unitListAll["rows"].length;i++) {
@@ -262,7 +281,17 @@ function findUnit(suffix) {
 					var sRe = i;
 					var sRef = unitListAll["rows"][i][1];
 					var sID = unitListAll["rows"][i][0];
-					break;
+					if ((sGL === 1) && (sID >= 8000)) {
+						break;
+					} else if ((sEU === 1) && (sID >= 7000 && sID < 8000)) {
+						break;
+					} else if ((sServer === 0) || ((sJP === 1) && (sID < 7000))) {
+						break;
+					} else {
+						sRe	= "";
+						sRef = "";
+						sID = "";
+					}					
 				}
 			}
 		} else 	{
@@ -275,7 +304,18 @@ function findUnit(suffix) {
 					var sRe = i;
 					var sRef = unitListAll["rows"][i][1];
 					var sID = unitListAll["rows"][i][0];
-					break;
+					if ((sGL === 1) && (sID >= 8000)) {
+						break;
+					} else if ((sEU === 1) && (sID >= 7000 && sID < 8000)) {
+						break;
+					} else if ((sServer === 0) || ((sJP === 1) && (sID < 7000))) {
+						break;
+					} else {
+						sRe	= "";
+						sRef = "";
+						sID = "";
+					}					
+
 				}
 			}
 		}
@@ -289,17 +329,25 @@ function findUnit(suffix) {
 					var sRe = i;
 					var sRef = unitListAll["rows"][i][1];
 					var sID = unitListAll["rows"][i][0];
-				break;
+					if ((sGL === 1) && (sID >= 8000)) {
+						break;
+					} else if ((sEU === 1) && (sID >= 7000 && sID < 8000)) {
+						break;
+					} else if ((sServer === 0) || ((sJP === 1) && (sID < 7000))) {
+						break;
+					} else {
+						sRe	= "";
+						sRef = "";
+						sID = "";
+					}					
 			}
 		}
-	}
+	}}
 	if (sRe && sRef && sID)
 		return [sRe,sRef,sID]
 	else
 		return "notfound";
 }	
-
-
 
 var commands = {
 	"refresh": {
@@ -311,14 +359,14 @@ var commands = {
   		request({
     			url: fsAPI + queryFX + "SELECT 'ID','SystemID','Name','Rarity','Series', 'Leader Skill', 'BB Skill', 'BB Hits', 'BB Fill', 'BB DC', 'SBB Skill', 'SBB Hits', 'SBB Fill', 'SBB DC', 'UBB Skill', 'UBB Hits', 'UBB Fill', 'UBB DC', 'Passive Skill', 'Passive Condition' FROM " + AuthDetails.fsTable + keyFX + AuthDetails.fsKey,
     			json: true
-			}, function (error, response, body) 		{
-  if (error) {
-	  console.log("Error at Getting All Unit List");
-  }
-  if (!error && response.statusCode == 200) {
-      unitListAll = body;
-	  if (JP)
-		  for (var key in JP.miss) {
+			}, function (error, response, body) {
+  		if (error) {
+	  		console.log("Error at Getting All Unit List");
+		}
+  		if (!error && response.statusCode == 200) {
+			unitListAll = body;
+			if (JP)
+		  		for (var key in JP.miss) {
 			  var tempFound = false;
 			  for (i=0;i<unitListAll["rows"].length;i++){
 				  if (key == unitListAll["rows"][i][0])
@@ -330,47 +378,45 @@ var commands = {
 				  if (unitListAll["rows"][j][2].indexOf(JP.missname[key][2]) == -1)
 				  	unitListAll["rows"][j][2]+=" "+JP.missname[key][2];
 			  }
-		  }
-	  if (GL)
-		  for (var key in GL.miss) {
-			  var tempFound = false;
-			  for (i=0;i<unitListAll["rows"].length;i++){
-				  if (key == unitListAll["rows"][i][0])
+		  	}
+	  		if (GL)
+				for (var key in GL.miss) {
+					var tempFound = false;
+			  	for (i=0;i<unitListAll["rows"].length;i++){
+					if (key == unitListAll["rows"][i][0])
 					  tempFound = true;
-			  }
-			  if (!tempFound) {
-				  unitListAll["rows"][unitListAll["rows"].length] = GL.miss[key];
-			  }
-		  }
-	  if (EU)
-		  for (var key in EU.miss) {
-			  var tempFound = false;
-			  for (i=0;i<unitListAll["rows"].length;i++){
-				  if (key == unitListAll["rows"][i][0])
-					  tempFound = true;
-			  }
-			  if (!tempFound) {
-				  unitListAll["rows"][unitListAll["rows"].length] = EU.miss[key];
-			  }
-		  }
-	  bot.user.setGame("with Summoners' mind");
-	  console.log("Success at Getting All Unit List");
-  }
-  });
-  }
-  if ((!suffix) || (suffix.toLowerCase() == "itgl")){
-  request({
+			  	}
+			  	if (!tempFound) {
+				  	unitListAll["rows"][unitListAll["rows"].length] = GL.miss[key];
+			  	}
+		  	}
+	  		if (EU)
+		  		for (var key in EU.miss) {
+			  		var tempFound = false;
+			  		for (i=0;i<unitListAll["rows"].length;i++){
+				  		if (key == unitListAll["rows"][i][0])
+					  		tempFound = true;
+			  		}
+			  		if (!tempFound) {
+				  		unitListAll["rows"][unitListAll["rows"].length] = EU.miss[key];
+			  		}
+		  		}
+			bot.user.setGame("with Summoners' mind");
+			console.log("Success at Getting All Unit List");
+		}
+  		});
+  		}
+  		if ((!suffix) || (suffix.toLowerCase() == "itgl")){
+  			request({
     			url: itemGLurl,
     			json: true
-			}, function (error, response, body) 
-			{
-  if (error) {
-	  console.log("Error at Getting itemGL");
-  }
-  if (!error && response.statusCode == 200) {
-      itemGL = body;
-	  if (itemUni != [])
-	 { 	  
+			}, function (error, response, body) {
+  				if (error) {
+					console.log("Error at Getting itemGL");
+  				}
+  				if (!error && response.statusCode == 200) {
+      				itemGL = body;
+	  				if (itemUni != [])	 { 	  
 	 	  for (var key in itemGL) {
 			if (itemUni[key]) {
 				itemUni[key]["nameGL"] = itemGL[key]["name"];
@@ -502,53 +548,21 @@ var commands = {
   }
   });
   }
-  /*if ((!suffix) || (suffix.toLowerCase() == "infojp")){
+  if ((!suffix) || (suffix.toLowerCase() == "infojp")){
   request({
     			url: infoJPurl,
     			json: true
-			}, function (error, response, body) 
-			{
+			}, function (error, response, body) {
   if (error) {
 	  console.log("Error at Getting infoJP");
   }
   if (!error && response.statusCode == 200) {
       infoJP = body;
 	  console.log("Success at Getting infoJP");
-	  //unitListAll["rows"][i][2]
-	  //"SELECT 'ID','SystemID','Name','Rarity','Series', 'Leader Skill', 'BB Skill', 'BB Hits', 'BB Fill', 'BB DC', 'SBB Skill', 'SBB Hits', 'SBB Fill', 'SBB DC', 'UBB Skill', 'UBB Hits', 'UBB Fill', 'UBB DC', 'Passive Skill', 'Passive Condition'
-	  for (var key in body) {
-		  var valObj = body[key];
-		  var ulFound = false;
-		  if (valObj.rarity == 8)
-		  for (var i in unitListAll) {
-			  if (key == unitListAll["rows"][i][2])
-				  ulFound = true;
-		          break;
-		  }
-		  if (!ulFound){
-			  var tempSkill = [];
-			  unitTemp.push({"systemid": key, "name": valObj["name"]});
-			  if ((valObj["leader skill"]) && (!valObj["leader skill"]["error"]))
-				var tempLS=passive.find(valObj["leader skill"], "LS");
-			  if ((valObj["extra skill"]) && (!valObj["extra skill"]["error"]))
-				var tempES=passive.find(valObj["extra skill"], "ES");
-			  for (ibb=0;ibb<bbArray.length;ibb++){
-				if ((valObj[bbArray[ibb]]) && (!valObj[bbArray[ibb]]["error"])){
-					var effectlength = valObj[bbArray[ibb]]["levels"].length - 1;
-            		if (valObj[bbArray[ibb]].levels[effectlength]["effects"]) {	
-					   	tempSkill[ibb] = active.find(valObj[bbArray[ibb]].levels[effectlength]["effects"], valObj)
-					}
-				} else tempSkill[ibb] = "";
-				 
-			  }			  
-			  unitListAll.push([valObj["guide_id"], key, valObj.name, valObj.rarity, '0', tempLS, tempSkill[0], '0', '0', '0', tempSkill[1], '0', '0', '0', tempSkill[2], '0', '0', '0', tempES, '0']);
-		  }
-		  
-	  }
 	  bot.user.setGame("with Summoners' mind");// Show the HTML for the Google homepage.
   }
   });
-  }*/
+  }
   if ((!suffix) || (suffix.toLowerCase() == "degl")){
   request({
     			url: deGLurl,
@@ -1152,6 +1166,25 @@ var commands = {
 			}
 		}
 	},
+	"unitid": {
+		usage: "<name>",
+		description: "return unit id and thumbnail of specified unit",
+		process: function(bot,msg,suffix){
+			if (findUnit(suffix) == "notfound") {
+				if (!suffix)
+					msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+				else 	
+					msg.channel.sendMessage(suffix + ' not found').then((message => message.delete(5000)));	
+			} else if (findUnit(suffix) == "short") {
+				msg.channel.sendMessage("Please enter longer search query").then((message => message.delete(5000)));
+			} else {
+					var sRe = findUnit(suffix)[0];
+					var sRef = findUnit(suffix)[1];
+					var sID = findUnit(suffix)[2];
+					msg.channel.sendMessage("**"+sID+"** - "+unitListAll["rows"][sRe][2]+" ("+unitListAll["rows"][sRe][3]+":star:)\n http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_"+sRef+".png").then((message => message.delete(20000)))
+			}
+		}
+	},
 	"ain": {
 		usage: "<name>",
 		description: "return Arena AI of identified unit",
@@ -1171,7 +1204,7 @@ var commands = {
 					var valObj = infoJP[key];
 					var exportSTR = "";
 			 		if (key == sRef) {
-					exportSTR+="**" +valObj.name+ " AI**\n " + ai.find(valObj) + "\n";
+					exportSTR+="**" +unitListAll["rows"][sRe][2]+ " AI**\n " + ai.find(valObj) + "\n";
 					exportSTR+="http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_"+key+".png";
 					msg.channel.sendMessage(exportSTR);
 					break;
