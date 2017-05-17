@@ -1181,7 +1181,14 @@ var commands = {
 					var sRe = findUnit(suffix)[0];
 					var sRef = findUnit(suffix)[1];
 					var sID = findUnit(suffix)[2];
-					msg.channel.sendMessage("**"+sID+"** - "+unitListAll["rows"][sRe][2]+" ("+unitListAll["rows"][sRe][3]+":star:)\n http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_"+sRef+".png").then((message => message.delete(20000)))
+					var exportSTR = "**"+sID+"** - "+unitListAll["rows"][sRe][2]+" ("+unitListAll["rows"][sRe][3]+":star:)\n";
+					if (sID >= 8000)
+						exportSTR+="http://2.cdn.bravefrontier.gumi.sg/content/unit/img/unit_ills_full_"+sRef+".png"
+					else if (sID >= 7000)
+						exportSTR+="http://static.bravefrontier.gumi-europe.net/content/unit/img/unit_ills_full_"+sRef+".png"
+					else 
+						exportSTR+="http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_full_"+sRef+".png";
+					msg.channel.sendMessage(exportSTR).then((message => message.delete(20000)))
 			}
 		}
 	},
