@@ -610,6 +610,54 @@ var commands = {
     
   });
   }
+  if ((!suffix) || (suffix.toLowerCase() == "dejp")){
+  request({
+    			url: deJPurl,
+    			json: true
+			}, function (error, response, body) 
+			{
+  if (error) {
+	  console.log("Error at Getting deJP");
+  }
+  if (!error && response.statusCode == 200) {
+      deJP = body;
+	  for (var key in deJP) {
+		  var valObj = deJP[key];
+		  if (valObj["skills"])
+		  for (swapi=0;swapi<valObj["skills"].length;swapi++){
+			  valObj["skills"][swapi]["pre"] = enhance.find(valObj["skills"][swapi]["skill"],"SP");
+		  }
+	  }
+	  for (var key in deJP) {
+		  var valObj = deJP[key];
+		  var alcount = 0;
+		  var exportSTR = "";
+		  if (valObj["skills"])
+		  for (spj=0;spj<valObj["skills"].length;spj++) {
+			  		exportSTR+=alphabet[alcount]+' ';
+					alcount+=1;
+					exportSTR+=valObj["skills"][spj]["skill"]["bp"]+'SP-'+valObj["skills"][spj]["pre"];		
+					if (valObj["skills"][spj]["dependency"] != "") {
+						var reqBP = valObj["skills"][spj]["dependency"].substr(2);			
+						for (spm=0;spm<valObj["skills"].length;spm++) {
+							if (valObj["skills"][spm]["id"] == reqBP) {
+								exportSTR+=' [*Need ['+valObj["skills"][spm]["skill"]["bp"]+'SP-'+valObj["skills"][spm]["pre"]+'] to be unlocked*]\n';
+							}
+						}
+					} else exportSTR+='\n';
+					if (enhance.find(valObj["skills"][spj]["skill"],"SP"))
+					if (enhance.find(valObj["skills"][spj]["skill"],"SP").indexOf(indexTXT) != -1)
+					exportSTR+=valObj["skills"][spj]["skill"]["desc"]+'\n';
+					}
+		  exportSTR+="http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_"+key+".png";
+		  de[key] = [];
+		  de[key]["pre"] = exportSTR;		  
+	  }
+	  console.log("Success at Getting deJP"); // Show the HTML for the Google homepage.
+  }
+    
+  });
+  }			
   //if ((!suffix) || (suffix.toLowerCase() == "deeu")){
   if (suffix.toLowerCase() == "deeu"){
 	request({
@@ -658,54 +706,7 @@ var commands = {
     
   });
   }			
-  if ((!suffix) || (suffix.toLowerCase() == "dejp")){
-  request({
-    			url: deJPurl,
-    			json: true
-			}, function (error, response, body) 
-			{
-  if (error) {
-	  console.log("Error at Getting deJP");
-  }
-  if (!error && response.statusCode == 200) {
-      deJP = body;
-	  for (var key in deJP) {
-		  var valObj = deJP[key];
-		  if (valObj["skills"])
-		  for (swapi=0;swapi<valObj["skills"].length;swapi++){
-			  valObj["skills"][swapi]["pre"] = enhance.find(valObj["skills"][swapi]["skill"],"SP");
-		  }
-	  }
-	  for (var key in deJP) {
-		  var valObj = deJP[key];
-		  var alcount = 0;
-		  var exportSTR = "";
-		  if (valObj["skills"])
-		  for (spj=0;spj<valObj["skills"].length;spj++) {
-			  		exportSTR+=alphabet[alcount]+' ';
-					alcount+=1;
-					exportSTR+=valObj["skills"][spj]["skill"]["bp"]+'SP-'+valObj["skills"][spj]["pre"];		
-					if (valObj["skills"][spj]["dependency"] != "") {
-						var reqBP = valObj["skills"][spj]["dependency"].substr(2);			
-						for (spm=0;spm<valObj["skills"].length;spm++) {
-							if (valObj["skills"][spm]["id"] == reqBP) {
-								exportSTR+=' [*Need ['+valObj["skills"][spm]["skill"]["bp"]+'SP-'+valObj["skills"][spm]["pre"]+'] to be unlocked*]\n';
-							}
-						}
-					} else exportSTR+='\n';
-					if (enhance.find(valObj["skills"][spj]["skill"],"SP"))
-					if (enhance.find(valObj["skills"][spj]["skill"],"SP").indexOf(indexTXT) != -1)
-					exportSTR+=valObj["skills"][spj]["skill"]["desc"]+'\n';
-					}
-		  exportSTR+="http://v1.cdn.android.brave.a-lim.jp/unit/img/unit_ills_thum_"+key+".png";
-		  de[key] = [];
-		  de[key]["pre"] = exportSTR;		  
-	  }
-	  console.log("Success at Getting deJP"); // Show the HTML for the Google homepage.
-  }
-    
-  });
-  }
+  
 }
     },
 	"alias": {
