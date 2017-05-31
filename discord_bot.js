@@ -610,8 +610,9 @@ var commands = {
     
   });
   }
-  if ((!suffix) || (suffix.toLowerCase() == "deeu")){
-  request({
+  //if ((!suffix) || (suffix.toLowerCase() == "deeu")){
+  if (suffix.toLowerCase() == "deeu"){
+	request({
     			url: deEUurl,
     			json: true
 			}, function (error, response, body) 
