@@ -576,6 +576,7 @@ var commands = {
       deGL = body;
 	  for (var key in deGL) {
 		  var valObj = deGL[key];
+		  if (valObj["skills"])
 		  for (swapi=0;swapi<valObj["skills"].length;swapi++){
 			  valObj["skills"][swapi]["pre"] = enhance.find(valObj["skills"][swapi]["skill"],"SP");
 		  }
@@ -621,6 +622,7 @@ var commands = {
       deEU = body;
 	  for (var key in deEU) {
 		  var valObj = deEU[key];
+		  if (valObj["skills"])
 		  for (swapi=0;swapi<valObj["skills"].length;swapi++){
 			  valObj["skills"][swapi]["pre"] = enhance.find(valObj["skills"][swapi]["skill"],"SP");
 		  }
@@ -666,6 +668,7 @@ var commands = {
       deJP = body;
 	  for (var key in deJP) {
 		  var valObj = deJP[key];
+		  if (valObj["skills"])
 		  for (swapi=0;swapi<valObj["skills"].length;swapi++){
 			  valObj["skills"][swapi]["pre"] = enhance.find(valObj["skills"][swapi]["skill"],"SP");
 		  }
