@@ -585,6 +585,7 @@ var commands = {
 		  var valObj = deGL[key];
 		  var alcount = 0;
 		  var exportSTR = "";
+		  if (valObj["skills"])
 		  for (spj=0;spj<valObj["skills"].length;spj++) {
 			  		exportSTR+=alphabet[alcount]+' ';
 					alcount+=1;
@@ -631,6 +632,7 @@ var commands = {
 		  var valObj = deEU[key];
 		  var alcount = 0;
 		  var exportSTR = "";
+		  if (valObj["skills"])
 		  for (spj=0;spj<valObj["skills"].length;spj++) {
 			  		exportSTR+=alphabet[alcount]+' ';
 					alcount+=1;
@@ -677,6 +679,7 @@ var commands = {
 		  var valObj = deJP[key];
 		  var alcount = 0;
 		  var exportSTR = "";
+		  if (valObj["skills"])
 		  for (spj=0;spj<valObj["skills"].length;spj++) {
 			  		exportSTR+=alphabet[alcount]+' ';
 					alcount+=1;
