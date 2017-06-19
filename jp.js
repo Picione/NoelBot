@@ -1,31 +1,86 @@
 exports.missname = {
-"1633":["1633","30967","Fireene Filane Filene 8","8"],
-"1635":["1635","61147","Mizo-Dorute Mizo-Dolte 8","8"],
-"1636":["1636","50317","Lilith 8","8"],
-"1637":["1637","60097","Shida 8","8"],
-"1638":["1638","11087","Owen 8","8"],
-"1639":["1639","61157","Grahden 8","8"],
-"1640":["1640","11077","Sol","8"],
-"1641":["1641","40927","Ky","8"],
-"1642":["1642","51207","Elphelt","8"],
-"1644":["1644","40937","Jireido 8","8"],
-"1646":["1646","51217","Soros 8","8"],
-"1647":["1647","51227","Lucius 8","8"],
-"1648":["1648","61167","Mary 8","8"],
+"1664":["1664","10257","Michele","8"],
+
+
+"1650":["1650","11097","Jakura Jacra","8"],
+
+
+"1662":["1662","11105","ハレ田","6"],
+
+
+"1652":["1652","21007","Isuniiru Isuniru Isnyl","8"],
+
+
+"1659":["1659","21015","アク田","6"],
+
+
+"1663":["1663","21025","ペン田","6"],
+
+
+"1657":["1657","30975","ワン田","6"],
+
+
+"1654":["1654","40947","Bekusudain Bexdyne","8"],
+
+
+"1658":["1658","40955","フラ田","6"],
+
+
+"1660":["1660","40965","イボ田","6"],
+
+
+"1655":["1655","51235","スパ田","6"],
+
+
+"1665":["1665","60257","ＤＵＥＬ‐ＦＧＸＶＭ","8"],
+
+
+"1656":["1656","61175","バト田","6"],
+
+
+"1661":["1661","61185","ジョカ田","6"],
+
 			}
 
 exports.miss = {
-"1633":["1633","30967","賢竟の繚華フィレーネ","8","","60% HP 60% DEF 60% REC (ALL) / 25% Chance Heal 25-25% DMG when ATKed (ALL) / 100% Chance 4-7BC Fill when ATKed (ALL) / Buff [Reduce DMG (20%) 1Turns (SELF)] (Taken 5000DMG) (ALL)","14 hits 420%/200 Earth (AOE) / Heal (4000-4500) (ALL) / Gradual Heal (3500-4000) (ALL) 3Turns / Convert DEF: 70% to ATK (ALL) 3Turns / Cure Ails","","","","17 hits 620%/200 Earth (AOE) / Heal (4000-4500) (ALL) / 35% BC+ 35% HC+ / 30% Chance -50% Enemy ATK 1TurnsDebuff 1Turns / Convert ATK: 70% to DEF (ALL) 3Turns / 8BC Fill Instant(ALL)","","","","22 hits 1800%/200 Earth (AOE) / Gradual Heal FULL (98999-99999) (ALL) 3Turns / 350% ATK+ 350% DEF+ 350% REC+ (ALL) 3Turns / 100% Chance -80% Enemy ATK 3TurnsDebuff 3Turns / Convert REC: 250% to ATK ,250% to DEF (ALL) 3Turns / Grant earth Barrier (30000HP / 0 DEF / 100% DMG Absordbed)","","","","25% Chance Heal 20-25% DMG when ATKed / 100% Chance 2-3BC Fill when ATKed",""],
-"1636":["1636","50317","神機装リリス∞","8","","30% HP 50% ATK (ALL) / 100% DMG on Spark (ALL) / 30% HP 100% ATK (5 elements required) (ALL) / {200BB ATK%+ (HP >= 50%) } (ALL)","20 hits 500%/200 Light (TGT) / 100% BB Fill (SELF) / Ignore DEF (ALL) 2Turns / 120% ATK+ 120% DEF+ 120% REC+ (SELF) 3Turns","","","","20 hits 650%/200 Light (TGT) / 6 hits 300%+800% (based on remaining HP) Light (TGT) / 100% BB Fill (SELF) / 160% ATK+ 160% DEF+ 160% REC+ (ALL) 3Turns / Increase OD gauge by 8% / 120% ATK+ 120% DEF+ 120% REC+ (SELF) 3Turns","","","","22 hits 2000%/0 Light (AOE) / 8 hits 200%+1300% (based on remaining HP) Light (TGT) / 0% BB Fill (ALL) / 300% ATK+ 300% DEF+ 300% REC+ (ALL) 3Turns / Increase OD gauge by 50% / 70% Spark DMG+ (SELF) for 3Turns","","","","[spheres(47206-氷輝天鎧レーゼ)]30% HP 30% ATK 30% DEF 30% REC / Add [8BC Fill Instant(ALL)] (BB,SBB)",""],
-"1637":["1637","60097","死幻の創異神シダ","8","","50% HP 50% ATK 50% DEF 50% REC (ALL) / 125% Element Weakness DMG+ (All Elements) / 5% Element Atk Mitigated(All Elements) (ALL) / Buff [120% Spark DMG+ 2Turns (SELF)] (Deal 10000DMG) (ALL)","30 hits 480%/100 Dark (AOE) / 12BC Fill Instant(ALL) / 120% ATK+ 120% DEF+ 120% REC+ (SELF) 3Turns / 50% Spark DMG+ (SELF) for 3Turns+ Undefined effect(s)[(procid:89;param:4,30,0,0,3,10)]","","","","35 hits 800%/100 Dark (AOE)(Drain 30-35% HP) / Add Fire,water,earth,thunder,light,dark to ATK (ALL) 3Turns / 100% Element Weakness DMG+ (ALL Elements) (ALL) 3Turns / 15% Chance Enemy receives 20% Elemental Weakness DMG+ for 1Turns ","","","","49 hits 1800%/200 Dark (AOE)(Drain 50-55% HP) / Add Fire,water,earth,thunder,light,dark to ATK (ALL) 3Turns / Mitigate 100% from(ALL) Attacks [39] for 2Turns(ALL) / 400% Element Weakness DMG+ (ALL Elements) (ALL) 3Turns / 30% Chance Enemy receives 100% Elemental Weakness DMG+ for 3Turns ","","","","50% Element Weakness DMG+ (dark) / 50% OD Fill Rate+ / Chance to Counter Inflect 12% Injury 12% Weak 12% Sick 10% Poison 10% Para 10% Curse ",""],
-"1638":["1638","11087","焔壮の絶神オーン","8","","60% HP 60% ATK 60% DEF 60% REC (ALL) / 200% CRIT DMG+ (ALL) / 300% BB ATK%+ (ALL) / 8-10BC Fill on Crit (ALL)","17 hits 470%/200 Fire (AOE) / 4 hits 600%/200 Fire (TGT) / 180% ATK+ 180% DEF+ 60% CRIT Chance+ (ALL) 3Turns / 30% Chance -50% Enemy ATK 1Turns / 30% Chance -50% Enemy DEF 1TurnsDebuff 1Turns / 80% Injury 80% Weak / 75% CRIT DMG+ (ALL) 3Turns","","","","6 hits 650%/200 Fire (TGT) / 20 hits 600%+200%x3 (max number of consecutive uses) Fire (AOE) / 100% BB Fill (SELF) / 180% ATK+ 180% DEF+ (ALL) 3Turns / Convert DEF: 80% to ATK (ALL) 3Turns / 450% BB ATK%+ (ALL) 3Turns","","","","31 hits 2000%/200 Fire (AOE) / 350% ATK+ 350% DEF+ 350% REC+ 60% CRIT Chance+ (ALL) 3Turns / 1200% DMG Each Turn 3Turns / 600% BB ATK%+ (ALL) 3Turns / 350% CRIT DMG+ (ALL) 3Turns / 30% Chance Enemy receives 100% CRIT DMG+ & for 3Turns ","","","","[spheres(49940-羅獄焔燼メドブレア)]40% HP 40% ATK 40% DEF 40% REC / Add [180% ATK%+ to ailment-infected enemies (ALL) 3Turns] (BB,SBB) / {Increase ATK Cap to 150000} ",""],
-"1639":["1639","61157","冥壮の絶神グラデンス","8","","60% HP 60% ATK 60% DEF 60% REC (ALL) / 100% Chance 4-7BC Fill when ATKed (ALL) / 15% Element Atk Mitigated(light,dark) (ALL) / Negate Def Ignore DMG (100%) (ALL)","20 hits 470%/200 Dark Light Dark (AOE) / Negate Ailments 3Turns / Add Light,dark to ATK (ALL) 3Turns / Negate Debuffs 2Turns / Negate 10% DOT DMG for 2Turns ","","","","28 hits 700%/200 Dark Light Dark (AOE) / Add Light,dark to ATK (ALL) 3Turns / Grant dark Barrier (3500HP / 0 DEF / 100% DMG Absordbed) / 20% OD Fill Rate+ 3Turn(s) / Negate DMG Factors (100-100% Elemental Weakness DMG ) for 2Turns (ALL) / 500 OD Fill+ at Turn End for 3Turns ","","","","30 hits 2000%/200 Dark Light Dark (AOE) / Gradual Heal FULL (98999-99999) (ALL) 3Turns / 999BC Fill 3Turns / Mitigate 100% from(ALL) Attacks [39] for 3Turns(ALL) / 1000 OD Fill+ at Turn End for 3Turns ","","","","[spheres(45000-聖魔斬刃イシュリオン)]30% HP 30% ATK 30% DEF 30% REC / 25% Chance Heal 20-25% DMG when ATKed / Add [9BC Fill 3Turns] (BB,SBB) / {Increase ATK Cap to 130000} ",""],
-"1640":["1640","11077","ソル","8","","30% HP 80% ATK (ALL) / 125% CRIT DMG+ (ALL) / 180% BB ATK%+ (ALL) / 20% OD Fill Rate+ (ALL)","11 hits 400%/200 Fire (AOE) / 140% ATK+ (ALL) 3Turns / Convert DEF: 60% to ATK (ALL) 3Turns","","","","Gradual Heal FULL (98999-99999) (SELF) 3Turns / 140% ATK+ 140% DEF+ 140% REC+ (ALL) 3Turns / 50BC Fill 3Turns / 200 OD Fill+ at Turn End for 3Turns ","","","","20 hits 1500%/200 Fire (AOE) / 250% ATK+ 60% CRIT Chance+ (ALL) 3Turns / Convert DEF: 200% to ATK (ALL) 3Turns / 300% CRIT DMG+ (ALL) 3Turns","","","","30% ATK 30% DEF 30% REC (HP >= 50%) / 50% CRIT DMG+",""],
-"1641":["1641","40927","カイ","8","","40% HP 40% ATK 40% DEF (ALL) / 80% DMG on Spark (ALL) / 40% BC Fill Rate+ (ALL) / Reduce 20% BB Cost REQUIRED (ALL)","12 hits 370%/200 Thunder (AOE) / 3-5BC Fill when ATKed (100%) (ALL) 3Turns / 30% BC Fill+ (ALL) 3Turns","","","","14 hits 580%/200 Thunder (AOE) / Convert REC: 60% to DEF (ALL) 3Turns / 20% Chance Enemy receives 20% Spark DMG+ 1Turns / 20% Chance for Critial Spark (50% DMG+) 3Turn(s)","","","","20 hits 1500%/200 Thunder (AOE) / 250% Spark DMG+ (ALL) 3Turns / 100% Chance Enemy receives 100% Spark DMG+ 1Turns / Grant thunder Barrier (25000HP / 0 DEF / 100% DMG Absordbed) / 50% Chance for Critial Spark (80% DMG+) 3Turn(s)","","","","3BC Fill Per Turn / 30% ATK 30% DEF 30% REC (BB >= 50%)",""],
-"1642":["1642","51207","エルフェルト","8","","40% HP 40% DEF 40% REC (ALL) / Negate Ailments (ALL) (ALL) / Heal Over Turn (800-1000) (ALL)","11 hits 370%/200 Light (AOE) / Heal (3100-3400) (ALL) / 30% BC+ 30% HC+ ","","","","12 hits 580%/200 Light (AOE) / 5 hits 600%/100 Light (TGT) / Heal (3200-3500) (ALL) / Gradual Heal (2500-3000) (ALL) 3Turns","","","","21 hits 1500%/200 Light (AOE) / Gradual Heal FULL (98999-99999) (ALL) 3Turns / 100% Chance -80% Enemy ATK 2TurnsDebuff 2Turns / 100% Chance to Heal 100%-100% DMG when ATKed for 3Turns(ALL)","","","","Negate Ailments (ALL) / 10% Chance Reduce DMG (15%)",""],
-"1635":["1635","61147","殀魄戒神ミゾ＝ドルテ","8","","60% HP 60% ATK (ALL) / 100% Chance Drain 5-10% HP (ALL) / 125% Element Weakness DMG+ (All Elements) / Buff [100% Spark DMG+ 2Turns (SELF)] (Deal 10000DMG) (ALL)","10 hits 420%/200 Dark (AOE)(Drain 25-30% HP) / 5 hits 420%/200 Dark to Light Enemy (AOE) / 125% Element Weakness DMG+ (ALL Elements) (ALL) 3Turns / 50% Chance to drain 4%-6% HP for 3Turns(ALL)","","","","14 hits 620%/200 Dark (AOE)(Drain 30-35% HP) / 6 hits 620%/200 Dark to Light Enemy (AOE) / 125% Element Weakness DMG+ (ALL Elements) (ALL) 3Turns / 50% Chance to drain 4%-6% HP for 3Turns(ALL) / 15% Chance Enemy receives 20% Elemental Weakness DMG+ for 1Turns ","","","","16 hits 1800%/200 Dark (AOE)(Drain 50-55% HP) / 8 hits 1800%/200 Dark to Light Enemy (AOE) / 400% Element Weakness DMG+ (ALL Elements) (ALL) 3Turns / 100% Chance to drain 6%-10% HP for 3Turns(ALL) / 30% Chance Enemy receives 100% Elemental Weakness DMG+ for 3Turns ","","","","100% CRIT DMG+ / 80% Element Weakness DMG+ (dark)",""],
-"1644":["1644","40937","傀駁魂ジレイド","8","","60% HP 60% ATK (ALL) / 15% Injury 15% Weak 15% Sick 10% Poison (ALL) / 10% Para 10% Curse (ALL) / 130% DMG on Spark (ALL)","12 hits 420%/200 Thunder (AOE) / 75% Sick 75% Poison 75% Curse / 75% Injury 75% Weak 75% Para / 130% Spark DMG+ (ALL) 3Turns / 180% ATK%+ to ailment-infected enemies (ALL) 3Turns","","","","12 hits 620%/200 Thunder (AOE) / 5 hits 620%/200 Thunder to Water Enemy (AOE) / 75% Sick 75% Poison 75% Curse / 75% Injury 75% Weak 75% Para / 130% Spark DMG+ (ALL) 3Turns / 180% ATK%+ to ailment-infected enemies (ALL) 3Turns","","","","16 hits 1800%/200 Thunder (AOE) / 8 hits 1800%/200 Thunder to Water Enemy (AOE) / 100% Sick 100% Poison 100% Curse / 100% Injury 100% Weak 100% Para / 350% Spark DMG+ (ALL) 3Turns / 50% Chance for Critial Spark (120% DMG+) 3Turn(s)","","","","50% ATK 50% DEF (HP >= 50%) / 60% DMG on Spark",""],
-"1646":["1646","51217","聖哲の白賢師ソロス","8","","60% HP 60% DEF (ALL) / 50% BC Fill Rate+ (ALL) / Reduce 20% BB Cost REQUIRED (ALL) / Negate Spark DMG (25+25%) (ALL)","18 hits 390%/200 Light (AOE) / Reduce DMG (50%) 1Turns / Mitigate 10% from(Fire,Water,Earth,Thunder) Attacks [39] for 1Turns(ALL) / 50% BC Fill+ (ALL) 3Turns","","","","21 hits 540%/200 Light (AOE) / 170% DEF+ (ALL) 3Turns / Reduce DMG (50%) 1Turns / 4-7BC Fill when ATKed (100%) (ALL) 3Turns / Convert ATK: 70% to DEF (ALL) 3Turns / Mitigate 10% from(Light,Dark) Attacks [39] for 1Turns(ALL)","","","","25 hits 1600%/200 Light (AOE) / 350% DEF+ (ALL) 5Turns / 50BC Fill 5Turns / Convert ATK: 250% to DEF (ALL) 5Turns / Mitigate 100% from(ALL) Attacks [39] for 2Turns(ALL)","","","","100% Chance 3-4BC Fill when ATKed / 50% DEF 50% REC (BB >= 50%)",""],
-"1647":["1647","51227","封聖神ルシアス","8","","60% HP 60% ATK 60% DEF 60% REC (ALL) / 10BC Fill Per Turn (ALL) / Buff [Reduce DMG (20%) 1Turns (SELF)] (Taken 5000DMG) (ALL) / Buff [140% Spark DMG+ 2Turns (SELF)] (Deal 15Spark) (ALL)","24 hits 500%/200 Light (AOE) / 35% BC+ 35% HC+ / 15% Max HP+ / 4-7BC Fill when ATKed (100%) (ALL) 3Turns / 100% Chance to Fill (2-3) BB on Spark3Turns(ALL) / Negate DMG Factors (100-100% Crit DMG ) for 2Turns (ALL)","","","","40 hits 200%+800% (based on remaining HP) Light (AOE) / Convert HP: 35% to ATK ,35% to DEF ,35% to REC (ALL) 3Turns / Add Fire,water,earth,thunder,light,dark to ATK (ALL) 3Turns / 50% BC Fill+ (ALL) 3Turns / Negate DMG Factors (100-100% Elemental Weakness DMG ) for 2Turns (ALL)","","","","80 hits 1500%+ (5000% MAX based on ALLIES BB gauge) Light (AOE) / 35% Max HP+ / 400% Spark DMG+ (ALL) 3Turns / Add Fire,water,earth,thunder,light,dark to ATK (ALL) 3Turns / 999BC Fill Instant(ALL) / Grant light Barrier (30000HP / 0 DEF / 100% DMG Absordbed)","","","","Negate DMG Factors (100-100% Crit Chance 100-100% Crit DMG 100-100% Elemental Weakness DMG ) / Add [8BC Fill Instant(ALL)] (BB,SBB)",""],
-"1648":["1648","61167","呪骨操姫マリー","8","","40% HP 40% ATK (ALL) / 50% DEF 50% REC (BB >= 50%) (ALL) / 100% ATK%+ to Ails-Infected Enemies (ALL)","16 hits 370%/200 Dark (AOE) / 80% Para 80% Curse / 400% DMG Each Turn 3Turns / Inflict 15% Injury 15% Weak 15% Sick 10% Poison 10% Para 10% Curse on ATKed (ALL) 3Turns","","","","18 hits 580%/200 Dark (AOE) / 80% Para 80% Curse / Inflict 15% Injury 15% Weak 15% Sick 10% Poison 10% Para 10% Curse on ATKed (ALL) 3Turns / [10% Chance -15 Enemy ATK /10% Chance -15 Enemy DEF for 2Turn(s)] when ATKed for 3Turn(s)","","","","23 hits 1500%/200 Dark (AOE) / 100% Injury 100% Weak 100% Sick 100% Poison / 100% Para 100% Curse / 1200% DMG Each Turn 3Turns / 250% ATK%+ to ailment-infected enemies (ALL) 3Turns / [50% Chance -50 Enemy ATK /50% Chance -50 Enemy DEF for 2Turn(s)] when ATKed for 3Turn(s)","","","","30% Element Weakness DMG+ (dark) / 80% ATK%+ to Ails-Infected Enemies ",""],
+"1664":["1664","10257","熾蓮の炮界神ミセル","8","","30% HP 50% ATK (ALL) / 50% BC Fill Rate+ (ALL) / 175% CRIT DMG+ (ALL) / 30% HP 100% ATK (5 elements required) (ALL)","36 hits 360%/200 Fire (AOE) / 170% ATK+ 60% CRIT Chance+ (ALL) 3Turns / 100% Spark DMG+ (ALL) 3Turns / Add Fire to ATK (ALL) 3Turns / 50% CRIT DMG+ (ALL) 3Turns","","","","38 hits 560%/200 Fire (AOE) / 170% ATK+ 60% CRIT Chance+ (ALL) 3Turns / 100% Spark DMG+ (ALL) 3Turns / Convert DEF: 70% to ATK (ALL) 3Turns / Add Fire to ATK (ALL) 3Turns / 50% CRIT DMG+ (ALL) 3Turns","","","","42 hits 1500%/200 Fire (AOE) / 350% ATK+ 60% CRIT Chance+ (ALL) 3Turns / 300% Spark DMG+ (ALL) 3Turns / Convert DEF: 250% to ATK (ALL) 3Turns / 300% CRIT DMG+ (ALL) 3Turns / 50% Chance for Critial Spark (100% DMG+) 3Turn(s)","","","","[spheres(47201-DUELのカケラ)]30% HP 30% ATK 30% DEF 30% REC / 50% DMG on Spark / Add [Add Dark to ATK (ALL) 3Turns] (BB,SBB)",""],
+
+
+"1650":["1650","11097","恢渾神凰ジャクラ","8","","60% HP 60% ATK 60% REC (ALL) / Negate Ailments (ALL) (ALL) / 100% Chance Drain 5-10% HP (ALL) / {250BB ATK%+ (HP >= 50%) } (ALL)","10BC Fill Instant(ALL) / 15% Injury 15% Weak 15% Sick / 10% Poison 10% Para 10% Curse / Inflict 15% Injury 15% Weak 15% Sick 10% Poison 10% Para 10% Curse on ATKed (ALL) 3Turns / 200% ATK%+ to ailment-infected enemies (ALL) 3Turns / [10% Chance -20 Enemy ATK /10% Chance -20 Enemy DEF for 2Turn(s)] when ATKed for 3Turn(s)","","","","14 hits 620%/200 Fire (AOE) / 120% ATK+ 120% DEF+ 120% REC+ (to Fire Units)(ALL) 3Turns / 30% Chance -50% Enemy ATK 1Turns / 30% Chance -50% Enemy DEF 1TurnsDebuff 1Turns / 75% Injury 75% Weak 75% Sick 75% Poison / 75% Para 75% Curse / 50% Chance to drain 4%-6% HP for 3Turns(ALL)","","","","19 hits 1800%/200 Fire (AOE) / 200% ATK+ 200% DEF+ 200% REC+ (to Fire Units)(ALL) 3Turns / 100% Chance -80% Enemy ATK 3Turns / 100% Chance -80% Enemy DEF 3TurnsDebuff 3Turns / 100% Injury 100% Weak 100% Sick 100% Poison / 100% Para 100% Curse / 350% ATK%+ to ailment-infected enemies (ALL) 3Turns","","","","Negate Ailments (ALL) / 1 Time(s) (60%-60%) Chance Withstand a KNOCKOUT ATK / {Increase ATK Cap to 130000} ",""],
+
+
+"1662":["1662","11105","ハレ田","6","","50% ATK (Fire,dark) / Buff [80% ATK 3 Turns (SELF)] (Deal 3000DMG) (ALL)","1 hits 320%/100 Fire Random Target / 50% ATK+ (to Fire Units)(ALL) 3Turns / 50% ATK+ (to Dark Units)(ALL) 3Turns","","","","1 hits 560%/100 Fire Random Target / 50% ATK+ (to Fire Units)(ALL) 3Turns / 50% ATK+ (to Dark Units)(ALL) 3Turns / Convert REC: 30% to ATK (ALL) 3Turns","","","","","","","","",""],
+
+
+"1652":["1652","21007","神决の丞将イスニール","8","","60% HP 60% ATK (ALL) / 80% ATK 80% DEF (HP >= 50%) (ALL) / Buff [150% Spark DMG+ 2Turns (SELF)] (Deal 10Spark) (ALL) / Buff [250% BB ATK%+ 2Turns (SELF)] (Deal 10Spark) (ALL)","18 hits 650%/200 Water (TGT) / Heal (3500-4000) (ALL) / 170% ATK+ 170% DEF+ 170% REC+ (ALL) 3Turns / 120% ATK+ 120% DEF+ 120% REC+ (to Water Units)(ALL) 3Turns / 350% BB ATK%+ (ALL) 3Turns","","","","12 hits 800%/200 Water (TGT) / 8 hits 800%/200 Water (TGT) / 170% ATK+ 170% DEF+ 170% REC+ (ALL) 3Turns / 120% ATK+ 120% DEF+ 120% REC+ (to Water Units)(ALL) 3Turns / 350% BB ATK%+ (ALL) 3Turns / 100% Chance to Fill (2-3) BB on Spark3Turns(ALL)","","","","13 hits 2200%/200 Water (TGT) / 9 hits 2200%/200 Water (TGT) / 350% ATK+ 350% DEF+ 350% REC+ (ALL) 3Turns / 200% ATK+ 200% DEF+ 200% REC+ (to Water Units)(ALL) 3Turns / 350% Spark DMG+ (ALL) 3Turns / 600% BB ATK%+ (ALL) 3Turns","","","","80% DMG on Spark / 0-60% ATK 0-60% DEF 0-60% REC Based on HP LEFT / {Increase ATK Cap to 130000} ",""],
+
+
+"1659":["1659","21015","アク田","6","","80% ATK (Water) / Normal HitCount +100% (-50% DMG+) (ALL)","Normal HitCount +100% (0% DMG) (ALL) 3Turns","","","","100% ATK+ (ALL) 3Turns / Normal HitCount +100% (0% DMG) (ALL) 3Turns","","","","","","","","",""],
+
+
+"1663":["1663","21025","ペン田","6","","15% BC+ 15% HC+ (ALL) / 20% Chance Heal 10-15% DMG when ATKed (ALL)","13 hits 240%/100 Water (AOE) / 10% Chance to Heal 15%-20% DMG when ATKed for 3Turns(ALL)","","","","15 hits 480%/100 Water (AOE) / 20% Chance -30% Enemy ATK 1Turns / 20% Chance -30% Enemy DEF 1TurnsDebuff 1Turns / 10% Chance to Heal 15%-20% DMG when ATKed for 3Turns(ALL)","","","","","","","","",""],
+
+
+"1657":["1657","30975","ワン田","6","","Negate Ailments (ALL) (ALL) / 0-75% ATK 0-75% DEF Based on HP LEFT (ALL)","12 hits 540%/100 Earth (TGT) / 5% Max HP+","","","","15 hits 620%/100 Earth (TGT) / 5% Max HP+ / 30% BC Fill+ (ALL) 3Turns","","","","","","","","",""],
+
+
+"1654":["1654","40947","枢神鍠ベクスダイン","8","","60% HP 60% DEF (ALL) / 7BC Fill Per Turn (ALL) / Buff [15% Chance for Critial Spark (50% DMG+) for 2Turns (SELF)] (Receive 10BC) (ALL) / Negate Def Ignore DMG (100%) (ALL)","36 hits 420%/200 Thunder (AOE) / 120% ATK+ 120% DEF+ 120% REC+ (to Thunder Units)(ALL) 3Turns / 7BC Fill 3Turns / Convert ATK: 80% to DEF (ALL) 3Turns / 50% BC Fill+ (ALL) 3Turns","","","","42 hits 620%/200 Thunder (AOE) / 120% ATK+ 120% DEF+ 120% REC+ (to Thunder Units)(ALL) 3Turns / 4-7BC Fill when ATKed (100%) (ALL) 3Turns / Convert DEF: 80% to ATK (ALL) 3Turns / 8BC Fill Instant(ALL) / 30% Chance for Critial Spark (60% DMG+) 3Turn(s)","","","","46 hits 1800%/200 Thunder (AOE) / 200% ATK+ 200% DEF+ 200% REC+ (to Thunder Units)(ALL) 3Turns / 50BC Fill 3Turns / Convert DEF: 250% to ATK (ALL) 3Turns / Convert ATK: 250% to DEF (ALL) 3Turns / 50% Chance for Critial Spark (120% DMG+) 3Turn(s)","","","","4BC Fill Per Turn / 50% ATK 50% DEF (BB >= 50%) / {Increase ATK Cap to 130000} ",""],
+
+
+"1658":["1658","40955","フラ田","6","","50% DMG on Spark (ALL) / {5% Chance for Critial Spark (50% DMG+)} (ALL)","11 hits 240%/100 Thunder (AOE) / 20% Chance for Critial Spark (50% DMG+) 3Turn(s)","","","","13 hits 480%/100 Thunder (AOE) / 75% Spark DMG+ (ALL) 3Turns / 20% Chance for Critial Spark (50% DMG+) 3Turn(s)","","","","","","","","",""],
+
+
+"1660":["1660","40965","イボ田","6","","80% DEF (ALL) / 15% Chance Reduce DMG (15%) (ALL)","10 hits 240%/100 Thunder (AOE) / Gradual Heal (1500-1700) (ALL) 3Turns / 100% DEF+ (ALL) 3Turns","","","","12 hits 420%/100 Thunder (AOE) / Gradual Heal (1500-1700) (ALL) 3Turns / Reduce DMG (50%) 1Turns","","","","","","","","",""],
+
+
+"1655":["1655","51235","スパ田","6","","30% HP 30% ATK 30% DEF 30% REC (6 elements required) (ALL) / {150BB ATK%+ (HP >= 50%) } (ALL)","9 hits 100%+370% (based on remaining HP) Light (AOE) / 4BC Fill 3Turns / 180% BB ATK%+ (ALL) 3Turns","","","","12 hits 100%+500% (based on remaining HP) Light (AOE) / 180% BB ATK%+ (ALL) 3Turns / 50% Element Weakness DMG+ (light) (ALL) 3Turns","","","","","","","","",""],
+
+
+"1665":["1665","60257","ＤＵＥＬ‐ＦＧＸＶＭ","8","","30% HP 100% ATK (ALL) / 25% Chance Ignore DEF (ALL) / 8-8BC Fill on Crit (ALL) / Buff [120% Spark DMG+ 2Turns (SELF)] (Deal 15Spark) (ALL)","60% CRIT Chance+ (ALL) 3Turns / 50BC Fill 3Turns / Add Dark to ATK (ALL) 3Turns / 10BC Fill Instant(ALL) / 450% BB ATK%+ (ALL) 3Turns / 75% CRIT DMG+ (ALL) 3Turns","","","","30 hits 550%/200 Dark (AOE) / 1 hits 750%/100 Dark Random Target / 60% CRIT Chance+ (ALL) 3Turns / 30% Chance -60% Enemy ATK 1TurnsDebuff 1Turns / Add Dark to ATK (ALL) 3Turns / 15% Chance Enemy receives 20% CRIT DMG+ & for 1Turns ","","","","32 hits 1500%/200 Dark (AOE) / 1 hits 1200%/200 Dark Random Target / 60% CRIT Chance+ (ALL) 3Turns / 500% BB ATK%+ (ALL) 3Turns / 300% CRIT DMG+ (ALL) 3Turns / 30% Chance Enemy receives 100% CRIT DMG+ & for 1Turns ","","","","Negate Ailments (ALL) / 50% CRIT DMG+ / Add [Add Fire to ATK (ALL) 3Turns] (BB,SBB)",""],
+
+
+"1656":["1656","61175","バト田","6","","30% ATK 30% DEF 30% REC (HP < 50%) (ALL) / 30% ATK 30% DEF 30% REC (BB >= 50%) (ALL)","10 hits 320%/100 Dark (AOE) / 100% ATK+ 100% DEF+ 100% REC+ 60% CRIT Chance+ (SELF) 3Turns","","","","12 hits 520%/100 Dark (AOE) / 50% CRIT DMG+ (SELF) 3Turns / 100% ATK+ 100% DEF+ 100% REC+ 60% CRIT Chance+ (SELF) 3Turns","","","","","","","","",""],
+
+
+"1661":["1661","61185","ジョカ田","6","","10% Injury 10% Weak 10% Sick 7% Poison (ALL) / 7% Para 7% Curse (ALL) / Buff [+ Undefined effect(s)[(buffid:153;param:-10&20&2)]] (Taken 1DMG) (ALL)","Add [10% Chance -20% Enemy ATK for 1Turns] to ATK (ALL) 3Turns / Inflict 10% Injury 10% Weak 10% Sick 7% Poison 7% Para 7% Curse on ATKed (ALL) 3Turns / [10% Chance -20 Enemy ATK /0% Chance 0 Enemy DEF for 2Turn(s)] when ATKed for 3Turn(s)","","","","17 hits 480%/100 Dark (AOE) / 50% Poison 50% Para 50% Curse / 50% Injury 50% Weak 50% Sick / 150% ATK%+ to ailment-infected enemies (ALL) 3Turns","","","","","","","","",""],
 }// JSON Document
