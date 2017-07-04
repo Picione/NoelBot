@@ -20,6 +20,9 @@ exports.missname = {
 "1657":["1657","30975","ワン田","6"],
 
 
+"1667":["1667","30987","Baruvasu Balvas Barvas","8"],
+
+
 "1654":["1654","40947","Bekusudain Bexdyne","8"],
 
 
@@ -32,7 +35,10 @@ exports.missname = {
 "1655":["1655","51235","スパ田","6"],
 
 
-"1665":["1665","60257","ＤＵＥＬ‐ＦＧＸＶＭ","8"],
+"1669":["1669","51247","Rukuroa","8"],
+
+
+"1665":["1665","60257","Duel-FGXVM","8"],
 
 
 "1656":["1656","61175","バト田","6"],
@@ -64,6 +70,9 @@ exports.miss = {
 "1657":["1657","30975","ワン田","6","","Negate Ailments (ALL) (ALL) / 0-75% ATK 0-75% DEF Based on HP LEFT (ALL)","12 hits 540%/100 Earth (TGT) / 5% Max HP+","","","","15 hits 620%/100 Earth (TGT) / 5% Max HP+ / 30% BC Fill+ (ALL) 3Turns","","","","","","","","",""],
 
 
+"1667":["1667","30987","標鎧神核バルヴァース","8","","60% HP 60% DEF (ALL) / 20% Chance Reduce DMG (20%) (ALL) / 100% Chance 4-7BC Fill when ATKed (ALL) / Incredimentally increase up to 60% ATK 60% DEF 60% REC within 3Turns (ALL)","22 hits 420%/200 Earth (AOE) / 180% DEF+ (ALL) 3Turns / 120% ATK+ 120% DEF+ 120% REC+ (to Earth Units)(ALL) 3Turns / Negate DMG Factors (100-100% Crit DMG 100-100% Elemental Weakness DMG ) for 2Turns (ALL)","","","","24 hits 620%/200 Earth (AOE) / 180% DEF+ (ALL) 3Turns / 120% ATK+ 120% DEF+ 120% REC+ (to Earth Units)(ALL) 3Turns / Negate Ailments 3Turns / Negate DMG Factors (25-25% Spark DMG ) for 2Turns (ALL) / Negate 10% DOT DMG for 2Turns ","","","","28 hits 1800%/200 Earth (AOE) / 350% DEF+ (ALL) 5Turns / 200% ATK+ 200% DEF+ 200% REC+ (to Earth Units)(ALL) 3Turns / Reduce DMG (75%) 3Turns / Grant earth Barrier (30000HP / 0 DEF / 100% DMG Absordbed) / Negate DMG Factors (100-100% Crit DMG 100-100% Elemental Weakness DMG ) for 5Turns (ALL)","","","","Incredimentally increase up to 60% ATK 60% DEF 60% REC within 3Turns / {Increase ATK Cap to 130000} ",""],
+
+
 "1654":["1654","40947","枢神鍠ベクスダイン","8","","60% HP 60% DEF (ALL) / 7BC Fill Per Turn (ALL) / Buff [15% Chance for Critial Spark (50% DMG+) for 2Turns (SELF)] (Receive 10BC) (ALL) / Negate Def Ignore DMG (100%) (ALL)","36 hits 420%/200 Thunder (AOE) / 120% ATK+ 120% DEF+ 120% REC+ (to Thunder Units)(ALL) 3Turns / 7BC Fill 3Turns / Convert ATK: 80% to DEF (ALL) 3Turns / 50% BC Fill+ (ALL) 3Turns","","","","42 hits 620%/200 Thunder (AOE) / 120% ATK+ 120% DEF+ 120% REC+ (to Thunder Units)(ALL) 3Turns / 4-7BC Fill when ATKed (100%) (ALL) 3Turns / Convert DEF: 80% to ATK (ALL) 3Turns / 8BC Fill Instant(ALL) / 30% Chance for Critial Spark (60% DMG+) 3Turn(s)","","","","46 hits 1800%/200 Thunder (AOE) / 200% ATK+ 200% DEF+ 200% REC+ (to Thunder Units)(ALL) 3Turns / 50BC Fill 3Turns / Convert DEF: 250% to ATK (ALL) 3Turns / Convert ATK: 250% to DEF (ALL) 3Turns / 50% Chance for Critial Spark (120% DMG+) 3Turn(s)","","","","4BC Fill Per Turn / 50% ATK 50% DEF (BB >= 50%) / {Increase ATK Cap to 130000} ",""],
 
 
@@ -74,6 +83,9 @@ exports.miss = {
 
 
 "1655":["1655","51235","スパ田","6","","30% HP 30% ATK 30% DEF 30% REC (6 elements required) (ALL) / {150BB ATK%+ (HP >= 50%) } (ALL)","9 hits 100%+370% (based on remaining HP) Light (AOE) / 4BC Fill 3Turns / 180% BB ATK%+ (ALL) 3Turns","","","","12 hits 100%+500% (based on remaining HP) Light (AOE) / 180% BB ATK%+ (ALL) 3Turns / 50% Element Weakness DMG+ (light) (ALL) 3Turns","","","","","","","","",""],
+
+
+"1669":["1669","51247","世焉神竜ルクロア","8","","60% HP 60% ATK 60% DEF 60% REC (ALL) / 130% DMG on Spark (ALL) / 30% HP 50% ATK (5 elements required) (ALL) / 10% Element Atk Mitigated(All Elements) (ALL)","18 hits 470%/200 Light (AOE) / 120% ATK+ 120% DEF+ 120% REC+ (to Light Units)(ALL) 3Turns / 120% ATK+ 120% DEF+ 120% REC+ (SELF) 3Turns+ Undefined effect(s)[(procid:92;param:0,15,160)]","","","","10 hits 620%/200 Light (AOE) / 12 hits 200%+700% (based on remaining HP) Light (AOE) / 120% ATK+ 120% DEF+ 120% REC+ (to Light Units)(ALL) 3Turns / 130% Spark DMG+ (ALL) 3Turns / 125% Element Weakness DMG+ (ALL Elements) (ALL) 3Turns","","","","12 hits 2200%/200 Light (AOE) / 14 hits 1500%+1300% (based on remaining HP) Light (AOE) / 200% ATK+ 200% DEF+ 200% REC+ (to Light Units)(ALL) 3Turns / 350% Spark DMG+ (ALL) 3Turns / Add Fire,water,earth,thunder,light,dark to ATK (ALL) 3Turns / 400% Element Weakness DMG+ (ALL Elements) (ALL) 3Turns","","","","10% HP 10% ATK 10% DEF 10% REC / 75% Element Weakness DMG+ (light) / {Increase ATK Cap to 130000} ",""],
 
 
 "1665":["1665","60257","ＤＵＥＬ‐ＦＧＸＶＭ","8","","30% HP 100% ATK (ALL) / 25% Chance Ignore DEF (ALL) / 8-8BC Fill on Crit (ALL) / Buff [120% Spark DMG+ 2Turns (SELF)] (Deal 15Spark) (ALL)","60% CRIT Chance+ (ALL) 3Turns / 50BC Fill 3Turns / Add Dark to ATK (ALL) 3Turns / 10BC Fill Instant(ALL) / 450% BB ATK%+ (ALL) 3Turns / 75% CRIT DMG+ (ALL) 3Turns","","","","30 hits 550%/200 Dark (AOE) / 1 hits 750%/100 Dark Random Target / 60% CRIT Chance+ (ALL) 3Turns / 30% Chance -60% Enemy ATK 1TurnsDebuff 1Turns / Add Dark to ATK (ALL) 3Turns / 15% Chance Enemy receives 20% CRIT DMG+ & for 1Turns ","","","","32 hits 1500%/200 Dark (AOE) / 1 hits 1200%/200 Dark Random Target / 60% CRIT Chance+ (ALL) 3Turns / 500% BB ATK%+ (ALL) 3Turns / 300% CRIT DMG+ (ALL) 3Turns / 30% Chance Enemy receives 100% CRIT DMG+ & for 1Turns ","","","","Negate Ailments (ALL) / 50% CRIT DMG+ / Add [Add Fire to ATK (ALL) 3Turns] (BB,SBB)",""],
