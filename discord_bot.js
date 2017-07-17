@@ -375,6 +375,7 @@ var commands = {
 			  if (!tempFound) {
 				  var j = unitListAll["rows"].length;
 				  unitListAll["rows"][j] = JP.miss[key];
+				  if (JP.missname[key])
 				  if (unitListAll["rows"][j][2].indexOf(JP.missname[key][2]) == -1)
 				  	unitListAll["rows"][j][2]+=" "+JP.missname[key][2];
 			  }
