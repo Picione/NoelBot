@@ -278,6 +278,7 @@ var skillParseObj=[
 		{"skillid":"198", "cmt":"","skillref":["@"]},
 		{"skillid":"199", "cmt":"","skillref":["@"]},
 		{"skillid":"200", "cmt":"","skillref":["@"]},*/
+		{"skillid":"70002", "cmt":"Extra Action","skillref":["@"]},
       ];
 // Variable Array	
 var debuffArray=[{"skillid":"buff #1"}, {"skillid":"buff #2"}];
@@ -576,6 +577,13 @@ exports.find = function (objectAS, valObj) {
 						uparams = [];
 						uparams = objectAS[j]["unknown proc param"].split(",");
 						groupSTR+="["+uparams[3]+"% Chance "+uparams[0]+" Enemy ATK /"+uparams[4]+"% Chance "+uparams[1]+" Enemy DEF for "+uparams[6]+"Turn(s)] when ATKed for "+uparams[7]+"Turn(s)";
+						}
+					} 
+					else if (skillSeek=="70002") {
+						if (objectAS[j]["unknown proc param"]) {
+						uparams = [];
+						uparams = objectAS[j]["unknown proc param"].split(",");
+						groupSTR+=uparams[0]*100+"% Chance for "+uparams[1]+" Extra Action(s)";
 						}
 					}
                     //(procid:130;param:-20,-20,0,10,10,0,2,3,130)
@@ -955,6 +963,13 @@ exports.trig = function (objectAS, valObj) {
 						uparams = [];
 						uparams = objectAS["unknown proc param"].split(",");
 						groupSTR+="["+uparams[3]+"% Chance "+uparams[0]+" Enemy ATK /"+uparams[4]+"% Chance "+uparams[1]+" Enemy DEF for "+uparams[6]+"Turn(s)] when ATKed for "+uparams[7]+"Turn(s)";
+						}
+					}
+				    else if (skillSeek=="70002") {
+						if (objectAS["unknown proc param"]) {
+						uparams = [];
+						uparams = objectAS["unknown proc param"].split(",");
+						groupSTR+=uparams[0]*100+"% Chance for "+uparams[1]+" Extra Action(s)";
 						}
 					}
                   /*looping non grouping buff*/
