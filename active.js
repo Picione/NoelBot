@@ -407,7 +407,13 @@ exports.find = function (objectAS, valObj) {
                           }
                       }
                     } /*End Grouping check*/
-                    
+                    else if (skillSeek=="92") {
+						if (objectAS[j]["unknown proc param"]) {
+						uparams = [];
+						uparams = objectAS[j]["unknown proc param"].split(",");
+						groupSTR+="["+uparams[1]+"% Max HP+ (SELF)]";
+						}
+					}
                     /*Check collective ails rate*/
                     else if (skillSeek=="11") {
                       for (ix in ailsArray) {
@@ -566,6 +572,37 @@ exports.find = function (objectAS, valObj) {
 						groupSTR+=uparams[1]+'%/'+uparams[2];
 						}
 					}
+										else if (skillSeek=="89") {
+					  if (objectAS[j]["unknown proc param"]) {
+						uparams = [];
+						uparams = objectAS[j]["unknown proc param"].split(",");
+						  groupSTR+="[Convert ";	
+						  switch (uparams[0]) {
+							  case "1":
+								  groupSTR+="ATK to: ";
+								  break;
+							  case "2":
+								  groupSTR+="DEF to: ";
+								  break;
+							  case "3":
+								  groupSTR+="REC to: ";
+								  break;
+							  case "4":
+								  groupSTR+="HP to: ";
+								  break;
+						  } 
+						  if(uparams[1]!="0"){
+								groupSTR+=uparams[1]+'% ATK';
+						  }
+						  if(uparams[2]!="0"){
+								groupSTR+=uparams[1]+'% DEF';
+						  }
+						  if(uparams[3]!="0"){
+								groupSTR+=uparams[1]+'% REC';
+						  }
+						 groupSTR+=' for '+uparams[4]+'Turns (SELF)]';
+					  }
+                    } /*End Grouping check*/
 					else if (skillSeek=="26") {
                       if (objectAS[j]["extra hits dmg%"]) 
                           groupSTR+=objectAS[j]["extra hits dmg%"];
@@ -738,7 +775,13 @@ exports.trig = function (objectAS, valObj) {
                           }
                       }
                     } /*End Grouping check*/					
-
+				  	else if (skillSeek=="92") {
+						if (objectAS["unknown proc param"]) {
+						uparams = [];
+						uparams = objectAS["unknown proc param"].split(",");
+						groupSTR+="["+uparams[1]+"% Max HP+ (SELF)]";
+						}
+					}
                     /*Check collective group debuff*/
                     else if (skillSeek=="9") {
                       for (ix in debuffArray) {
@@ -888,6 +931,37 @@ exports.trig = function (objectAS, valObj) {
                           groupSTR="(ALL Elements)"
                         else if (elementCount!=0)
                           groupSTR+=")"
+                    } /*End Grouping check*/
+				  					else if (skillSeek=="89") {
+					  if (objectAS["unknown proc param"]) {
+						uparams = [];
+						uparams = objectAS["unknown proc param"].split(",");
+						  groupSTR+="[Convert ";	
+						  switch (uparams[0]) {
+							  case "1":
+								  groupSTR+="ATK to: ";
+								  break;
+							  case "2":
+								  groupSTR+="DEF to: ";
+								  break;
+							  case "3":
+								  groupSTR+="REC to: ";
+								  break;
+							  case "4":
+								  groupSTR+="HP to: ";
+								  break;
+						  } 
+						  if(uparams[1]!="0"){
+								groupSTR+=uparams[1]+'% ATK';
+						  }
+						  if(uparams[2]!="0"){
+								groupSTR+=uparams[1]+'% DEF';
+						  }
+						  if(uparams[3]!="0"){
+								groupSTR+=uparams[1]+'% REC';
+						  }
+						 groupSTR+=' for '+uparams[4]+'Turns (SELF)]';
+					  }
                     } /*End Grouping check*/
 					else if (skillSeek=="24") {
 						var bCount=0;

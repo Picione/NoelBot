@@ -87,7 +87,7 @@ var lsParseObj=[
 		//{"skillid":"85", "cmt":"","skillref":["@"]},
 		{	"skillid":"86", "cmt":"Trigger Buff","skillref":["!Buff  [","#","!] ","!(Deal ", "spark count buff activation" ,"!Spark)"]},
 		//{"skillid":"87", "cmt":"","skillref":["@"]},
-		//{"skillid":"88", "cmt":"","skillref":["@"]},
+		{	"skillid":"88", "cmt":"Trigger Buff","skillref":["!Buff  [","#","!] ","!(", "on guard activation chance%" ,"!% Chance to Activate on Guard)"]},
 		{	"skillid":"89", "cmt":"Trigger Buff","skillref":["!Buff  [","#","!] ","!(On Crit)"]},
 		//{"skillid":"90", "cmt":"","skillref":["@"]},
 		{	"skillid":"91", "cmt":"","skillref":["@"]},
@@ -103,7 +103,7 @@ var lsParseObj=[
 		{	"skillid":"101", "cmt":"Heal on Spark","skillref":["heal on spark%", "!% Chance Heal ", "heal on spark low", "!-", "heal on spark high", "! on SPARK"]},
 		{	"skillid":"102", "cmt":"Passive Element Added","skillref":["!Add Element(s) to ATK ", "@"]},
 		{	"skillid":"103", "cmt":"BB ATK% c:HP","skillref":["@"]},
-		{"skillid":"104", "cmt":"Spark DMG+ c:HP","skillref":["@"]},
+		{	"skillid":"104", "cmt":"Spark DMG+ c:HP","skillref":["damage% for spark","! Spark DMG+ ","@"]},
 		{	"skillid":"105", "cmt":"Incredimentally Stats Buff","skillref":["!Incredimentally increase up to ", "@", "! within ", "turn count", "!Turns"]},
 		{	"skillid":"106", "cmt":"Angel Idol c:Overdrive","skillref":["@"]},
 		//{"skillid":"107", "cmt":"","skillref":["@"]},
@@ -275,6 +275,12 @@ exports.find = function (objectPS, type) {
 					}
                     } /*End Grouping check*/
                     /*Check collective group crystals buff*/
+					else if (skillSeek=="104") {
+						if (objectPS[conef][pj]["hp below % buff requirement"])
+							groupSTR+=" (HP < "+objectPS[conef][pj]["hp below % buff requirement"]+"%)";
+						if (objectPS[conef][pj]["hp above % buff requirement"])
+							groupSTR+=" (HP >= "+objectPS[conef][pj]["hp above % buff requirement"]+"%)";
+					}
 					else if (skillSeek=="40") {
                       for (ix in lsstatsBuffArray) {
                           for (var effectKey in objectPS[conef][pj]) {var effectVal = objectPS[conef][pj][effectKey];

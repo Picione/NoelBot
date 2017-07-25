@@ -108,9 +108,9 @@
 		{"skillid":"107", "cmt":"","skillref":["@"]},
 		{"skillid":"108", "cmt":"","skillref":["@"]},
 		{"skillid":"109", "cmt":"","skillref":["@"]},
-		{"skillid":"110", "cmt":"","skillref":["@"]},
-		{"skillid":"111", "cmt":"","skillref":["@"]},
-		{"skillid":"112", "cmt":"","skillref":["@"]},
+		{"skillid":"110", "cmt":"","skillref":["@"]},*/
+		{"skillid":"111", "cmt":"BB on Spark","skillref":["@"]},
+		/*{"skillid":"112", "cmt":"","skillref":["@"]},
 		{"skillid":"113", "cmt":"","skillref":["@"]},
 		{"skillid":"114", "cmt":"","skillref":["@"]},
 		{"skillid":"115", "cmt":"","skillref":["@"]},
@@ -150,10 +150,10 @@
 		{"skillid":"149", "cmt":"","skillref":["@"]},
 		{"skillid":"150", "cmt":"","skillref":["@"]},
 		{"skillid":"151", "cmt":"","skillref":["@"]},
-		{"skillid":"152", "cmt":"","skillref":["@"]},
-		{"skillid":"153", "cmt":"","skillref":["@"]},
-		{"skillid":"154", "cmt":"","skillref":["@"]},
-		{"skillid":"155", "cmt":"","skillref":["@"]},
+		{"skillid":"152", "cmt":"","skillref":["@"]},*/
+		{"skillid":"153", "cmt":"-ATK% buff","skillref":["@"]},
+		{"skillid":"154", "cmt":"-DEF% buff","skillref":["@"]},
+		/*{"skillid":"155", "cmt":"","skillref":["@"]},
 		{"skillid":"156", "cmt":"","skillref":["@"]},
 		{"skillid":"157", "cmt":"","skillref":["@"]},
 		{"skillid":"158", "cmt":"","skillref":["@"]},
@@ -252,6 +252,21 @@ exports.find = function (objectPS) {
 						uparams = objectPS["unknown buff params"].split("&");
 						eTurn = parseInt(objectPS["buff turns (132)"]);
 						groupSTR+=uparams[0]+'% OD Fill Rates (SELF) for '+uparams[1]+'Turns (SELF)';
+				  } else if(buffID=="111") {
+						uparams = [];
+						uparams = objectPS["unknown buff params"].split("&");
+						eTurn = parseInt(objectPS["buff turns (111)"]);
+						groupSTR+=uparams[2]+"% Chance to Fill ("+uparams[0]/100+"-"+uparams[1]/100+") BB on Spark for "+eTurn+"Turns";
+				  } else if(buffID=="153") {
+						uparams = [];
+						uparams = objectPS["unknown buff params"].split("&");
+						eTurn = parseInt(objectPS["buff turns (153)"]);
+						groupSTR+="{"+uparams[1]+"% Chance to Debuff "+uparams[0]+"% ATK for "+uparams[2]+"Turns when ATKed} for"+eTurn+"Turns";
+				  } else if(buffID=="154") {
+						uparams = [];
+						uparams = objectPS["unknown buff params"].split("&");
+						eTurn = parseInt(objectPS["buff turns (154)"]);
+						groupSTR+="{"+uparams[1]+"% Chance to Debuff "+uparams[0]+"% DEF for "+uparams[2]+"Turns when ATKed} for"+eTurn+"Turns";
 				  }  /*End non-groubing*/                  
                   /*Build output string*/
                   if (effectFound) {
