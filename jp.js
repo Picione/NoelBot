@@ -46,9 +46,24 @@ exports.missname = {
 
 
 "1684":["1684","40977","Marlo","8"],
+	
+"1689":["1689","61207","Alza Masta","8"],
+	
+"1688":["1688","51267","Mel","8"],
+		
+"1686":["1686","21057","Garrett","8"],		
+	
+	
 			}
 
 exports.miss = {
+"1686":["1686","21057","忠徹の勲士ギャレット","8","","40% HP (ALL) / 250% BB ATK%+ (ALL) / Buff [30% Chance -20% Enemies ATK for 1Turns (SELF) (SELF)] (Deal 1DMG) (ALL) / Incredimentally increase up to 80% ATK 80% DEF 80% REC within 3Turns (ALL)","13 hits 370%/200 Water (AOE) / 30% Chance -50% Enemy ATK 1TurnsDebuff 1Turns / 75% Injury 75% Para / 300% BB ATK%+ (ALL) 3Turns","","","","16 hits 580%/200 Water (AOE) / 30% Chance -50% Enemy ATK 1TurnsDebuff 1Turns / 75% Sick 75% Poison 75% Curse / 75% Injury 75% Weak 75% Para / 300% BB ATK%+ (ALL) 3Turns","","","","20 hits 1500%/200 Water (AOE) / 300% ATK+ 300% DEF+ (ALL) 3Turns / 100% Chance -80% Enemy ATK 3Turns / 100% Chance -80% Enemy DEF 3TurnsDebuff 3Turns / 550% BB ATK%+ (ALL) 3Turns / 50% Chance for Critial Spark (120% DMG+) 3Turn(s)","","","","[spheretype(Damage Reducing)]20% HP 20% ATK 20% DEF 20% REC / Incredimentally increase up to 30% ATK 30% DEF 30% REC within 3Turns",""],	
+	
+"1688":["1688","51267","遵征の憐姫メル","8","","40% HP 40% ATK 40% REC (ALL) / Negate Ailments (ALL) (ALL) / 25% Chance Heal 25-25% DMG when ATKed (ALL) / 25% Chance for Normal AOE ATK (-50% DMG+) (ALL)","15 hits 350%/200 Light (AOE) / Heal (3500-4000) (ALL) / 250% DMG Each Turn 3Turns / 100% Chance Normal ATK AOE (0%+ DMG) for 0Turns (ALL)","","","","18 hits 550%/200 Light (AOE) / Heal (3500-4000) (ALL) / Cure Ails / 350% DMG Each Turn 3Turns / 100% Chance Normal ATK AOE (0%+ DMG) for 0Turns (ALL)","","","","23 hits 1500%/200 Light (AOE) / Gradual Heal FULL (98999-99999) (ALL) 3Turns / Negate Ailments 5Turns / 100% Chance Normal ATK AOE (30%+ DMG) for 0Turns (ALL) / 1000 OD Fill+ at Turn End for 3Turns ","","","","[spheretype(HP Recovery)]20% HP 20% ATK 20% DEF 20% REC / Negate Ailments (ALL)",""],	
+	
+"1689":["1689","61207","主神皇アルザ・マスタ","8","","80% HP 80% ATK 80% DEF 80% REC (ALL) / Negate Ailments (ALL) (ALL) / 15% Element Atk Mitigated(All Elements) (ALL) / Buff [Reduce DMG (20%) 1Turns (SELF)] (Taken 5000DMG) (ALL)","28 hits 500%/200 Dark (AOE) / 8BC Fill 3Turns / Convert DEF: 90% to ATK (ALL) 3Turns / Convert ATK: 90% to DEF (ALL) 3Turns / Mitigate 10% from(ALL) Attacks [39] for 1Turns(ALL)","","","","28 hits 800%/200 Dark (AOE) / 1 hits 800%/100 Dark Random Target / 30% Chance -60% Enemy ATK 2Turns / 30% Chance -60% Enemy DEF 2TurnsDebuff 2Turns / Mitigate 10% from(ALL) Attacks [39] for 1Turns(ALL) / 30% Chance Enemy receives 30% Spark DMG+ 1Turns / 15% Chance Enemy receives 20% Elemental Weakness DMG+ for 2Turns ","","","","40 hits 2500%/200 Dark (AOE) / 1 hits 1800%/100 Dark Random Target / 40% Max HP+ / Mitigate 100% from(ALL) Attacks [39] for 3Turns(ALL) / Buff [80% Chance to withstand a Knockout ATK (Heal 100%)] (ALL) 999Turns / 30% Chance Enemy receives 100% CRIT DMG+ & 30% Chance Enemy receives 100% Elemental Weakness DMG+ for 3Turns ","","","","Negate Ailments (ALL) / 25% Chance Heal 20-25% DMG when ATKed / 100% Chance 3-4BC Fill when ATKed / {Increase ATK Cap to 150000} ",""],	
+	
+
 "1664":["1664","10257","熾蓮の炮界神ミセル","8","","30% HP 50% ATK (ALL) / 50% BC Fill Rate+ (ALL) / 175% CRIT DMG+ (ALL) / 30% HP 100% ATK (5 elements required) (ALL)","36 hits 360%/200 Fire (AOE) / 170% ATK+ 60% CRIT Chance+ (ALL) 3Turns / 100% Spark DMG+ (ALL) 3Turns / Add Fire to ATK (ALL) 3Turns / 50% CRIT DMG+ (ALL) 3Turns","","","","38 hits 560%/200 Fire (AOE) / 170% ATK+ 60% CRIT Chance+ (ALL) 3Turns / 100% Spark DMG+ (ALL) 3Turns / Convert DEF: 70% to ATK (ALL) 3Turns / Add Fire to ATK (ALL) 3Turns / 50% CRIT DMG+ (ALL) 3Turns","","","","42 hits 1500%/200 Fire (AOE) / 350% ATK+ 60% CRIT Chance+ (ALL) 3Turns / 300% Spark DMG+ (ALL) 3Turns / Convert DEF: 250% to ATK (ALL) 3Turns / 300% CRIT DMG+ (ALL) 3Turns / 50% Chance for Critial Spark (100% DMG+) 3Turn(s)","","","","[spheres(47201-DUELのカケラ)]30% HP 30% ATK 30% DEF 30% REC / 50% DMG on Spark / Add [Add Dark to ATK (ALL) 3Turns] (BB,SBB)",""],
 
 
