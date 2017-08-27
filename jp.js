@@ -99,6 +99,47 @@ exports.missname = {
 
 
 "1695":["1695","61217","Neviro","8"],
+
+
+"1703":["1703","11126","Sagittarius","7"],
+
+
+"1704":["1704","11136","Leo","7"],
+
+
+"1705":["1705","21066","Pisces","7"],
+
+
+"1706":["1706","21076","Cancer","7"],
+
+
+"1707":["1707","31016","Carpricorn","7"],
+
+
+"1708":["1708","31026","Taurus","7"],
+
+
+"1702":["1702","40987","Razak Razaku","8"],
+
+
+"1709":["1709","40996","Aquarius","7"],
+
+
+"1710":["1710","41006","Libra","7"],
+
+
+"1711":["1711","51286","Gemini","7"],
+
+
+"1712":["1712","51296","Vigro","7"],
+
+
+"1713":["1713","61226","Aries","7"],
+
+
+"1714":["1714","61236","Scorpio","7"],
+
+"1700":["1700","31007","Nagito Nagit","8"],
 }
 
 exports.miss = {
@@ -202,4 +243,44 @@ exports.miss = {
 
 
 "1695":["1695","61217","冥尽覇剣神ネヴィロ","8","","60% HP 60% ATK (ALL) / 130% DMG on Spark (ALL) / 125% Element Weakness DMG+ (All Elements) / 120% ATK%+ to Ails-Infected Enemies (ALL)","16 hits 470%/200 Dark (AOE) / 180% ATK+ (ALL) 3Turns / 30% Chance -50% Enemy ATK 1Turns / 30% Chance -50% Enemy DEF 1TurnsDebuff 1Turns / 130% Spark DMG+ (ALL) 3Turns / Convert DEF: 80% to ATK (ALL) 3Turns","","","","13 hits 850%/200 Dark (AOE) / 7 hits 650%/200 Dark (TGT) / 180% ATK+ (ALL) 3Turns / 30% Chance -50% Enemy ATK 1Turns / 30% Chance -50% Enemy DEF 1TurnsDebuff 1Turns / 130% Spark DMG+ (ALL) 3Turns / Convert DEF: 80% to ATK (ALL) 3Turns","","","","14 hits 2000%/200 Dark (AOE) / 10 hits 2200%/200 Dark (TGT) / 350% ATK+ (ALL) 3Turns / 100% Chance -80% Enemy ATK 3Turns / 100% Chance -80% Enemy DEF 3TurnsDebuff 3Turns / 350% Spark DMG+ (ALL) 3Turns / Convert DEF: 250% to ATK (ALL) 3Turns","","","","75% Element Weakness DMG+ (dark) / 100% ATK%+ to Ails-Infected Enemies ",""],
+
+"1703":["1703","11126","甦の人馬宮トノガャジ","7","","100% Chance 3-5BC Fill when ATKed (ALL) / 70% BC Drop on Spark (ALL) / 125% Element Weakness DMG+ (All Elements) / Negate DMG Factors (100-100% Elemental Weakness DMG ) (ALL)","15 hits 350%/100 Fire Fire Thunder (AOE) / 130% ATK+ (ALL) 3Turns","","","","25 hits 560%/100 Fire Fire Thunder (AOE) / 90% Spark DMG+ (ALL) 3Turns / Add Fire,water,earth,thunder,light,dark to ATK (ALL) 3Turns / 75% Element Weakness DMG+ (ALL Elements) (ALL) 3Turns","","","","20 hits 1500%/100 Fire Fire Thunder (AOE) / 50-50BC Fill when ATKed (100%) (ALL) 3Turns / Mitigate 75% from(ALL) Attacks [39] for 3Turns(ALL) / 300% Element Weakness DMG+ (ALL Elements) (ALL) 3Turns","","","","100% Chance 2-4BC Fill when ATKed / 100% Chance 1-2BC Fill on Spark",""],
+
+
+"1704":["1704","11136","無の獅子宮セフィア","7","","100% ATK (Fire,light) / 50% BC Fill Rate+ (ALL) / Normal HitCount +100% (-50% DMG+) (ALL)","16 hits 350%/100 Fire Fire Light (AOE) / 45% Para 45% Curse / Normal HitCount +100% (0% DMG) (ALL) 3Turns","","","","24 hits 560%/100 Fire Fire Light (AOE) / 140% ATK+ (ALL) 3Turns / 30% BC+ 30% HC+ / Normal HitCount +100% (0% DMG) (ALL) 3Turns","","","","32 hits 1500%/100 Fire Fire Light (AOE) / 250% ATK+ (ALL) 3Turns / Normal HitCount +200% (100% DMG) (ALL) 3Turns / 80% BC Fill+ (ALL) 3Turns","","","","[spheres(37670-八神剣オージュブライト)]20% HP / 4BC Fill Per Turn / Normal HitCount +100% (0% DMG+)",""],
+
+
+"1705":["1705","21066","暴の双魚宮ラヴィニア","7","","15% Injury 15% Weak 15% Sick 10% Poison (ALL) / 10% Para 10% Curse (ALL) / 100% Chance 3-5BC Fill when ATKed (ALL) / 100% ATK%+ to Ails-Infected Enemies (ALL)","17 hits 350%/100 Water Water Dark (AOE) / 30% Chance -50% Enemy ATK 1TurnsDebuff 1Turns / 45% Injury 45% Weak 45% Sick 45% Poison / 45% Para 45% Curse / Inflict 15% Injury 15% Weak 15% Sick 10% Poison 10% Para 10% Curse on ATKed (ALL) 3Turns","","","","23 hits 560%/100 Water Water Dark (AOE) / Negate Ailments 3Turns / 4-5BC Fill when ATKed (100%) (ALL) 3Turns / Cure Ails / 15% Weak 15% Sick 10% Poison / 15% Injury 10% Para 10% Curse ","","","","19 hits 1500%/100 Water Water Dark (AOE) / 100% Chance -80% Enemy ATK 3TurnsDebuff 3Turns / 100% Weak 100% Sick 100% Poison / 100% Injury 100% Para 100% Curse / 1200% DMG Each Turn 3Turns / 300% ATK%+ to ailment-infected enemies (ALL) 3Turns","","","","Negate Ailments (ALL) / Add [130% ATK%+ to ailment-infected enemies (ALL) 3Turns] (BB,SBB) / 100% ATK%+ to Ails-Infected Enemies ",""],
+
+
+"1706":["1706","21076","犠の巨蟹宮ミセル","7","","100% ATK (HP >= 100%) (ALL) / 35% HP 35% ATK 35% DEF 35% REC (5 elements required) (ALL) / Reduce 20% BB Cost REQUIRED (ALL)","18 hits 350%/100 Water Fire Water (AOE) / 140% ATK+ (ALL) 3Turns","","","","24 hits 560%/100 Water Fire Water (AOE) / 140% ATK+ (ALL) 3Turns / Add Fire,water to ATK (ALL) 3Turns / 250% BB ATK%+ (ALL) 3Turns","","","","30 hits 1500%/100 Water Fire Water (AOE) / 250% ATK+ (ALL) 3Turns / 450% BB ATK%+ (ALL) 3Turns / 300% CRIT DMG+ (ALL) 3Turns","","","","4-4BC Fill on Crit / [spheres(47201-DUELのカケラ)]Add [Add Dark to ATK (ALL) 3Turns] (ALL) / [spheres(47201-DUELのカケラ)]Add [60% CRIT Chance+ (ALL) 3Turns] (ALL)",""],
+
+
+"1707":["1707","31016","尽の磨羯宮シエラ","7","","Reduce 20% BB Cost REQUIRED (ALL) / Buff [Reduce DMG (20%) 2Turns (SELF)] (Deal 10000DMG) (ALL) / Buff [7BC Fill Per Turn 2Turns (SELF)] (Deal 10000DMG) (ALL)","16 hits 100%+420% (based on remaining HP) Earth (TGT) / Reduce DMG (50%) 1Turns / 250% BB ATK%+ (ALL) 3Turns","","","","32 hits 200%+520% (based on remaining HP) Earth (AOE) / Reduce DMG (50%) 1Turns / 250% BB ATK%+ (ALL) 3Turns / 100% Element Weakness DMG+ (ALL Elements) (ALL) 3Turns","","","","30 hits 1500%+1000% (based on remaining HP) Earth (AOE) / 200% ATK+ 200% DEF+ 200% REC+ (ALL) 3Turns / Reduce DMG (75%) 3Turns","","","","100% Chance Reduce DMG (5%) / Add [Ignore DEF (ALL) 2Turns] (ALL)",""],
+
+
+"1708":["1708","31026","縁の金牛宮ラブゼ","7","","50% ATK 50% DEF 50% REC (BB >= 50%) (ALL) / 75% DMG on Spark (ALL) / Buff [+ Undefined effect(s)[(buffid:84;param:1.5)]] (Deal 10000DMG) (ALL)","13 hits 350%/100 Earth Earth Dark (AOE) / 0% BB Fill (SELF) / Ignore DEF (ALL) 2Turns","","","","2 hits 500%+300%x4 (max number of consecutive uses) Earth (TGT) / 100% BB Fill (SELF) / Increase OD gauge by 6%","","","","2 hits 1500%/100 Earth Earth Dark (AOE) / 50BC Fill 3Turns / 500% BB ATK%+ (ALL) 3Turns","","","","50% ATK 50% DEF 50% REC (BB >= 100%) / 50% DMG on Spark",""],
+
+
+"1702":["1702","40987","護剣彗激神ラザク","8","","60% HP 60% ATK (ALL) / 250% BB ATK%+ (ALL) / 20% OD Fill Rate+ (ALL) / Buff [100% Spark DMG+ 2Turns (SELF)] (Deal 5000DMG) (ALL)","16 hits 470%/200 Thunder (AOE) / Increase OD gauge by 8% / 350% BB ATK%+ (ALL) 3Turns / 20% OD Fill Rate+ 3Turn(s)","","","","21 hits 850%/200 Thunder (AOE) / 1 hits 650%/200 Thunder (TGT) / 8BC Fill 3Turns / Increase OD gauge by 8% / 350% BB ATK%+ (ALL) 3Turns / 20% OD Fill Rate+ 3Turn(s)","","","","25 hits 2000%/200 Thunder (AOE) / 350% ATK+ (ALL) 3Turns / 50BC Fill 3Turns / 350% Spark DMG+ (ALL) 3Turns / Increase OD gauge by 50% / 600% BB ATK%+ (ALL) 3Turns","","","","80% DMG on Spark / 150% BB ATK%+",""],
+
+
+"1709":["1709","40996","哀の宝瓶宮ガゾリーナ","7","","30% HP 30% ATK 30% DEF 30% REC (ALL) / 25% Chance Heal 20-20% DMG when ATKed (ALL) / Buff [70% DEF 2 Turns (SELF)] (Taken 5000DMG) (ALL) / Buff [undefined] (Taken 5000DMG) (ALL)","13 hits 350%/100 Thunder Water Thunder (AOE) / 3-5BC Fill when ATKed (100%) (ALL) 3Turns / Grant thunder Barrier (2500HP / 0 DEF / 100% DMG Absordbed)","","","","23 hits 560%/100 Thunder Water Thunder (AOE) / Gradual Heal (2000-2500) (ALL) 3Turns / 130% REC+ (ALL) 3Turns / 6BC Fill 3Turns / Grant thunder Barrier (2500HP / 0 DEF / 100% DMG Absordbed)","","","","22 hits 1500%/100 Thunder Water Thunder (AOE) / 250% REC+ (ALL) 5Turns / 50-50BC Fill when ATKed (100%) (ALL) 3Turns / Convert REC: 100% to DEF (ALL) 3Turns","","","","100% Chance 7-7BC Fill on ATKing / Add [Cure Ails] (ALL)",""],
+
+
+"1710":["1710","41006","審の天秤宮エルザ","7","","30% HP (ALL) / 75% DMG on Spark (ALL) / 50% BC Fill Rate+ (ALL) / 100% Chance 1-2BC Fill on Spark (ALL)","32 hits 350%/100 Thunder Thunder Dark (AOE) / Heal (2500-3000) (ALL) / 50% Curse / 90% Spark DMG+ (ALL) 3Turns","","","","38 hits 560%/100 Thunder Thunder Dark (AOE) / 80% Curse / 90% Spark DMG+ (ALL) 3Turns / 50% BC Fill+ (ALL) 3Turns / 100% Chance to Fill (1-2) BB on Spark3Turns(ALL)","","","","48 hits 1500%/100 Thunder Thunder Dark (AOE) / Heal (98999-99999) (ALL) / 150% Spark DMG+ (ALL) 3Turns / 100% Curse / 100% Chance to Fill (3-6) BB on Spark3Turns(ALL)","","","","100% Chance 1-2BC Fill on Spark / Buff [70% Spark DMG+ 2Turns (SELF)] (Deal 20Spark)",""],
+
+
+"1711":["1711","51286","忌の双児宮ゲドリフル","7","","4BC Fill Per Turn / 75% ATK (5 elements required) / 75% ATK (Female) / 100% BB ATK%+","26 hits 350%/100 Light Fire Light Dark (AOE) / 35% Injury 35% Weak 35% Sick 35% Poison / 35% Para 35% Curse / 5BC Fill 3Turns","","","","31 hits 440%+100%x3 (max number of consecutive uses) Light (AOE) / 30% Chance -50% Enemy ATK 1TurnsDebuff 1Turns / 45% Injury 45% Weak 45% Sick 45% Poison / 45% Para 45% Curse / [10% Chance -20 Enemy ATK /0% Chance 0 Enemy DEF for 2Turn(s)] when ATKed for 3Turn(s)","","","","26 hits 1500%/100 Light (AOE) / 100% Poison 100% Para 100% Curse / 300% ATK%+ to ailment-infected enemies (ALL) 3Turns / [50% Chance -30 Enemy ATK /0% Chance 0 Enemy DEF for 3Turn(s)] when ATKed for 3Turn(s)","","","","100% Chance Drain 10-15% HP / 8% Injury 8% Weak 8% Sick 8% Poison / 8% Para 8% Curse / Normal HitCount +100% (0% DMG+)",""],
+
+
+"1712":["1712","51296","純の処女宮エリモ","7","","40% HP (ALL) / 75% HC Fill Rate+ (ALL) / 25% HC+ (ALL) / Buff [Reduce DMG (20%) 1Turns (SELF)] (Taken 5000DMG) (ALL)","12 hits 350%/100 Light Water Light (AOE) / Heal (3000-3500) (ALL) / Reduce DMG (50%) 1Turns / Convert HP: 15% to DEF (ALL) 3Turns","","","","18 hits 500%/100 Light Water Light (AOE) / Gradual Heal (2000-2500) (ALL) 3Turns / Reduce DMG (50%) 1Turns / Buff [10% Chance to withstand a Knockout ATK (Heal 1%)] (ALL) 999Turns","","","","Gradual Heal FULL (98999-99999) (ALL) 3Turns / Reduce DMG (75%) 3Turns / Cure Ails / 33% Chance Revive Dead Units (100% HP)(ALL)","","","","25% Chance Heal 20-20% DMG when ATKed / Negate DMG Factors (100-100% Crit Chance 100-100% Crit DMG )",""],
+
+
+"1713":["1713","61226","虜の白羊宮ジェイソン","7","","20% CRIT (ALL) / 100% DMG on Spark (ALL) / 150% CRIT DMG+ (ALL)","25 hits 350%/100 Dark Thunder Dark (AOE) / 90% Spark DMG+ (ALL) 3Turns","","","","1 hits 200%+520% (based on remaining HP) Dark (AOE) / 90% Spark DMG+ (ALL) 3Turns / 25% Chance Enemy receives 25% Spark DMG+ 0Turns","","","","1 hits 1500%+1000% (based on remaining HP) Dark (AOE) / 150% Spark DMG+ (ALL) 3Turns / 300% CRIT DMG+ (ALL) 3Turns / 100% Chance Enemy receives 50% Spark DMG+ 0Turns","","","","30% HP 30% ATK / 50% DMG on Spark / Add [Ignore DEF (ALL) 2Turns] (ALL)",""],
+
+
+"1714":["1714","61236","秘の天蝎宮ゼルナイト","7","","20% BC+ 20% HC+ 3% Item+ 15% Karma+ 15% Zel+ (ALL) / 150% CRIT DMG+ (ALL) / 6-8BC Fill on Crit (ALL)","18 hits 350%/100 Dark Earth Dark (AOE) / 8BC Fill Instant(ALL) / Increase OD gauge by 6%","","","","36 hits 560%/100 Dark Earth Dark (AOE) / 35% BC+ 35% HC+ 3% Item+ / 8BC Fill Instant(ALL) / Increase OD gauge by 7% / 50% CRIT DMG+ (ALL) 3Turns","","","","27 hits 1500%/100 Dark Earth Dark (AOE) / 0% BB Fill (ALL) / Increase OD gauge by 25% / 500% BB ATK%+ (ALL) 3Turns / 300% CRIT DMG+ (ALL) 3Turns","","","","100% Chance Drain 10-15% HP / 15% Chance Reduce DMG to 1 / Add [60% CRIT Chance+ (ALL) 3Turns] (ALL)",""],
+
+"1700":["1700","31007","護剣翠承神ナギト","8","","60% HP 60% DEF (ALL) / 25% Chance Heal 25-25% DMG when ATKed (ALL) / 100% Chance 4-7BC Fill when ATKed (ALL) / Buff [Heal Over Turn (2000-3000) 2Turns (SELF)] (HP <50) (ALL)","15 hits 390%/200 Earth (AOE) / 180% DEF+ (ALL) 3Turns / Reduce DMG (50%) 2Turns / 4-7BC Fill when ATKed (100%) (ALL) 3Turns / 25% Chance to Heal 20%-25% DMG when ATKed for 3Turns(ALL)","","","","19 hits 540%/200 Earth (AOE) / Gradual Heal (3500-4000) (ALL) 3Turns / 180% DEF+ (ALL) 3Turns / Reduce DMG (50%) 2Turns / 7BC Fill 3Turns / 50% BC Fill+ (ALL) 3Turns","","","","22 hits 1600%/200 Earth (AOE) / Gradual Heal FULL (98999-99999) (ALL) 3Turns / 350% DEF+ (ALL) 3Turns / Reduce DMG (75%) 3Turns / 50BC Fill 3Turns / Buff [80% Chance to withstand a Knockout ATK (Heal 100%)] (ALL) 999Turns","","","","[spheretype(Damage Reducing)]30% HP 30% ATK 30% DEF 30% REC / Negate Ailments (ALL)",""],
 }
