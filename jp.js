@@ -140,6 +140,11 @@ exports.missname = {
 "1714":["1714","61236","Scorpio","7"],
 
 "1700":["1700","31007","Nagito Nagit","8"],
+
+"1716":["1716","11147","Maul Rudero","8"],
+
+
+"1718":["1718","31037","Hammer Gundorei Gundray","8"],
 }
 
 exports.miss = {
@@ -283,4 +288,10 @@ exports.miss = {
 "1714":["1714","61236","秘の天蝎宮ゼルナイト","7","","20% BC+ 20% HC+ 3% Item+ 15% Karma+ 15% Zel+ (ALL) / 150% CRIT DMG+ (ALL) / 6-8BC Fill on Crit (ALL)","18 hits 350%/100 Dark Earth Dark (AOE) / 8BC Fill Instant(ALL) / Increase OD gauge by 6%","","","","36 hits 560%/100 Dark Earth Dark (AOE) / 35% BC+ 35% HC+ 3% Item+ / 8BC Fill Instant(ALL) / Increase OD gauge by 7% / 50% CRIT DMG+ (ALL) 3Turns","","","","27 hits 1500%/100 Dark Earth Dark (AOE) / 0% BB Fill (ALL) / Increase OD gauge by 25% / 500% BB ATK%+ (ALL) 3Turns / 300% CRIT DMG+ (ALL) 3Turns","","","","100% Chance Drain 10-15% HP / 15% Chance Reduce DMG to 1 / Add [60% CRIT Chance+ (ALL) 3Turns] (ALL)",""],
 
 "1700":["1700","31007","護剣翠承神ナギト","8","","60% HP 60% DEF (ALL) / 25% Chance Heal 25-25% DMG when ATKed (ALL) / 100% Chance 4-7BC Fill when ATKed (ALL) / Buff [Heal Over Turn (2000-3000) 2Turns (SELF)] (HP <50) (ALL)","15 hits 390%/200 Earth (AOE) / 180% DEF+ (ALL) 3Turns / Reduce DMG (50%) 2Turns / 4-7BC Fill when ATKed (100%) (ALL) 3Turns / 25% Chance to Heal 20%-25% DMG when ATKed for 3Turns(ALL)","","","","19 hits 540%/200 Earth (AOE) / Gradual Heal (3500-4000) (ALL) 3Turns / 180% DEF+ (ALL) 3Turns / Reduce DMG (50%) 2Turns / 7BC Fill 3Turns / 50% BC Fill+ (ALL) 3Turns","","","","22 hits 1600%/200 Earth (AOE) / Gradual Heal FULL (98999-99999) (ALL) 3Turns / 350% DEF+ (ALL) 3Turns / Reduce DMG (75%) 3Turns / 50BC Fill 3Turns / Buff [80% Chance to withstand a Knockout ATK (Heal 100%)] (ALL) 999Turns","","","","[spheretype(Damage Reducing)]30% HP 30% ATK 30% DEF 30% REC / Negate Ailments (ALL)",""],
+
+"1716":["1716","11147","神偉の焔纏竜ルデロ","8","","60% HP 60% ATK 60% DEF (ALL) / 7BC Fill Per Turn (ALL) / Heal Over Turn (1000-1200) (ALL) / 250% BB ATK%+ (ALL)","12 hits 420%/200 Fire (AOE) / 180% ATK+ 180% DEF+ (ALL) 3Turns / Convert ATK: 80% to DEF (ALL) 3Turns / Convert DEF: 80% to ATK (ALL) 3Turns / Negate 10% DOT DMG for 2Turns ","","","","16 hits 620%/200 Fire (AOE) / Gradual Heal (3500-4000) (ALL) 3Turns / 7BC Fill 3Turns / 100% Chance to Fill (2-3) BB on Spark3Turns(ALL) / 25% Chance to Heal 20%-25% DMG when ATKed for 3Turns(ALL)","","","","18 hits 1800%/200 Fire (AOE) / Gradual Heal FULL (98999-99999) (ALL) 3Turns / 350% ATK+ 350% DEF+ (ALL) 3Turns / 50BC Fill 3Turns / 600% BB ATK%+ (ALL) 3Turns / 100% Chance Enemy receives 100% Spark DMG+ 2Turns","","","","50% ATK 50% DEF (BB >= 50%) / Negate Def Ignore DMG (100%)",""],
+
+
+"1718":["1718","31037","極魁の轟神ガンドレイ","8","","60% HP 150% ATK (ALL) / 130% DMG on Spark (ALL) / 150% CRIT DMG+ (ALL) / Buff [80% ATK 2 Turns (SELF)] (On Crit) (ALL)","1 hits 600%/200 Earth (TGT) / 1 hits 850%/200 Earth (TGT) / 60% CRIT Chance+ (ALL) 3Turns / 50% CRIT DMG+ (ALL) 3Turns / 30% Chance Enemy receives 30% Spark DMG+ 1Turns","","","","1 hits 700%/200 Earth (TGT) / 1 hits 950%/200 Earth (TGT) / 60% CRIT Chance+ (ALL) 3Turns / 50% CRIT DMG+ (ALL) 3Turns / 30% Chance Enemy receives 30% Spark DMG+ 1Turns / 30% Chance for Critial Spark (60% DMG+) 3Turn(s)","","","","1 hits 2000%/200 Earth (TGT) / 1 hits 1200%+1800% (based on remaining HP) Earth (AOE) / 60% CRIT Chance+ (ALL) 3Turns / 350% CRIT DMG+ (ALL) 3Turns / 100% Chance Enemy receives 100% Spark DMG+ 2Turns / 50% Chance for Critial Spark (120% DMG+) 3Turn(s)","","","","60% DMG on Spark / 100% CRIT DMG+ / {Increase ATK Cap to 130000} ",""],
+
 }
