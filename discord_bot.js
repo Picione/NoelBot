@@ -437,7 +437,7 @@ var commands = {
   }
   });
   }
-  if ((!suffix) || (suffix.toLowerCase() == "dictionary")){
+  /*if ((!suffix) || (suffix.toLowerCase() == "dictionary")){
   request({
     			url: dictUrl,
     			json: true
@@ -451,7 +451,7 @@ var commands = {
 	  console.log("Success at Getting Global Dictionary"); // Show the HTML for the Google homepage.
   }
   });
-  }
+  }*/
   if ((!suffix) || (suffix.toLowerCase() == "itjp")){
   request({
     			url: itemJPurl,
@@ -1484,7 +1484,7 @@ var commands = {
 			}
 		}
 	},
-	"lore": {
+	/*"lore": {
 		usage: "<name> <rarity> or 'id' <unit id> ",
 		description: "return Lore of identified unit",
 		process: function(bot,msg,suffix){
@@ -1510,8 +1510,8 @@ var commands = {
 					msg.channel.sendMessage(hurt+' No record found.').then((message => message.delete(5000)));
 			}
 		}
-	},
-	"unitcmt": {
+	},*/
+	/*"unitcmt": {
 		usage: "<f|e|s> <name> <rarity> or <f|e|s> 'id' <unit id> ",
 		description: "return Fusion(f)/Evolution(e)/Summon(s) comment of identified unit",
 		process: function(bot,msg,suffix){
@@ -1554,7 +1554,7 @@ var commands = {
 					msg.channel.sendMessage(hurt+' No record found.').then((message => message.delete(5000)));
 			}}
 		}
-	},
+	},*/
 	"workhard": {
 		usage: "Spam Bypass on",
         description: "Turnoff bot cooldown",
